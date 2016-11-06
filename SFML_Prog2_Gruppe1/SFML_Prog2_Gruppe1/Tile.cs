@@ -20,6 +20,10 @@ namespace SFML_Prog2_Gruppe1
 
         public Tile()
         {
+        }
+
+        virtual public void Initialize()
+        {
             sprite = new Sprite();
             texture = new Texture(32, 32);
         }

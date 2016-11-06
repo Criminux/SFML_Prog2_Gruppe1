@@ -17,7 +17,9 @@ namespace SFML_Prog2_Gruppe1
     {
         public NormalTile(Vector2f position) : base()
         {
-            texture = new Texture("NormalTile.png");
+            Initialize();
+
+            texture = new Texture("Tile/NormalTile.png");
             this.position = position;
 
             sprite.Texture = texture;

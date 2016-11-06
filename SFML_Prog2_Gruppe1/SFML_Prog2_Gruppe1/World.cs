@@ -20,15 +20,19 @@ namespace SFML_Prog2_Gruppe1
         public World()
         {
             world = new Tile[40,20];
-            for(int x = 0; x < 40; x++)
+            InitializeWorld();
+        }
+
+        private void InitializeWorld()
+        {
+            for (int x = 0; x < 40; x++)
             {
-                for(int y = 0; y < 20; y++)
+                for (int y = 0; y < 20; y++)
                 {
                     world[x, y] = new NormalTile(new Vector2f(x * 32, y * 32));
                 }
             }
         }
-
 
         public void Draw()
         {

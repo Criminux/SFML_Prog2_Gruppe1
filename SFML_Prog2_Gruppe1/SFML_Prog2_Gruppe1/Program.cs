@@ -20,12 +20,18 @@ namespace SFML_Prog2_Gruppe1
             RenderWindow window = ProjectRenderWindow.GetRenderWindowInstance();
             window.SetActive();
 
+            Game game = new Game();
+
 
             while(window.IsOpen)
             {
                 //Update
+                game.Update();
+
+
                 //Draw
                 window.Clear(Color.White);
+                game.Draw();
                 window.Display();
             }
 

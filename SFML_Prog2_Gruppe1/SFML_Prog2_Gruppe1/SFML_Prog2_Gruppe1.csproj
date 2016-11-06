@@ -84,6 +84,9 @@
     <Content Include="csfml-window-2.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Tile\CollisionTile.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Tile\NormalTile.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

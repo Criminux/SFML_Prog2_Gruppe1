@@ -9,6 +9,7 @@ using SFML.System;
 using SFML.Window;
 using SFML.Graphics;
 using SFML.Audio;
+using System.IO;
 
 namespace SFML_Prog2_Gruppe1
 {
@@ -25,13 +26,30 @@ namespace SFML_Prog2_Gruppe1
 
         private void InitializeWorld()
         {
-            for (int x = 0; x < 40; x++)
+            
+            StreamReader reader = new StreamReader("World.txt");
+            String templine;
+            int yCount = 0;
+            while((templine = reader.ReadLine())!= null)
             {
-                for (int y = 0; y < 20; y++)
+                String[] IDs = templine.Split(' ');
+
+                for(int i = 0; i < IDs.Length; i++)
                 {
-                    world[x, y] = new NormalTile(new Vector2f(x * 32, y * 32));
+                    switch(IDs[i])
+                    {
+                        case "00":
+                            world[i, yCount] = new NormalTile(new Vector2f(i * 32, yCount * 32));
+                            break;
+                        case "01":
+                            world[i, yCount] = new CollisionTile(new Vector2f(i * 32, yCount * 32));
+                            break;
+                    }
                 }
+
+                yCount++;
             }
+
         }
 
         public void Draw()

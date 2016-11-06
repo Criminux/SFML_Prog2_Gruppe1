@@ -16,7 +16,8 @@ namespace SFML_Prog2_Gruppe1
     {
         static void Main()
         {
-            RenderWindow window = new RenderWindow(new VideoMode(1280, 720), "Prog2_Gruppe1", Styles.Close, new ContextSettings(24, 8, 2));
+            //Get the Window instance
+            RenderWindow window = ProjectRenderWindow.GetRenderWindowInstance();
             window.SetActive();
 
 

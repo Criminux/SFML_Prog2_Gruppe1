@@ -3,7 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+using SFML;
+using SFML.System;
+using SFML.Window;
 using SFML.Graphics;
+using SFML.Audio;
 
 namespace SFML_Prog2_Gruppe1
 {
@@ -24,7 +29,7 @@ namespace SFML_Prog2_Gruppe1
         public Character()
         {
             character = new Sprite();
-
+            /*
             switch (ID)
             {
                 // Load texture based on ID
@@ -37,7 +42,7 @@ namespace SFML_Prog2_Gruppe1
                 case 3:
                     texture = new Texture("");
                     break;
-            }
+            }*/
 
         }
 
@@ -50,7 +55,6 @@ namespace SFML_Prog2_Gruppe1
 
         public Vector2f GetVelocity()
         {
-            this.velocity = velocity;
             return velocity;
         }
 

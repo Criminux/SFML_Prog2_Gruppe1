@@ -19,7 +19,7 @@ namespace SFML_Prog2_Gruppe1
         {
             ProjectRenderWindow.GetRenderWindowInstance().SetActive();
             StateMachine stateMachine = new StateMachine();
-            Clock clock = new Clock();
+            Time timeForFrame = Time.FromSeconds(1 / 60f);
 
 <<<<<<< HEAD
 
@@ -37,10 +37,37 @@ namespace SFML_Prog2_Gruppe1
                 ProjectRenderWindow.GetRenderWindowInstance().Display();
 
                 //Frames
-                
+                var clock = new Clock();
+                var timeSinceLastFrame = Time.Zero;
+                var elapsedTime = clock.ElapsedTime;
                 clock.Restart();
+                timeSinceLastFrame += elapsedTime;
+
+                while (timeSinceLastFrame > timeForFrame)
+                {
+                    timeSinceLastFrame -= timeForFrame;
+                }
+
+
+                
+                UpdateStatistics(elapsedTime);
             }
 
+        }
+
+       static void UpdateStatistics(Time elapsedTime)
+        {
+            Time statisticsTime = new Time();
+            int statisticsFrames = 1;
+
+            statisticsTime += elapsedTime;
+            statisticsFrames += 1;
+
+            //if (statisticsTime >= Time.FromSeconds(1))
+            //{
+            Console.WriteLine("Frames / Second = {0}\nMicroseconds / Frame = {1}", statisticsFrames, statisticsTime.AsMicroseconds());
+            statisticsFrames = 0;
+            //}
         }
     }
 }

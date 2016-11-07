@@ -21,11 +21,7 @@ namespace SFML_Prog2_Gruppe1
             StateMachine stateMachine = new StateMachine();
             Time timeForFrame = Time.FromSeconds(1 / 60f);
 
-<<<<<<< HEAD
-
-=======
             //Programloop
->>>>>>> origin / master
             while (ProjectRenderWindow.GetRenderWindowInstance().IsOpen)
             {
                 //Update

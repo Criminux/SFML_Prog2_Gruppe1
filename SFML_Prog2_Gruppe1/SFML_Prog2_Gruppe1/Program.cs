@@ -21,8 +21,6 @@ namespace SFML_Prog2_Gruppe1
 
             StateMachine stateMachine = new StateMachine();
 
-            Game game = new Game();
-
 
             while(ProjectRenderWindow.GetRenderWindowInstance().IsOpen)
             {

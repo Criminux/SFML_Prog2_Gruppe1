@@ -21,9 +21,14 @@ namespace SFML_Prog2_Gruppe1
             QuestNPC = 3
         }
 
-        private Sprite character;
-        private Texture texture;
-        private Vector2f velocity = new Vector2f();
+        protected int stamina;
+        protected int health;
+        protected int damage;
+        protected int armor;
+        protected Vector2f position;
+        protected Sprite characterSprite;
+        protected Texture characterTexture;
+        protected Vector2f velocity = new Vector2f();
 
 
         public Character()
@@ -47,7 +52,7 @@ namespace SFML_Prog2_Gruppe1
         }
 
         // Get and Setter for movement
-        public void SetVelocity(float x, float y)
+        public virtual void SetVelocity(float x, float y)
         {
             velocity.X = x;
             velocity.Y = y;
@@ -58,8 +63,13 @@ namespace SFML_Prog2_Gruppe1
             return velocity;
         }
 
+        public virtual void Update()
+        {
+            velocity = new Vector2f(0,0);
+            position += velocity;
+        }
+
         public abstract void Draw();
-        public abstract void Update();
 
         // TODO: Method to handle input?
     }

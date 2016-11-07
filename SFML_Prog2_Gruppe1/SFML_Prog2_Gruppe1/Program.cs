@@ -10,29 +10,32 @@ using SFML.Window;
 using SFML.Graphics;
 using SFML.Audio;
 
+
 namespace SFML_Prog2_Gruppe1
 {
     class Program
     {
         static void Main()
         {
-            //Get the Window instance
-            RenderWindow window = ProjectRenderWindow.GetRenderWindowInstance();
-            window.SetActive();
+            ProjectRenderWindow.GetRenderWindowInstance().SetActive();
+
+            StateMachine stateMachine = new StateMachine();
 
             Game game = new Game();
 
 
-            while(window.IsOpen)
+            while(ProjectRenderWindow.GetRenderWindowInstance().IsOpen)
             {
                 //Update
-                game.Update();
+                //game.Update();
+                stateMachine.Update();
 
 
                 //Draw
-                window.Clear(Color.White);
-                game.Draw();
-                window.Display();
+                ProjectRenderWindow.GetRenderWindowInstance().Clear(Color.White);
+                //game.Draw();
+                stateMachine.Draw();
+                ProjectRenderWindow.GetRenderWindowInstance().Display();
             }
 
         }

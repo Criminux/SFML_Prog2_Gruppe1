@@ -27,7 +27,7 @@ namespace SFML_Prog2_Gruppe1.States
 
         public override void Draw()
         {
-            throw new NotImplementedException();
+            ProjectRenderWindow.GetRenderWindowInstance().Clear(Color.Blue);
         }
 
         public override void Initialize()

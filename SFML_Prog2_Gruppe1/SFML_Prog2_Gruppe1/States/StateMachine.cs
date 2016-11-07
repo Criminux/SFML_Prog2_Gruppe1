@@ -56,7 +56,7 @@ namespace SFML_Prog2_Gruppe1
             }
         }
 
-        private void Update()
+        public void Update()
         {
             switch (currentState)
             {
@@ -94,7 +94,7 @@ namespace SFML_Prog2_Gruppe1
             }
         }
 
-        private void Draw()
+        public void Draw()
         {
             switch (currentState)
             {

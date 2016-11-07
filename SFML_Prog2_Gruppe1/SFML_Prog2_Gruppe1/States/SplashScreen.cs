@@ -14,15 +14,17 @@ namespace SFML_Prog2_Gruppe1.States
 {
     public class SplashScreen : State
     {
+        Clock clock;
+
         public SplashScreen()
         {
-
+            Initialize();
         }
 
 
         public override void Dispose()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public override void Draw()
@@ -32,12 +34,16 @@ namespace SFML_Prog2_Gruppe1.States
 
         public override void Initialize()
         {
-            //throw new NotImplementedException();
+            clock = new Clock();
+            clock.Restart();
         }
 
         public override GameStates Update()
         {
-            //throw new NotImplementedException();
+            if(clock.ElapsedTime.AsSeconds() >= 5f)
+            {
+                return GameStates.GamePlayState;
+            }
             return GameStates.SplashScreenState;
         }
     }

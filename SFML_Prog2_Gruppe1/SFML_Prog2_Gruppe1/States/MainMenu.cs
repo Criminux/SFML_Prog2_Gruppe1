@@ -21,17 +21,18 @@ namespace SFML_Prog2_Gruppe1.States
 
         public override void Draw()
         {
-            throw new NotImplementedException();
+            ProjectRenderWindow.GetRenderWindowInstance().Clear(Color.Red);
         }
 
         public override void Initialize()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public override GameStates Update()
         {
-            throw new NotImplementedException();
+            return GameStates.MainMenuState;
+            //throw new NotImplementedException();
         }
     }
 }

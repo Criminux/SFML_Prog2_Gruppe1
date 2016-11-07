@@ -14,24 +14,33 @@ namespace SFML_Prog2_Gruppe1.States
 {
     public class GamePlay : State
     {
+        World world;
+
+        public GamePlay()
+        {
+            world = new World();
+        }
+
         public override void Dispose()
         {
-            throw new NotImplementedException();
+           // throw new NotImplementedException();
         }
 
         public override void Draw()
         {
-            throw new NotImplementedException();
+            world.Draw();
+            //throw new NotImplementedException();
         }
 
         public override void Initialize()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public override GameStates Update()
         {
-            throw new NotImplementedException();
+            return GameStates.GamePlayState;
+            //throw new NotImplementedException();
         }
     }
 }

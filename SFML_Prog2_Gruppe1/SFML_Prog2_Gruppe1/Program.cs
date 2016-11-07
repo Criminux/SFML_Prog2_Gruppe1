@@ -25,8 +25,8 @@ namespace SFML_Prog2_Gruppe1
 
 =======
             //Programloop
->>>>>>> origin/master
-            while(ProjectRenderWindow.GetRenderWindowInstance().IsOpen)
+>>>>>>> origin / master
+            while (ProjectRenderWindow.GetRenderWindowInstance().IsOpen)
             {
                 //Update
                 stateMachine.Update();
@@ -49,13 +49,13 @@ namespace SFML_Prog2_Gruppe1
                 }
 
 
-                
+
                 UpdateStatistics(elapsedTime);
             }
 
         }
 
-       static void UpdateStatistics(Time elapsedTime)
+        static void UpdateStatistics(Time elapsedTime)
         {
             Time statisticsTime = new Time();
             int statisticsFrames = 1;

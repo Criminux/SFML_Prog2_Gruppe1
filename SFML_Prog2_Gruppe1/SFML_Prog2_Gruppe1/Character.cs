@@ -33,7 +33,7 @@ namespace SFML_Prog2_Gruppe1
 
         public Character()
         {
-            character = new Sprite();
+            characterSprite = new Sprite();
             /*
             switch (ID)
             {

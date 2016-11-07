@@ -20,6 +20,8 @@ namespace SFML_Prog2_Gruppe1
             ProjectRenderWindow.GetRenderWindowInstance().SetActive();
             StateMachine stateMachine = new StateMachine();
             Time timeForFrame = Time.FromSeconds(1 / 60f);
+            var timeSinceLastFrame = Time.Zero;
+            var clock = new Clock();
 
             //Programloop
             while (ProjectRenderWindow.GetRenderWindowInstance().IsOpen)
@@ -33,8 +35,6 @@ namespace SFML_Prog2_Gruppe1
                 ProjectRenderWindow.GetRenderWindowInstance().Display();
 
                 //Frames
-                var clock = new Clock();
-                var timeSinceLastFrame = Time.Zero;
                 var elapsedTime = clock.ElapsedTime;
                 clock.Restart();
                 timeSinceLastFrame += elapsedTime;
@@ -43,10 +43,9 @@ namespace SFML_Prog2_Gruppe1
                 {
                     timeSinceLastFrame -= timeForFrame;
                 }
-
-
-
+                
                 UpdateStatistics(elapsedTime);
+
             }
 
         }
@@ -54,15 +53,16 @@ namespace SFML_Prog2_Gruppe1
         static void UpdateStatistics(Time elapsedTime)
         {
             Time statisticsTime = new Time();
-            int statisticsFrames = 1;
+            int statisticsFrames = 0;
 
             statisticsTime += elapsedTime;
             statisticsFrames += 1;
 
             //if (statisticsTime >= Time.FromSeconds(1))
             //{
-            Console.WriteLine("Frames / Second = {0}\nMicroseconds / Frame = {1}", statisticsFrames, statisticsTime.AsMicroseconds());
-            statisticsFrames = 0;
+                Console.WriteLine("Frames / Second = {0}\nMicroseconds / Frame = {1}", statisticsFrames, statisticsTime.AsMicroseconds());
+                statisticsTime -= Time.FromSeconds(1);
+                statisticsFrames = 0;
             //}
         }
     }

@@ -18,24 +18,23 @@ namespace SFML_Prog2_Gruppe1
         static void Main()
         {
             ProjectRenderWindow.GetRenderWindowInstance().SetActive();
-
             StateMachine stateMachine = new StateMachine();
+            Clock clock = new Clock();
 
-            Game game = new Game();
-
-
+            //Programloop
             while(ProjectRenderWindow.GetRenderWindowInstance().IsOpen)
             {
                 //Update
-                //game.Update();
                 stateMachine.Update();
-
 
                 //Draw
                 ProjectRenderWindow.GetRenderWindowInstance().Clear(Color.White);
-                //game.Draw();
                 stateMachine.Draw();
                 ProjectRenderWindow.GetRenderWindowInstance().Display();
+
+                //Frames
+                
+                clock.Restart();
             }
 
         }

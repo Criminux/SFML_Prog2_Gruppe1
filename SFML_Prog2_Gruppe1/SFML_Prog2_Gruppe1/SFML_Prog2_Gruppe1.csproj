@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CollisionTile.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="States\CreditScreen.cs" />
     <Compile Include="States\GamePlay.cs" />
     <Compile Include="States\GameStates.cs" />
@@ -76,6 +77,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Character\Player.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="csfml-audio-2.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -4,26 +4,43 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using SFML;
+using SFML.System;
+using SFML.Window;
+using SFML.Graphics;
+using SFML.Audio;
+
 namespace SFML_Prog2_Gruppe1
 {
-    class Player : Character
+    public class Player : Character
     {
 
-        public Player()
+        public Player() : base()
         {
+            characterType = CharacterID.Player;
             health = 100;
             stamina = 100;
             damage = 1;
+            armor = 0;
+
         }
 
         public override void Update()
         {
-            throw new NotImplementedException();
+            //TODO: Refactor Input
+            if (Keyboard.IsKeyPressed(Keyboard.Key.D)) { SetVelocity(5, 0); }
+            if (Keyboard.IsKeyPressed(Keyboard.Key.A)) { SetVelocity(-5, 0); }
+            if (Keyboard.IsKeyPressed(Keyboard.Key.W)) { SetVelocity(0, -5); }
+            if (Keyboard.IsKeyPressed(Keyboard.Key.S)) { SetVelocity(0, 5); }
+
+            base.Update();
+            //throw new NotImplementedException();
         }
 
         public override void Draw()
         {
-            throw new NotImplementedException();
+            ProjectRenderWindow.GetRenderWindowInstance().Draw(characterSprite);
+            //throw new NotImplementedException();
         }
 
     }

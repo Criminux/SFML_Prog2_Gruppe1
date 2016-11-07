@@ -12,15 +12,16 @@ using SFML.Audio;
 
 namespace SFML_Prog2_Gruppe1
 {
-    abstract class Character
+    public abstract class Character
     {
-        private enum ID
+        public enum CharacterID
         {
             Player = 1,
             EnemyNPC = 2,
             QuestNPC = 3
         }
 
+        protected CharacterID characterType;
         protected int stamina;
         protected int health;
         protected int damage;
@@ -28,26 +29,32 @@ namespace SFML_Prog2_Gruppe1
         protected Vector2f position;
         protected Sprite characterSprite;
         protected Texture characterTexture;
-        protected Vector2f velocity = new Vector2f();
+        protected Vector2f velocity;
 
 
         public Character()
         {
             characterSprite = new Sprite();
-            /*
-            switch (ID)
-            {
-                // Load texture based on ID
-                case 1:
-                    texture = new Texture("");
-                    break;
-                case 2:
-                    texture = new Texture("");
-                    break;
-                case 3:
-                    texture = new Texture("");
-                    break;
-            }*/
+            velocity = new Vector2f(0,0);
+            position = new Vector2f(50,50);
+
+            characterTexture = new Texture("Character/Player.png");
+            //switch (characterType)
+            //{
+            //    // Load texture based on ID
+            //    case CharacterID.Player:
+            //        characterTexture = new Texture("Character/Player.png");
+            //        break;
+            //    case CharacterID.QuestNPC:
+            //        characterTexture = new Texture("Character/Player.png");
+            //        break;
+            //    case CharacterID.EnemyNPC:
+            //        characterTexture = new Texture("Character/Player.png");
+            //        break;
+            //}
+
+            characterSprite.Texture = characterTexture;
+            characterSprite.Position = position;
 
         }
 
@@ -65,8 +72,12 @@ namespace SFML_Prog2_Gruppe1
 
         public virtual void Update()
         {
+            position.X = position.X + velocity.X;
+            position.Y = position.Y + velocity.Y;
+
+            characterSprite.Position = position;
+
             velocity = new Vector2f(0,0);
-            position += velocity;
         }
 
         public abstract void Draw();

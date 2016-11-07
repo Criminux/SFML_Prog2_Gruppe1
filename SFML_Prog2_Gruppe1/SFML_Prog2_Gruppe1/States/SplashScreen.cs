@@ -40,7 +40,7 @@ namespace SFML_Prog2_Gruppe1.States
 
         public override GameStates Update()
         {
-            if(clock.ElapsedTime.AsSeconds() >= 5f)
+            if(clock.ElapsedTime.AsSeconds() >= 1f)
             {
                 return GameStates.GamePlayState;
             }

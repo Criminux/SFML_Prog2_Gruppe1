@@ -15,10 +15,12 @@ namespace SFML_Prog2_Gruppe1.States
     public class GamePlay : State
     {
         World world;
+        Player player;
 
         public GamePlay()
         {
             world = new World();
+            player = new Player();
         }
 
         public override void Dispose()
@@ -29,6 +31,7 @@ namespace SFML_Prog2_Gruppe1.States
         public override void Draw()
         {
             world.Draw();
+            player.Draw();
             //throw new NotImplementedException();
         }
 
@@ -39,6 +42,7 @@ namespace SFML_Prog2_Gruppe1.States
 
         public override GameStates Update()
         {
+            player.Update();
             return GameStates.GamePlayState;
             //throw new NotImplementedException();
         }

@@ -23,6 +23,11 @@ namespace SFML_Prog2_Gruppe1
         private PauseMenu pauseMenu;
         private CreditScreen creditScreen;
 
+        public StateMachine()
+        {
+            Initialize();
+        }
+
         private void Initialize()
         {
             //Sets the starting state

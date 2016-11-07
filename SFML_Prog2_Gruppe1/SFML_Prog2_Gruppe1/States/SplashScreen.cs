@@ -32,12 +32,13 @@ namespace SFML_Prog2_Gruppe1.States
 
         public override void Initialize()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public override GameStates Update()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            return GameStates.SplashScreenState;
         }
     }
 }

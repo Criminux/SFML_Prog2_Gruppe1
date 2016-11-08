@@ -28,10 +28,10 @@ namespace SFML_Prog2_Gruppe1
         public override void Update()
         {
             //TODO: Refactor Input
-            if (Keyboard.IsKeyPressed(Keyboard.Key.D)) { SetVelocity(5, 0); }
-            if (Keyboard.IsKeyPressed(Keyboard.Key.A)) { SetVelocity(-5, 0); }
-            if (Keyboard.IsKeyPressed(Keyboard.Key.W)) { SetVelocity(0, -5); }
-            if (Keyboard.IsKeyPressed(Keyboard.Key.S)) { SetVelocity(0, 5); }
+            if (Keyboard.IsKeyPressed(Keyboard.Key.D) || Keyboard.IsKeyPressed(Keyboard.Key.Right)) { SetVelocity(5, 0); }
+            if (Keyboard.IsKeyPressed(Keyboard.Key.A) || Keyboard.IsKeyPressed(Keyboard.Key.Left)) { SetVelocity(-5, 0); }
+            if (Keyboard.IsKeyPressed(Keyboard.Key.W) || Keyboard.IsKeyPressed(Keyboard.Key.Up)) { SetVelocity(0, -5); }
+            if (Keyboard.IsKeyPressed(Keyboard.Key.S) || Keyboard.IsKeyPressed(Keyboard.Key.Down)) { SetVelocity(0, 5); }
 
             base.Update();
             //throw new NotImplementedException();

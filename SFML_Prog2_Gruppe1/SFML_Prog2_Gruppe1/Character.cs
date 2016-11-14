@@ -48,7 +48,7 @@ namespace SFML_Prog2_Gruppe1
             
         }
 
-        public virtual void Update()
+        public virtual void Update(Tile[,] room)
         {
             position.X = position.X + velocity.X;
             position.Y = position.Y + velocity.Y;
@@ -56,11 +56,41 @@ namespace SFML_Prog2_Gruppe1
             characterSprite.Position = position;
 
             velocity = new Vector2f(0,0);
+
+            HandleCollisions(room);
         }
 
         public virtual void Draw()
         {
             ProjectRenderWindow.GetRenderWindowInstance().Draw(characterSprite);
+        }
+
+        private void HandleCollisions(Tile[,] room)
+        {
+            int indexX = (int)((position.X / 32) - 1);
+            int indexY = (int)((position.Y / 32) - 1);
+
+            for(int i = 0; i < 3; i++)
+            {
+                for(int j = 0; j < 3; j++)
+                {
+                    //TODO: Refactor try/Catch -> Collision Logic
+                    try
+                    {
+                        Tile tempTile = room[indexX + i, indexY + j];
+                        if (tempTile is CollisionTile)
+                        {
+                            if (tempTile.Rectangle.Intersects(characterSprite.TextureRect))
+                            {
+                                Console.WriteLine("Die Dinger kollidieren!!!!!!!!!0000");
+                            }
+                        }
+
+                    }
+                    catch (Exception e) { }
+                }
+            }
+
         }
     }
 }

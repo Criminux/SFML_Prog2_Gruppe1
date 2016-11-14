@@ -42,7 +42,7 @@ namespace SFML_Prog2_Gruppe1.States
 
         public override GameStates Update()
         {
-            player.Update();
+            player.Update(world.CurrentRoom);
             return GameStates.GamePlayState;
             //throw new NotImplementedException();
         }

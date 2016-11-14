@@ -29,7 +29,7 @@ namespace SFML_Prog2_Gruppe1
 
         }
 
-        public override void Update()
+        public override void Update(Tile[,] room)
         {
             //TODO: Refactor Input
             if (Keyboard.IsKeyPressed(Keyboard.Key.D) || Keyboard.IsKeyPressed(Keyboard.Key.Right)) { Velocity = new Vector2f(5, 0); }
@@ -37,7 +37,7 @@ namespace SFML_Prog2_Gruppe1
             if (Keyboard.IsKeyPressed(Keyboard.Key.W) || Keyboard.IsKeyPressed(Keyboard.Key.Up)) { Velocity = new Vector2f(0, -5); }
             if (Keyboard.IsKeyPressed(Keyboard.Key.S) || Keyboard.IsKeyPressed(Keyboard.Key.Down)) { Velocity = new Vector2f(0, 5); }
 
-            base.Update();
+            base.Update(room);
         }
 
     }

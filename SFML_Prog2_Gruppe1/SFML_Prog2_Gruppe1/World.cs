@@ -15,8 +15,13 @@ namespace SFML_Prog2_Gruppe1
 {
     public class World
     {
-        List<Tile[,]> world;
+        private List<Tile[,]> world;
         private int current;
+
+        public Tile[,] CurrentRoom
+        {
+            get { return world[current]; }
+        }
 
         public World()
         {

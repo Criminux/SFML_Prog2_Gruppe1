@@ -18,6 +18,15 @@ namespace SFML_Prog2_Gruppe1
         protected Sprite sprite;
         protected Vector2f position;
 
+        public Vector2f Position
+        {
+            get { return position; }
+        }
+        public IntRect Rectangle
+        {
+            get { return sprite.TextureRect; }
+        }
+
         public Tile()
         {
         }

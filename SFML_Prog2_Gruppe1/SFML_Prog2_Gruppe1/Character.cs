@@ -38,36 +38,14 @@ namespace SFML_Prog2_Gruppe1
             velocity = new Vector2f(0,0);
             position = new Vector2f(50,50);
 
-            characterTexture = new Texture("Character/Player.png");
-            //switch (characterType)
-            //{
-            //    // Load texture based on ID
-            //    case CharacterID.Player:
-            //        characterTexture = new Texture("Character/Player.png");
-            //        break;
-            //    case CharacterID.QuestNPC:
-            //        characterTexture = new Texture("Character/Player.png");
-            //        break;
-            //    case CharacterID.EnemyNPC:
-            //        characterTexture = new Texture("Character/Player.png");
-            //        break;
-            //}
-
-            characterSprite.Texture = characterTexture;
-            characterSprite.Position = position;
-
         }
 
         // Get and Setter for movement
-        public virtual void SetVelocity(float x, float y)
+        public Vector2f Velocity
         {
-            velocity.X = x;
-            velocity.Y = y;
-        }
-
-        public Vector2f GetVelocity()
-        {
-            return velocity;
+            get { return velocity; }
+            set{ velocity += value; }
+            
         }
 
         public virtual void Update()
@@ -80,8 +58,9 @@ namespace SFML_Prog2_Gruppe1
             velocity = new Vector2f(0,0);
         }
 
-        public abstract void Draw();
-
-        // TODO: Method to handle input?
+        public virtual void Draw()
+        {
+            ProjectRenderWindow.GetRenderWindowInstance().Draw(characterSprite);
+        }
     }
 }

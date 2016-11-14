@@ -23,24 +23,21 @@ namespace SFML_Prog2_Gruppe1
             damage = 1;
             armor = 0;
 
+            characterTexture = new Texture("Character/Player.png");
+            characterSprite.Texture = characterTexture;
+            characterSprite.Position = position;
+
         }
 
         public override void Update()
         {
             //TODO: Refactor Input
-            if (Keyboard.IsKeyPressed(Keyboard.Key.D) || Keyboard.IsKeyPressed(Keyboard.Key.Right)) { SetVelocity(5, 0); }
-            if (Keyboard.IsKeyPressed(Keyboard.Key.A) || Keyboard.IsKeyPressed(Keyboard.Key.Left)) { SetVelocity(-5, 0); }
-            if (Keyboard.IsKeyPressed(Keyboard.Key.W) || Keyboard.IsKeyPressed(Keyboard.Key.Up)) { SetVelocity(0, -5); }
-            if (Keyboard.IsKeyPressed(Keyboard.Key.S) || Keyboard.IsKeyPressed(Keyboard.Key.Down)) { SetVelocity(0, 5); }
+            if (Keyboard.IsKeyPressed(Keyboard.Key.D) || Keyboard.IsKeyPressed(Keyboard.Key.Right)) { Velocity = new Vector2f(5, 0); }
+            if (Keyboard.IsKeyPressed(Keyboard.Key.A) || Keyboard.IsKeyPressed(Keyboard.Key.Left)) { Velocity = new Vector2f(-5, 0); }
+            if (Keyboard.IsKeyPressed(Keyboard.Key.W) || Keyboard.IsKeyPressed(Keyboard.Key.Up)) { Velocity = new Vector2f(0, -5); }
+            if (Keyboard.IsKeyPressed(Keyboard.Key.S) || Keyboard.IsKeyPressed(Keyboard.Key.Down)) { Velocity = new Vector2f(0, 5); }
 
             base.Update();
-            //throw new NotImplementedException();
-        }
-
-        public override void Draw()
-        {
-            ProjectRenderWindow.GetRenderWindowInstance().Draw(characterSprite);
-            //throw new NotImplementedException();
         }
 
     }

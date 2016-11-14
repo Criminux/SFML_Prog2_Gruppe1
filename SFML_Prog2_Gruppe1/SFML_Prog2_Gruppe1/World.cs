@@ -15,34 +15,49 @@ namespace SFML_Prog2_Gruppe1
 {
     public class World
     {
-        Tile[,] world;
-
+        List<Tile[,]> world;
+        private int current;
 
         public World()
         {
-            world = new Tile[40,20];
+            world = new List<Tile[,]>();
+            current = 0;
             InitializeWorld();
         }
 
         private void InitializeWorld()
         {
-            
             StreamReader reader = new StreamReader("World.txt");
+
+            while(true)
+            {
+                world.Add(ReadPart(reader));
+                if(world.Last()[0,0] == null)
+                {
+                    break;
+                }
+            }
+        }
+
+        private Tile[,] ReadPart(StreamReader reader)
+        {
+            Tile[,] tempWorld = new Tile[40, 20];
+
             String templine;
             int yCount = 0;
-            while((templine = reader.ReadLine())!= null)
+            while ((templine = reader.ReadLine()) != null)
             {
                 String[] IDs = templine.Split(' ');
 
-                for(int i = 0; i < IDs.Length; i++)
+                for (int i = 0; i < IDs.Length; i++)
                 {
-                    switch(IDs[i])
+                    switch (IDs[i])
                     {
                         case "00":
-                            world[i, yCount] = new NormalTile(new Vector2f(i * 32, yCount * 32));
+                            tempWorld[i, yCount] = new NormalTile(new Vector2f(i * 32, yCount * 32));
                             break;
                         case "01":
-                            world[i, yCount] = new CollisionTile(new Vector2f(i * 32, yCount * 32));
+                            tempWorld[i, yCount] = new CollisionTile(new Vector2f(i * 32, yCount * 32));
                             break;
                     }
                 }
@@ -50,13 +65,14 @@ namespace SFML_Prog2_Gruppe1
                 yCount++;
             }
 
+            return tempWorld;
         }
 
         public void Draw()
         {
-            foreach(Tile tile in world)
+            foreach(Tile tempTile in world[current])
             {
-                tile.Draw();
+                tempTile.Draw();
             }
         }
     }

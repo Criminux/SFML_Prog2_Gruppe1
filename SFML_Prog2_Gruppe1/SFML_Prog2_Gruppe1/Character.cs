@@ -36,7 +36,7 @@ namespace SFML_Prog2_Gruppe1
         {
             characterSprite = new Sprite();
             velocity = new Vector2f(0,0);
-            position = new Vector2f(50,50);
+            position = new Vector2f(200,200);
 
         }
 
@@ -44,20 +44,20 @@ namespace SFML_Prog2_Gruppe1
         public Vector2f Velocity
         {
             get { return velocity; }
-            set{ velocity += value; }
+            set{ velocity = value; }
             
         }
 
         public virtual void Update(Tile[,] room)
         {
+            HandleCollisions(room);
+
             position.X = position.X + velocity.X;
             position.Y = position.Y + velocity.Y;
 
             characterSprite.Position = position;
 
-            velocity = new Vector2f(0,0);
-
-            HandleCollisions(room);
+            Velocity = new Vector2f(0, 0);
         }
 
         public virtual void Draw()
@@ -83,6 +83,7 @@ namespace SFML_Prog2_Gruppe1
                             if (tempTile.Rectangle.Intersects(characterSprite.TextureRect))
                             {
                                 Console.WriteLine("Die Dinger kollidieren!!!!!!!!!0000");
+                                //velocity = new Vector2f(0, 0);
                             }
                         }
 

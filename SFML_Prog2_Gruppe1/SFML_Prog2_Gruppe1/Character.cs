@@ -82,12 +82,19 @@ namespace SFML_Prog2_Gruppe1
                     Tile tempTile = room[indexX + i, indexY + j];
                     if (tempTile is CollisionTile)
                     {
-                        if (tempTile.Rectangle.Intersects(characterSprite.TextureRect))
-                        {
-                            Console.WriteLine("Die Dinger kollidieren!!!!!!!!!");
+                        int leftPoint = characterSprite.TextureRect.Left;
+                        int rightPoint = characterSprite.TextureRect.Left + characterSprite.TextureRect.Width;
 
-                            //TODO: Fix Position
-                        }
+                        int topPoint = characterSprite.TextureRect.Top;
+                        int botPoint = characterSprite.TextureRect.Top + characterSprite.TextureRect.Height;
+
+                        //if (tempTile.Rectangle.Contains()                       
+                        //{
+                        //    Console.WriteLine("Die Dinger kollidieren!!!!!!!!!");
+
+                        //    //TODO: Fix Position
+                            
+                        //}
                     }
 
                 }

@@ -70,25 +70,26 @@ namespace SFML_Prog2_Gruppe1
             int indexX = (int)((position.X / 32) - 1);
             int indexY = (int)((position.Y / 32) - 1);
 
+            if (indexX > 37) { indexX = 37; }
+            if (indexY > 17) { indexY = 17; }
+            if (indexX < 0) { indexX = 0; }
+            if (indexY < 0) { indexY = 0; }
+
             for(int i = 0; i < 3; i++)
             {
                 for(int j = 0; j < 3; j++)
                 {
-                    //TODO: Refactor try/Catch -> Collision Logic
-                    try
+                    Tile tempTile = room[indexX + i, indexY + j];
+                    if (tempTile is CollisionTile)
                     {
-                        Tile tempTile = room[indexX + i, indexY + j];
-                        if (tempTile is CollisionTile)
+                        if (tempTile.Rectangle.Intersects(characterSprite.TextureRect))
                         {
-                            if (tempTile.Rectangle.Intersects(characterSprite.TextureRect))
-                            {
-                                Console.WriteLine("Die Dinger kollidieren!!!!!!!!!0000");
-                                //velocity = new Vector2f(0, 0);
-                            }
-                        }
+                            Console.WriteLine("Die Dinger kollidieren!!!!!!!!!");
 
+                            //TODO: Fix Position
+                        }
                     }
-                    catch (Exception e) { }
+
                 }
             }
 

@@ -84,41 +84,9 @@ namespace SFML_Prog2_Gruppe1
                     {
                         if(tempTile.Rectangle.Intersects(characterSprite.GetGlobalBounds()))
                         {
-                            //TODO: FixPosition Method
+                            position += CollisionUtil.CalculateCollisionDepth(characterSprite.GetGlobalBounds(), tempTile.Rectangle);
                         }
-
-                        /*
-                        float leftPoint = characterSprite.GetGlobalBounds().Left;
-                        float rightPoint = characterSprite.GetGlobalBounds().Left + characterSprite.GetGlobalBounds().Width;
-
-                        float topPoint = characterSprite.GetGlobalBounds().Top;
-                        float botPoint = characterSprite.GetGlobalBounds().Top + characterSprite.GetGlobalBounds().Height;
-
                         
-                        if (tempTile.Rectangle.Contains(leftPoint, (topPoint + (characterSprite.GetGlobalBounds().Height / 2))))
-                        {
-                            Console.WriteLine("von LINKS");
-                            position.X += (tempTile.Rectangle.Width - leftPoint) + 1;
-                            velocity = new Vector2f(0, 0);
-                        }
-                        if (tempTile.Rectangle.Contains(rightPoint, (topPoint + (characterSprite.GetGlobalBounds().Height / 2))))
-                        {
-                            Console.WriteLine("von RECHTS");
-                            position.X -= (rightPoint - tempTile.Rectangle.Left) + 1;
-                            velocity = new Vector2f(0, 0);
-                        }
-                        if (tempTile.Rectangle.Contains((leftPoint + (characterSprite.GetGlobalBounds().Width / 2)), topPoint))
-                        {
-                            Console.WriteLine("von UNTEN");
-                            position.Y += (tempTile.Rectangle.Height - topPoint + 1);
-                            velocity = new Vector2f(0, 0);
-                        }
-                        if (tempTile.Rectangle.Contains((rightPoint + (characterSprite.GetGlobalBounds().Width / 2)), botPoint))
-                        {
-                            Console.WriteLine("von OBEN");
-                            position.Y -= (botPoint - tempTile.Rectangle.Top) + 1;
-                            velocity = new Vector2f(0, 0);
-                        }*/
                     }
 
                 }

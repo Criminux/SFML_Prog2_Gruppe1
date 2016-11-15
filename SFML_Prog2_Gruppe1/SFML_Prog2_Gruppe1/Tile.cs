@@ -22,9 +22,9 @@ namespace SFML_Prog2_Gruppe1
         {
             get { return position; }
         }
-        public IntRect Rectangle
+        public FloatRect Rectangle
         {
-            get { return sprite.TextureRect; }
+            get { return sprite.GetGlobalBounds(); }
         }
 
         public Tile()

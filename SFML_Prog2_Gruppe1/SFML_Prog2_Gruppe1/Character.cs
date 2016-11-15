@@ -82,19 +82,37 @@ namespace SFML_Prog2_Gruppe1
                     Tile tempTile = room[indexX + i, indexY + j];
                     if (tempTile is CollisionTile)
                     {
-                        int leftPoint = characterSprite.TextureRect.Left;
-                        int rightPoint = characterSprite.TextureRect.Left + characterSprite.TextureRect.Width;
+                        float leftPoint = characterSprite.GetGlobalBounds().Left;
+                        float rightPoint = characterSprite.GetGlobalBounds().Left + characterSprite.GetGlobalBounds().Width;
 
-                        int topPoint = characterSprite.TextureRect.Top;
-                        int botPoint = characterSprite.TextureRect.Top + characterSprite.TextureRect.Height;
+                        float topPoint = characterSprite.GetGlobalBounds().Top;
+                        float botPoint = characterSprite.GetGlobalBounds().Top + characterSprite.GetGlobalBounds().Height;
 
-                        //if (tempTile.Rectangle.Contains()                       
-                        //{
-                        //    Console.WriteLine("Die Dinger kollidieren!!!!!!!!!");
+                        if (tempTile.Rectangle.Contains(leftPoint, (topPoint + (characterSprite.GetGlobalBounds().Height / 2))))
+                        {
+                            Console.WriteLine("von LINKS");
+                            position.X += (leftPoint - tempTile.Rectangle.Width + 2);
+                            velocity = new Vector2f(0, 0);
+                        }
+                        else if (tempTile.Rectangle.Contains(rightPoint, (topPoint + (characterSprite.GetGlobalBounds().Height / 2))))
+                        {
+                            Console.WriteLine("von RECHTS");
+                            position.X -= ((characterSprite.GetGlobalBounds().Left + characterSprite.GetGlobalBounds().Width) - tempTile.Rectangle.Left + 2);
+                            velocity = new Vector2f(0, 0);
+                        }
 
-                        //    //TODO: Fix Position
-                            
-                        //}
+                        if (tempTile.Rectangle.Contains((leftPoint + (characterSprite.GetGlobalBounds().Width / 2)), topPoint))
+                        {
+                            Console.WriteLine("von UNTEN");
+                            position.Y += (topPoint - tempTile.Rectangle.Width + 2);
+                            velocity = new Vector2f(0, 0);
+                        }
+                        else if (tempTile.Rectangle.Contains((rightPoint + (characterSprite.GetGlobalBounds().Width / 2)), botPoint))
+                        {
+                            Console.WriteLine("von OBEN");
+                            position.Y -= ((characterSprite.GetGlobalBounds().Top + characterSprite.GetGlobalBounds().Height) - tempTile.Rectangle.Top + 2);
+                            velocity = new Vector2f(0, 0);
+                        }
                     }
 
                 }

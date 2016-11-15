@@ -82,12 +82,19 @@ namespace SFML_Prog2_Gruppe1
                     Tile tempTile = room[indexX + i, indexY + j];
                     if (tempTile is CollisionTile)
                     {
+                        if(tempTile.Rectangle.Intersects(characterSprite.GetGlobalBounds()))
+                        {
+                            //TODO: FixPosition Method
+                        }
+
+                        /*
                         float leftPoint = characterSprite.GetGlobalBounds().Left;
                         float rightPoint = characterSprite.GetGlobalBounds().Left + characterSprite.GetGlobalBounds().Width;
 
                         float topPoint = characterSprite.GetGlobalBounds().Top;
                         float botPoint = characterSprite.GetGlobalBounds().Top + characterSprite.GetGlobalBounds().Height;
 
+                        
                         if (tempTile.Rectangle.Contains(leftPoint, (topPoint + (characterSprite.GetGlobalBounds().Height / 2))))
                         {
                             Console.WriteLine("von LINKS");
@@ -111,7 +118,7 @@ namespace SFML_Prog2_Gruppe1
                             Console.WriteLine("von OBEN");
                             position.Y -= (botPoint - tempTile.Rectangle.Top) + 1;
                             velocity = new Vector2f(0, 0);
-                        }
+                        }*/
                     }
 
                 }

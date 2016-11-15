@@ -91,26 +91,25 @@ namespace SFML_Prog2_Gruppe1
                         if (tempTile.Rectangle.Contains(leftPoint, (topPoint + (characterSprite.GetGlobalBounds().Height / 2))))
                         {
                             Console.WriteLine("von LINKS");
-                            position.X += (leftPoint - tempTile.Rectangle.Width + 2);
+                            position.X += (tempTile.Rectangle.Width - leftPoint) + 1;
                             velocity = new Vector2f(0, 0);
                         }
-                        else if (tempTile.Rectangle.Contains(rightPoint, (topPoint + (characterSprite.GetGlobalBounds().Height / 2))))
+                        if (tempTile.Rectangle.Contains(rightPoint, (topPoint + (characterSprite.GetGlobalBounds().Height / 2))))
                         {
                             Console.WriteLine("von RECHTS");
-                            position.X -= ((characterSprite.GetGlobalBounds().Left + characterSprite.GetGlobalBounds().Width) - tempTile.Rectangle.Left + 2);
+                            position.X -= (rightPoint - tempTile.Rectangle.Left) + 1;
                             velocity = new Vector2f(0, 0);
                         }
-
                         if (tempTile.Rectangle.Contains((leftPoint + (characterSprite.GetGlobalBounds().Width / 2)), topPoint))
                         {
                             Console.WriteLine("von UNTEN");
-                            position.Y += (topPoint - tempTile.Rectangle.Width + 2);
+                            position.Y += (tempTile.Rectangle.Height - topPoint + 1);
                             velocity = new Vector2f(0, 0);
                         }
-                        else if (tempTile.Rectangle.Contains((rightPoint + (characterSprite.GetGlobalBounds().Width / 2)), botPoint))
+                        if (tempTile.Rectangle.Contains((rightPoint + (characterSprite.GetGlobalBounds().Width / 2)), botPoint))
                         {
                             Console.WriteLine("von OBEN");
-                            position.Y -= ((characterSprite.GetGlobalBounds().Top + characterSprite.GetGlobalBounds().Height) - tempTile.Rectangle.Top + 2);
+                            position.Y -= (botPoint - tempTile.Rectangle.Top) + 1;
                             velocity = new Vector2f(0, 0);
                         }
                     }

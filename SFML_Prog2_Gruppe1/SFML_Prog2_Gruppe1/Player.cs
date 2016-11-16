@@ -32,13 +32,46 @@ namespace SFML_Prog2_Gruppe1
         public override void Update(Tile[,] room)
         {
             //TODO: Refactor Input
-            if (Keyboard.IsKeyPressed(Keyboard.Key.D) || Keyboard.IsKeyPressed(Keyboard.Key.Right)) { Velocity = new Vector2f(0.5f, 0); }
-            if (Keyboard.IsKeyPressed(Keyboard.Key.A) || Keyboard.IsKeyPressed(Keyboard.Key.Left))  { Velocity = new Vector2f(-0.5f, 0); }
-            if (Keyboard.IsKeyPressed(Keyboard.Key.W) || Keyboard.IsKeyPressed(Keyboard.Key.Up))    { Velocity = new Vector2f(0, -0.5f); }
-            if (Keyboard.IsKeyPressed(Keyboard.Key.S) || Keyboard.IsKeyPressed(Keyboard.Key.Down))  { Velocity = new Vector2f(0, 0.5f); }
+            //if (Keyboard.IsKeyPressed(Keyboard.Key.D) || Keyboard.IsKeyPressed(Keyboard.Key.Right)) { Velocity = new Vector2f(0.5f, 0); }
+            //if (Keyboard.IsKeyPressed(Keyboard.Key.A) || Keyboard.IsKeyPressed(Keyboard.Key.Left))  { Velocity = new Vector2f(-0.5f, 0); }
+            //if (Keyboard.IsKeyPressed(Keyboard.Key.W) || Keyboard.IsKeyPressed(Keyboard.Key.Up))    { Velocity = new Vector2f(0, -0.5f); }
+            //if (Keyboard.IsKeyPressed(Keyboard.Key.S) || Keyboard.IsKeyPressed(Keyboard.Key.Down))  { Velocity = new Vector2f(0, 0.5f); 
+            CheckInputs();
 
             base.Update(room);
         }
 
+        void CheckInputs()
+        {
+            if (Keyboard.IsKeyPressed(Keyboard.Key.D) || Keyboard.IsKeyPressed(Keyboard.Key.Right))
+            {
+                Velocity = new Vector2f(1f, 0);
+            }
+            else if (Keyboard.IsKeyPressed(Keyboard.Key.A) || Keyboard.IsKeyPressed(Keyboard.Key.Left))
+            {
+                Velocity = new Vector2f(-1f, 0);
+            }
+            if (Keyboard.IsKeyPressed(Keyboard.Key.W) || Keyboard.IsKeyPressed(Keyboard.Key.Up))
+            {
+                Velocity = new Vector2f(0, -1f);
+            }
+            else if (Keyboard.IsKeyPressed(Keyboard.Key.S) || Keyboard.IsKeyPressed(Keyboard.Key.Down))
+            {
+                Velocity = new Vector2f(0, 1f);
+            }
+
+            if ((Keyboard.IsKeyPressed(Keyboard.Key.D) || Keyboard.IsKeyPressed(Keyboard.Key.Right))
+                && (Keyboard.IsKeyPressed(Keyboard.Key.A) || Keyboard.IsKeyPressed(Keyboard.Key.Left)))
+            {
+                Velocity = new Vector2f(0, 0);
+            }
+            if ((Keyboard.IsKeyPressed(Keyboard.Key.W) || Keyboard.IsKeyPressed(Keyboard.Key.Up))
+                && (Keyboard.IsKeyPressed(Keyboard.Key.S) || Keyboard.IsKeyPressed(Keyboard.Key.Down)))
+            {
+                Velocity = new Vector2f(0, 0);
+            }
+
+
+        }
     }
 }

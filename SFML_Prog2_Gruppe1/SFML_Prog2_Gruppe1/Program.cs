@@ -22,12 +22,15 @@ namespace SFML_Prog2_Gruppe1
             Time timeForFrame = Time.FromSeconds(1 / 60f);
             var timeSinceLastFrame = Time.Zero;
             var clock = new Clock();
+            ProjectRenderWindow.GetRenderWindowInstance().Closed += new EventHandler(OnClosed);
+            ProjectRenderWindow.GetRenderWindowInstance().KeyPressed += new EventHandler<KeyEventArgs>(OnKeyPressed);
 
             //Programloop
             while (ProjectRenderWindow.GetRenderWindowInstance().IsOpen)
             {
                 //Update
                 stateMachine.Update();
+                ProjectRenderWindow.GetRenderWindowInstance().DispatchEvents();
 
                 //Draw
                 ProjectRenderWindow.GetRenderWindowInstance().Clear(Color.White);
@@ -64,6 +67,20 @@ namespace SFML_Prog2_Gruppe1
                 statisticsTime -= Time.FromSeconds(1);
                 statisticsFrames = 0;
             //}
+        }
+
+
+        static void OnClosed(object sender, EventArgs e)
+        {
+            RenderWindow window = (RenderWindow)sender;
+            ProjectRenderWindow.GetRenderWindowInstance().Close();
+        }
+
+        static void OnKeyPressed(object sender, KeyEventArgs e)
+        {
+            RenderWindow window = (RenderWindow)sender;
+            if (e.Code == Keyboard.Key.Escape)
+                ProjectRenderWindow.GetRenderWindowInstance().Close();
         }
     }
 }

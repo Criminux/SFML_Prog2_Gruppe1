@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="CollisionTile.cs" />
     <Compile Include="CollisionUtil.cs" />
+    <Compile Include="MathUtil.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="States\CreditScreen.cs" />
     <Compile Include="States\GamePlay.cs" />

@@ -15,6 +15,8 @@ namespace SFML_Prog2_Gruppe1
     public class Player : Character
     {
 
+        const float MovementSpeed = 10;
+
         public Player() : base()
         {
             characterType = CharacterID.Player;
@@ -26,6 +28,8 @@ namespace SFML_Prog2_Gruppe1
             characterTexture = new Texture("Character/Player.png");
             characterSprite.Texture = characterTexture;
             characterSprite.Position = position;
+
+            
 
         }
 
@@ -45,19 +49,19 @@ namespace SFML_Prog2_Gruppe1
         {
             if (Keyboard.IsKeyPressed(Keyboard.Key.D) || Keyboard.IsKeyPressed(Keyboard.Key.Right))
             {
-                Velocity = new Vector2f(1f, 0);
+                Velocity = new Vector2f(MovementSpeed, 0);
             }
             else if (Keyboard.IsKeyPressed(Keyboard.Key.A) || Keyboard.IsKeyPressed(Keyboard.Key.Left))
             {
-                Velocity = new Vector2f(-1f, 0);
+                Velocity = new Vector2f(-MovementSpeed, 0);
             }
             if (Keyboard.IsKeyPressed(Keyboard.Key.W) || Keyboard.IsKeyPressed(Keyboard.Key.Up))
             {
-                Velocity = new Vector2f(0, -1f);
+                Velocity = new Vector2f(0, -MovementSpeed);
             }
             else if (Keyboard.IsKeyPressed(Keyboard.Key.S) || Keyboard.IsKeyPressed(Keyboard.Key.Down))
             {
-                Velocity = new Vector2f(0, 1f);
+                Velocity = new Vector2f(0, MovementSpeed);
             }
 
             if ((Keyboard.IsKeyPressed(Keyboard.Key.D) || Keyboard.IsKeyPressed(Keyboard.Key.Right))

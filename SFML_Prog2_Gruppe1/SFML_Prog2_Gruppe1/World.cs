@@ -9,7 +9,7 @@ using SFML.System;
 using SFML.Window;
 using SFML.Graphics;
 using SFML.Audio;
-using System.IO;
+using System.Xml;
 
 namespace SFML_Prog2_Gruppe1
 {
@@ -32,45 +32,60 @@ namespace SFML_Prog2_Gruppe1
 
         private void InitializeWorld()
         {
-            StreamReader reader = new StreamReader("World.txt");
+            XmlDocument document = new XmlDocument();
+            document.Load("World.xml");
 
-            while(true)
+
+            XmlNode worldNode = document.SelectSingleNode("/World");
+
+            foreach (XmlNode node in worldNode.ChildNodes)
             {
-                world.Add(ReadPart(reader));
-                if(world.Last()[0,0] == null)
+                Tile[,] tempWorld = new Tile[40, 20];
+                String tempRoom = node.InnerText;
+                String[] tempLines = tempRoom.Split("\r\n".ToCharArray());
+                List<String> finalLines = new List<string>();
+
+                for(int i = 0; i < tempLines.Length; i++)
                 {
-                    break;
-                }
-            }
-        }
-
-        private Tile[,] ReadPart(StreamReader reader)
-        {
-            Tile[,] tempWorld = new Tile[40, 20];
-
-            String templine;
-            int yCount = 0;
-            while ((templine = reader.ReadLine()) != null)
-            {
-                String[] IDs = templine.Split(' ');
-
-                for (int i = 0; i < IDs.Length; i++)
-                {
-                    switch (IDs[i])
+                    if (tempLines[i] == "" || tempLines[i] == " " || tempLines[i] == "  ") { }
+                    else
                     {
-                        case "00":
-                            tempWorld[i, yCount] = new NormalTile(new Vector2f(i * 32, yCount * 32));
-                            break;
-                        case "01":
-                            tempWorld[i, yCount] = new CollisionTile(new Vector2f(i * 32, yCount * 32));
-                            break;
+                        while(true)
+                        {
+                            if (tempLines[i].StartsWith(" "))
+                            {
+                                tempLines[i] = tempLines[i].Remove(0, 1);
+                            }
+                            else { break; }
+                        }
+                        finalLines.Add(tempLines[i]);
                     }
                 }
+                
 
-                yCount++;
+                int y = 0;
+                
+                for (int i = 0; i < finalLines.Count; i++)
+                {
+                    String[] IDs = finalLines[i].Split(' ');
+
+                    for(int x = 0; x < IDs.Length; x++)
+                    {
+                        switch (IDs[x])
+                        {
+                            case "00":
+                                tempWorld[x, y] = new NormalTile(new Vector2f(x * Tile.Width, y * Tile.Height));
+                                break;
+                            case "01":
+                                tempWorld[x, y] = new CollisionTile(new Vector2f(x * Tile.Width, y * Tile.Height));
+                                break;
+                        }
+                    }
+                    y++;
+                }
+                
+                world.Add(tempWorld);
             }
-
-            return tempWorld;
         }
 
         public void Draw()

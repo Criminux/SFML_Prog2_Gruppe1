@@ -14,6 +14,9 @@ namespace SFML_Prog2_Gruppe1
 {
     public abstract class Tile
     {
+        public const int Width = 32;
+        public const int Height = 32;
+
         protected Texture texture;
         protected Sprite sprite;
         protected Vector2f position;

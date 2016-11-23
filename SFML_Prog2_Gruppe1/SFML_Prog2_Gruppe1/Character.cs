@@ -35,16 +35,20 @@ namespace SFML_Prog2_Gruppe1
         public Character()
         {
             characterSprite = new Sprite();
-            velocity = new Vector2f(0,0);
-            //position = new Vector2f(200,200);
+            velocity = new Vector2f(0, 0);
         }
 
         // Get and Setter for movement
         public Vector2f Velocity
         {
             get { return velocity; }
-            set{ velocity = value; }
-            
+            set { velocity = value; }
+        }
+
+        protected Vector2f Position
+        {
+            get { return position; }
+            set { position = value; }
         }
 
         public virtual void Update(Tile[,] room)
@@ -52,14 +56,15 @@ namespace SFML_Prog2_Gruppe1
             Console.WriteLine("Velocity pre Collision: " + velocity.ToString());
             Console.WriteLine("Position pre Collision: " + position.ToString());
 
-            position += velocity;
+            ApplyVelocity();
+            Console.WriteLine("Position past ApplyVelo(): " + position.ToString());
+            ApplyPosition();
 
             HandleCollisions(room);
 
-            Console.WriteLine("Velocity after Collision: " + velocity.ToString());
             Console.WriteLine("Position after Collision: " + position.ToString());
 
-            characterSprite.Position = position;
+            ApplyPosition();
 
             Velocity = new Vector2f(0, 0);
         }
@@ -73,44 +78,75 @@ namespace SFML_Prog2_Gruppe1
         {
             int indexX = (int)Math.Round((position.X / 32));
             int indexY = (int)Math.Round((position.Y / 32));
-            
+
             try
             {
                 for (int x = -1; x < 2; x++)
                 {
-                    Tile tempTile = room[MathUtil.Clamp<int>(indexX + x, 0, room.GetUpperBound(0)), indexY];
-                    if (tempTile is CollisionTile)
-                    {
-                        Vector2f depth = CollisionUtil.CalculateCollisionDepth(characterSprite.GetGlobalBounds(), tempTile.Rectangle);
-                        Console.WriteLine("Depth:" + depth.ToString());
-
-                        position.X += depth.X;
-                        characterSprite.Position = position;
-                        ProjectRenderWindow.GetRenderWindowInstance().Draw(characterSprite);
-
-                    }
+                    Tile tileToCheck = room[indexX + x, indexY];
+                    HandleCollisionForTile(tileToCheck, depth => position.X += depth.X);
                 }
+
                 for (int y = -1; y < 2; y++)
                 {
-                    Tile tempTile = room[indexX, MathUtil.Clamp<int>(indexY + y, 0, room.GetUpperBound(1))];
-                    if (tempTile is CollisionTile)
-                    {
-                        Vector2f depth = CollisionUtil.CalculateCollisionDepth(characterSprite.GetGlobalBounds(), tempTile.Rectangle);
-                        Console.WriteLine("Depth:" + depth.ToString());
-
-                        position.Y += depth.Y;
-                        characterSprite.Position = position;
-                        ProjectRenderWindow.GetRenderWindowInstance().Draw(characterSprite);
-
-                    }
+                    Tile tileToCheck = room[indexX, indexY + y];
+                    HandleCollisionForTile(tileToCheck, depth => position.Y += depth.Y);
                 }
-            }catch(IndexOutOfRangeException e)
+
+                HandleCollisionForTile(room[indexX - 1, indexY - 1], depth => position += depth);
+                HandleCollisionForTile(room[indexX - 1, indexY + 1], depth => position += depth);
+                HandleCollisionForTile(room[indexX + 1, indexY - 1], depth => position += depth);
+                HandleCollisionForTile(room[indexX + 1, indexY + 1], depth => position += depth);
+
+            }
+            catch (IndexOutOfRangeException e)
             {
                 //In case player gets out of the room, he respawns
-                position = new Vector2f(100, 100);
-                characterSprite.Position = position;
+                SetAndApplyPosition(new Vector2f(100, 100));
             }
-            
+
         }
+
+        private void HandleCollisionForTile(Tile tile, CollisionDepthApplyer depthApplyer)
+        {
+            if (tile is CollisionTile)
+            {
+                Console.WriteLine("charSprite: " + characterSprite.GetGlobalBounds().ToString());
+                Vector2f depth = CollisionUtil.CalculateCollisionDepth(characterSprite.GetGlobalBounds(), tile.Rectangle);
+                Console.WriteLine("Depth:" + depth.ToString());
+
+                if (depth != new Vector2f(0f, 0f))
+                {
+                    depthApplyer(depth);
+                    ApplyPosition();
+                }
+
+            }
+        }
+
+
+        protected void SetAndApplyPosition(Vector2f position)
+        {
+            this.position = position;
+            ApplyPosition();
+        }
+
+        private void ApplyPosition()
+        {
+            characterSprite.Position = position;
+        }
+
+        private void ApplyPositionAndRedraw()
+        {
+            ApplyPosition();
+            Draw();
+        }
+
+        private void ApplyVelocity()
+        {
+            position += velocity;
+        }
+
+        private delegate void CollisionDepthApplyer(Vector2f depth);
     }
 }

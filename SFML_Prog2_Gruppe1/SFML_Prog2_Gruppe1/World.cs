@@ -15,17 +15,17 @@ namespace SFML_Prog2_Gruppe1
 {
     public class World
     {
-        private List<Tile[,]> world;
+        private List<Room> world;
         private int current;
 
         public Tile[,] CurrentRoom
         {
-            get { return world[current]; }
+            get { return world[current].Tilemap; }
         }
 
         public World()
         {
-            world = new List<Tile[,]>();
+            world = new List<Room>();
             current = 0;
             InitializeWorld();
         }
@@ -38,10 +38,10 @@ namespace SFML_Prog2_Gruppe1
 
             XmlNode worldNode = document.SelectSingleNode("/World");
 
-            foreach (XmlNode node in worldNode.ChildNodes)
+            foreach (XmlNode roomNode in worldNode.ChildNodes)
             {
                 Tile[,] tempWorld = new Tile[40, 20];
-                String tempRoom = node.InnerText;
+                String tempRoom = roomNode.InnerText;
                 String[] tempLines = tempRoom.Split("\r\n".ToCharArray());
                 List<String> finalLines = new List<string>();
 
@@ -83,14 +83,24 @@ namespace SFML_Prog2_Gruppe1
                     }
                     y++;
                 }
+                //TODO SAVE ID
+                Room room = new Room();
+                room.Tilemap = tempWorld;
                 
-                world.Add(tempWorld);
+                foreach(XmlAttribute attr in roomNode.Attributes)
+                {
+                    if (attr.Name == "id")
+                        room.ID = Convert.ToInt32(attr.InnerText);
+                }
+
+                world.Add(room);
+                
             }
         }
 
         public void Draw()
         {
-            foreach(Tile tempTile in world[current])
+            foreach(Tile tempTile in world[current].Tilemap)
             {
                 tempTile.Draw();
             }

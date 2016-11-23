@@ -59,6 +59,7 @@
     <Compile Include="CollisionUtil.cs" />
     <Compile Include="MathUtil.cs" />
     <Compile Include="Player.cs" />
+    <Compile Include="Room.cs" />
     <Compile Include="States\CreditScreen.cs" />
     <Compile Include="States\GamePlay.cs" />
     <Compile Include="States\GameStates.cs" />

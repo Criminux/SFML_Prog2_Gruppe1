@@ -15,7 +15,7 @@ namespace SFML_Prog2_Gruppe1
     public class Player : Character
     {
 
-        const float MovementSpeed = 10;
+        const float MovementSpeed = 5;
 
         public Player() : base()
         {
@@ -27,7 +27,7 @@ namespace SFML_Prog2_Gruppe1
 
             characterTexture = new Texture("Character/Player.png");
             characterSprite.Texture = characterTexture;
-            characterSprite.Position = position;
+            characterSprite.Position = new Vector2f(200,200);
 
             
 

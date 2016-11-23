@@ -16,11 +16,15 @@ namespace SFML_Prog2_Gruppe1.States
     {
         World world;
         Player player;
+        QuestNPC questNPC;
+        EnemyNPC enemyNPC;
 
         public GamePlay()
         {
             world = new World();
             player = new Player();
+            questNPC = new QuestNPC();
+            enemyNPC = new EnemyNPC();
         }
 
         public override void Dispose()
@@ -32,6 +36,8 @@ namespace SFML_Prog2_Gruppe1.States
         {
             world.Draw();
             player.Draw();
+            questNPC.Draw();
+            enemyNPC.Draw();
             //throw new NotImplementedException();
         }
 

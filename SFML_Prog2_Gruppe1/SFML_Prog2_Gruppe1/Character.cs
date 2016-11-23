@@ -36,8 +36,7 @@ namespace SFML_Prog2_Gruppe1
         {
             characterSprite = new Sprite();
             velocity = new Vector2f(0,0);
-            position = new Vector2f(200,200);
-
+            //position = new Vector2f(200,200);
         }
 
         // Get and Setter for movement

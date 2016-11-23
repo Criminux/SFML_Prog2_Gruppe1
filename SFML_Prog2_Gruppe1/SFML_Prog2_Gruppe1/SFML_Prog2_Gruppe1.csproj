@@ -55,6 +55,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EnemyNPC.cs" />
+    <Compile Include="QuestNPC.cs" />
     <Compile Include="CollisionTile.cs" />
     <Compile Include="CollisionUtil.cs" />
     <Compile Include="MathUtil.cs" />
@@ -80,7 +82,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Character\EnemyNPC.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Character\Player.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Character\QuestNPC.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="csfml-audio-2.dll">

@@ -53,5 +53,13 @@ namespace SFML_Prog2_Gruppe1.States
             //throw new NotImplementedException();
         }
 
+        public override bool HandleInput(Keyboard.Key key, bool isPressed)
+        {
+            if(isPressed && key == Keyboard.Key.Escape)
+            {
+                ProjectRenderWindow.GetRenderWindowInstance().Close();
+            }
+            return true;
+        }
     }
 }

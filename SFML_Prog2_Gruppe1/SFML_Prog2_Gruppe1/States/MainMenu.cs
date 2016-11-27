@@ -24,6 +24,11 @@ namespace SFML_Prog2_Gruppe1.States
             ProjectRenderWindow.GetRenderWindowInstance().Clear(Color.Red);
         }
 
+        public override bool HandleInput(Keyboard.Key key, bool isPressed)
+        {
+            return false;
+        }
+
         public override void Initialize()
         {
             //throw new NotImplementedException();

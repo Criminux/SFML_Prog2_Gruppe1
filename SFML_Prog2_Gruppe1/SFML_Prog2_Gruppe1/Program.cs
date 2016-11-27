@@ -27,14 +27,21 @@ namespace SFML_Prog2_Gruppe1
             ProjectRenderWindow.GetRenderWindowInstance().SetActive();
             stateMachine = new StateMachine();
             clock = new Clock();
-            ProjectRenderWindow.GetRenderWindowInstance().Closed += new EventHandler(OnClosed);
-            ProjectRenderWindow.GetRenderWindowInstance().KeyPressed += new EventHandler<KeyEventArgs>(OnKeyPressed);     
-                  
+            //ProjectRenderWindow.GetRenderWindowInstance().Closed += new EventHandler(OnClosed);
+            //ProjectRenderWindow.GetRenderWindowInstance().KeyPressed += new EventHandler<KeyEventArgs>(OnKeyPressed);     
+            ProjectRenderWindow.GetRenderWindowInstance().Closed += (o, a) => ProjectRenderWindow.GetRenderWindowInstance().Close();
+            ProjectRenderWindow.GetRenderWindowInstance().KeyPressed += (o, a) => HandleKeyboardInput(a.Code, true);
+            ProjectRenderWindow.GetRenderWindowInstance().KeyReleased += (o, a) => HandleKeyboardInput(a.Code, false);
             while (stateMachine.CurrentState != GameStates.QuitState)
             {
                 ApplicationLoop();
                 System.Threading.Thread.Sleep(ApplicationInterval);
             }
+        }
+
+        private static void HandleKeyboardInput(Keyboard.Key key, bool isPressed)
+        {
+            
         }
 
         private static void ApplicationLoop()
@@ -80,17 +87,17 @@ namespace SFML_Prog2_Gruppe1
         }
 
 
-        static void OnClosed(object sender, EventArgs e)
-        {
-            RenderWindow window = (RenderWindow)sender;
-            ProjectRenderWindow.GetRenderWindowInstance().Close();
-        }
+        //static void OnClosed(object sender, EventArgs e)
+        //{
+        //    RenderWindow window = (RenderWindow)sender;
+        //    ProjectRenderWindow.GetRenderWindowInstance().Close();
+        //}
 
-        static void OnKeyPressed(object sender, KeyEventArgs e)
-        {
-            RenderWindow window = (RenderWindow)sender;
-            if (e.Code == Keyboard.Key.Escape)
-                ProjectRenderWindow.GetRenderWindowInstance().Close();
-        }
+        //static void OnKeyPressed(object sender, KeyEventArgs e)
+        //{
+        //    RenderWindow window = (RenderWindow)sender;
+        //    if (e.Code == Keyboard.Key.Escape)
+        //        ProjectRenderWindow.GetRenderWindowInstance().Close();
+        //}
     }
 }

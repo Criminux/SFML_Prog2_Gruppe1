@@ -10,10 +10,17 @@ using SFML.Window;
 using SFML.Graphics;
 using SFML.Audio;
 
+using SFML_Prog2_Gruppe1.Util;
+
 namespace SFML_Prog2_Gruppe1
 {
     public class Player : Character
     {
+
+
+        public delegate void RoomChangeEventHandler(Direction direction);
+
+        public event RoomChangeEventHandler roomChangeEvent;
 
         const float MovementSpeed = 5;
 
@@ -41,6 +48,32 @@ namespace SFML_Prog2_Gruppe1
             CheckInputs();
 
             base.Update(room);
+
+            CheckForRoomChange();
+        }
+
+        private void CheckForRoomChange()
+        {
+            if (Position.X < 0)
+            {
+                Position = new Vector2f(Position.X + 1280, Position.Y);
+                roomChangeEvent(Direction.LEFT);
+            }
+            else if (Position.X > 1280)
+            {
+                Position = new Vector2f(Position.X - 1280, Position.Y);
+                roomChangeEvent(Direction.RIGHT);
+            }
+            else if (Position.Y < 0)
+            {
+                Position = new Vector2f(Position.X, Position.Y + 720);
+                roomChangeEvent(Direction.UP);
+            }
+            else if (Position.Y > 720)
+            {
+                Position = new Vector2f(Position.X, Position.Y - 720);
+                roomChangeEvent(Direction.DOWN);
+            }
         }
 
         void CheckInputs()

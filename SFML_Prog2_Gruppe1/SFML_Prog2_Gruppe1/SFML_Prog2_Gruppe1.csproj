@@ -58,8 +58,9 @@
     <Compile Include="EnemyNPC.cs" />
     <Compile Include="QuestNPC.cs" />
     <Compile Include="CollisionTile.cs" />
-    <Compile Include="CollisionUtil.cs" />
-    <Compile Include="MathUtil.cs" />
+    <Compile Include="Util\CollisionUtil.cs" />
+    <Compile Include="Util\Direction.cs" />
+    <Compile Include="Util\MathUtil.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Room.cs" />
     <Compile Include="States\CreditScreen.cs" />

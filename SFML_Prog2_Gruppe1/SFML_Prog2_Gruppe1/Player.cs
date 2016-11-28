@@ -54,22 +54,22 @@ namespace SFML_Prog2_Gruppe1
 
         private void CheckForRoomChange()
         {
-            if (Position.X < 0)
+            if (Position.X < 0 - (characterSprite.GetGlobalBounds().Width / 2))
             {
                 Position = new Vector2f(Position.X + 1280, Position.Y);
                 roomChangeEvent(Direction.LEFT);
             }
-            else if (Position.X > 1280)
+            else if (Position.X > 1280 - (characterSprite.GetGlobalBounds().Width / 2))
             {
                 Position = new Vector2f(Position.X - 1280, Position.Y);
                 roomChangeEvent(Direction.RIGHT);
             }
-            else if (Position.Y < 0)
+            else if (Position.Y < 0 - (characterSprite.GetGlobalBounds().Height / 2))
             {
                 Position = new Vector2f(Position.X, Position.Y + 720);
                 roomChangeEvent(Direction.UP);
             }
-            else if (Position.Y > 720)
+            else if (Position.Y > 720 - (characterSprite.GetGlobalBounds().Height / 2))
             {
                 Position = new Vector2f(Position.X, Position.Y - 720);
                 roomChangeEvent(Direction.DOWN);

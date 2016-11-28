@@ -78,29 +78,29 @@ namespace SFML_Prog2_Gruppe1
             int indexX = (int)Math.Round((position.X / 32));
             int indexY = (int)Math.Round((position.Y / 32));
 
-            try
+
+            for (int x = -1; x < 2; x++)
             {
-                for (int x = -1; x < 2; x++)
+                if (!(indexX + x < 0 || indexX + x > 39 || indexY < 0 || indexY > 19))
                 {
                     Tile tileToCheck = room[indexX + x, indexY];
                     HandleCollisionForTile(tileToCheck, depth => position.X += depth.X);
                 }
+            }
 
-                for (int y = -1; y < 2; y++)
+            for (int y = -1; y < 2; y++)
+            {
+                if (!(indexX < 0 || indexX > 39 || indexY + y < 0 || indexY + y > 19))
                 {
                     Tile tileToCheck = room[indexX, indexY + y];
                     HandleCollisionForTile(tileToCheck, depth => position.Y += depth.Y);
                 }
-
-                HandleCollisionForTile(room[indexX - 1, indexY - 1], depth => position += depth);
-                HandleCollisionForTile(room[indexX - 1, indexY + 1], depth => position += depth);
-                HandleCollisionForTile(room[indexX + 1, indexY - 1], depth => position += depth);
-                HandleCollisionForTile(room[indexX + 1, indexY + 1], depth => position += depth);
             }
-            catch(Exception e)
-            {
 
-            }
+            if (!(indexX - 1 < 0 || indexX - 1 > 39 || indexY - 1 < 0 || indexY - 1 > 19)) HandleCollisionForTile(room[indexX - 1, indexY - 1], depth => position += depth);
+            if (!(indexX - 1 < 0 || indexX - 1 > 39 || indexY + 1 < 0 || indexY + 1 > 19)) HandleCollisionForTile(room[indexX - 1, indexY + 1], depth => position += depth);
+            if (!(indexX + 1 < 0 || indexX + 1 > 39 || indexY - 1 < 0 || indexY - 1 > 19)) HandleCollisionForTile(room[indexX + 1, indexY - 1], depth => position += depth);
+            if (!(indexX + 1 < 0 || indexX + 1 > 39 || indexY + 1 < 0 || indexY + 1 > 19)) HandleCollisionForTile(room[indexX + 1, indexY + 1], depth => position += depth);
         }
 
         private void HandleCollisionForTile(Tile tile, CollisionDepthApplyer depthApplyer)

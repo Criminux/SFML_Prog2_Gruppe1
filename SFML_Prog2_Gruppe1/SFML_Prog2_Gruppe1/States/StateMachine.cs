@@ -125,5 +125,27 @@ namespace SFML_Prog2_Gruppe1
                     break;
             }
         }
+
+        public void HandleInput(Keyboard.Key key, bool isPressed)
+        {
+            switch(currentState)
+            {
+                case GameStates.SplashScreenState:
+                    splashScreen.HandleInput(key, isPressed);
+                    break;
+
+                case GameStates.MainMenuState:
+                    mainMenu.HandleInput(key, isPressed);
+                    break;
+
+                case GameStates.GamePlayState:
+                    gamePlay.HandleInput(key, isPressed);
+                    break;
+
+                case GameStates.CreditScreenState:
+                    creditScreen.HandleInput(key, isPressed);
+                    break;
+            }
+        }
     }
 }

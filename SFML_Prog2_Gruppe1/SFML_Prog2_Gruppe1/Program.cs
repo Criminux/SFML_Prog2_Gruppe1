@@ -41,7 +41,7 @@ namespace SFML_Prog2_Gruppe1
 
         private static void HandleKeyboardInput(Keyboard.Key key, bool isPressed)
         {
-            
+            stateMachine.HandleInput(key, isPressed);
         }
 
         private static void ApplicationLoop()

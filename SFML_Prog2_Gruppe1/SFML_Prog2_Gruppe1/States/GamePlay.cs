@@ -71,6 +71,7 @@ namespace SFML_Prog2_Gruppe1.States
         public override GameStates Update()
         {
             player.Update(world.GetActiveRoom().Tilemap);
+            enemyNPC.Update(world.GetActiveRoom().Tilemap);
             return GameStates.GamePlayState;
             //throw new NotImplementedException();
         }

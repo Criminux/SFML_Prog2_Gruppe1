@@ -9,6 +9,7 @@ using SFML.System;
 using SFML.Window;
 using SFML.Graphics;
 using SFML.Audio;
+using SFML_Prog2_Gruppe1.Util;
 
 namespace SFML_Prog2_Gruppe1.States
 {
@@ -23,8 +24,29 @@ namespace SFML_Prog2_Gruppe1.States
         {
             world = new World();
             player = new Player();
+            player.roomChangeEvent += onPlayerRoomChange;
             questNPC = new QuestNPC();
             enemyNPC = new EnemyNPC();
+        }
+
+        private void onPlayerRoomChange(Direction direction)
+        {
+            if (direction == Direction.DOWN)
+            {
+                if (world.GetActiveRoom().ConnectedRooms.ContainsKey("botRoom")) { world.CurrentID = world.GetActiveRoom().ConnectedRooms["botRoom"]; }
+            }
+            else if (direction == Direction.LEFT)
+            {
+                if (world.GetActiveRoom().ConnectedRooms.ContainsKey("leftRoom")) { world.CurrentID = world.GetActiveRoom().ConnectedRooms["leftRoom"]; }
+            }
+            else if (direction == Direction.RIGHT)
+            {
+                if (world.GetActiveRoom().ConnectedRooms.ContainsKey("rightRoom")) { world.CurrentID = world.GetActiveRoom().ConnectedRooms["rightRoom"]; }
+            }
+            else if (direction == Direction.UP)
+            {
+                if (world.GetActiveRoom().ConnectedRooms.ContainsKey("topRoom")) { world.CurrentID = world.GetActiveRoom().ConnectedRooms["topRoom"]; }
+            }
         }
 
         public override void Dispose()
@@ -48,7 +70,7 @@ namespace SFML_Prog2_Gruppe1.States
 
         public override GameStates Update()
         {
-            player.Update(world.CurrentRoom);
+            player.Update(world.GetActiveRoom().Tilemap);
             return GameStates.GamePlayState;
             //throw new NotImplementedException();
         }

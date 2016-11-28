@@ -31,7 +31,6 @@ namespace SFML_Prog2_Gruppe1
         protected Texture characterTexture;
         protected Vector2f velocity;
 
-
         public Character()
         {
             characterSprite = new Sprite();
@@ -45,7 +44,7 @@ namespace SFML_Prog2_Gruppe1
             set { velocity = value; }
         }
 
-        protected Vector2f Position
+        public Vector2f Position
         {
             get { return position; }
             set { position = value; }
@@ -68,7 +67,7 @@ namespace SFML_Prog2_Gruppe1
 
             Velocity = new Vector2f(0, 0);
         }
-
+        
         public virtual void Draw()
         {
             ProjectRenderWindow.GetRenderWindowInstance().Draw(characterSprite);
@@ -97,14 +96,11 @@ namespace SFML_Prog2_Gruppe1
                 HandleCollisionForTile(room[indexX - 1, indexY + 1], depth => position += depth);
                 HandleCollisionForTile(room[indexX + 1, indexY - 1], depth => position += depth);
                 HandleCollisionForTile(room[indexX + 1, indexY + 1], depth => position += depth);
-
             }
-            catch (IndexOutOfRangeException e)
+            catch(Exception e)
             {
-                //In case player gets out of the room, he respawns
-                SetAndApplyPosition(new Vector2f(100, 100));
-            }
 
+            }
         }
 
         private void HandleCollisionForTile(Tile tile, CollisionDepthApplyer depthApplyer)

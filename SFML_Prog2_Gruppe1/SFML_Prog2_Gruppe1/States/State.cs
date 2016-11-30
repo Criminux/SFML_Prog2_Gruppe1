@@ -12,6 +12,9 @@ using SFML.Audio;
 
 namespace SFML_Prog2_Gruppe1
 {
+    /// <summary>
+    /// Serves as a template for all the different game states.
+    /// </summary>
     public abstract class State
     {
         public abstract void Initialize();

@@ -12,6 +12,9 @@ using SFML.Audio;
 
 namespace SFML_Prog2_Gruppe1
 {
+    /// <summary>
+    /// Enum which holds the different states of the programm.
+    /// </summary>
     public enum GameStates
     {
         UnspecifiedState = 0,

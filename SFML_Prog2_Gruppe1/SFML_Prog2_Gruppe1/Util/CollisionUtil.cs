@@ -14,6 +14,18 @@ namespace SFML_Prog2_Gruppe1
 {
     public class CollisionUtil
     {
+        /// <summary>
+        /// Returns the collision depth of the character with another object.
+        /// </summary>
+        /// <param name="characterBounds">
+        /// Boundaries of the characters.
+        /// </param>
+        /// <param name="otherBounds">
+        /// Boundaries of the collidable objects.
+        /// </param>
+        /// <returns>
+        /// Returns the collsion depth.
+        /// </returns>
         public static Vector2f CalculateCollisionDepth(FloatRect characterBounds, FloatRect otherBounds)
         {
             //If the distance on both axis is higher than the sum of the half of both Rectangles, they are not colliding

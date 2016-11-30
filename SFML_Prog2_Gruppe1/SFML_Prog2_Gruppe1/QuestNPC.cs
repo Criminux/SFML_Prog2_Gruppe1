@@ -14,6 +14,9 @@ namespace SFML_Prog2_Gruppe1
     public class QuestNPC : Character
     {
 
+        /// <summary>
+        /// Loads correct texture and applies starting position.
+        /// </summary>
         public QuestNPC() : base()
         {
             characterType = CharacterID.QuestNPC;
@@ -25,6 +28,12 @@ namespace SFML_Prog2_Gruppe1
 
         }
 
+        /// <summary>
+        /// Updates the base.
+        /// </summary>
+        /// <param name="room">
+        /// Current room.
+        /// </param>
         public override void Update(Tile[,] room)
         {
             base.Update(room);

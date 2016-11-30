@@ -43,6 +43,12 @@ namespace SFML_Prog2_Gruppe1.States
             clock.Restart();
         }
 
+        /// <summary>
+        /// Checks if the time for the splashscreen is up, if so it switches to gameplay state. If not it returns the splashscreen state.
+        /// </summary>
+        /// <returns>
+        /// Returns the correct GameState.
+        /// </returns>
         public override GameStates Update()
         {
             if(clock.ElapsedTime.AsSeconds() >= 1f)

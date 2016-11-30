@@ -20,6 +20,9 @@ namespace SFML_Prog2_Gruppe1.States
         QuestNPC questNPC;
         EnemyNPC enemyNPC;
 
+        /// <summary>
+        /// The different object instances are created, which are needed for the gameplay state.
+        /// </summary>
         public GamePlay()
         {
             world = new World();
@@ -29,6 +32,12 @@ namespace SFML_Prog2_Gruppe1.States
             enemyNPC = new EnemyNPC();
         }
 
+        /// <summary>
+        /// Is triggered by player room change event and changes the active room according to the direction in which the player was going.
+        /// </summary>
+        /// <param name="direction">
+        /// Determines in which direction the player was leaving the room.
+        /// </param>
         private void onPlayerRoomChange(Direction direction)
         {
             if (direction == Direction.DOWN)
@@ -54,6 +63,9 @@ namespace SFML_Prog2_Gruppe1.States
            // throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Draws the different objects needed for the gameplay state.
+        /// </summary>
         public override void Draw()
         {
             world.Draw();
@@ -68,6 +80,12 @@ namespace SFML_Prog2_Gruppe1.States
             //throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Updates the active rooms for players and NPCs and returns the active GameState.
+        /// </summary>
+        /// <returns>
+        /// Returns the active GameState, in this case the gameplay state.
+        /// </returns>
         public override GameStates Update()
         {
             player.Update(world.GetActiveRoom().Tilemap);
@@ -76,6 +94,18 @@ namespace SFML_Prog2_Gruppe1.States
             //throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Handles the input if the player wants to pause or quit the game out of the gameplay state.
+        /// </summary>
+        /// <param name="key">
+        /// Represents which key was pressed on the keyboard.
+        /// </param>
+        /// <param name="isPressed">
+        /// Checks if the key is pressed.
+        /// </param>
+        /// <returns>
+        /// 
+        /// </returns>
         public override bool HandleInput(Keyboard.Key key, bool isPressed)
         {
             if(isPressed && key == Keyboard.Key.Escape)

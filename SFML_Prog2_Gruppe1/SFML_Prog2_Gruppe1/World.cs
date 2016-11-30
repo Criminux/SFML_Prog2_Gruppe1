@@ -49,6 +49,9 @@ namespace SFML_Prog2_Gruppe1
             InitializeWorld();
         }
 
+        /// <summary>
+        /// Initializes the world based on the XML file.
+        /// </summary>
         private void InitializeWorld()
         {
             XmlDocument document = new XmlDocument();
@@ -82,6 +85,15 @@ namespace SFML_Prog2_Gruppe1
             }
         }
 
+        /// <summary>
+        /// Creates the Tilemap based on a string of Tile-IDs.
+        /// </summary>
+        /// <param name="tileMapAsString">
+        /// Tilemap IDs as string.
+        /// </param>
+        /// <returns>
+        /// Tilemap as Twodimensional array of Tiles.
+        /// </returns>
         private Tile[,] parseTilemapFrom(string tileMapAsString)
         {
 

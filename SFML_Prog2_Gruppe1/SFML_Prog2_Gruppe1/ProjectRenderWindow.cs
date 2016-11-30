@@ -16,10 +16,12 @@ namespace SFML_Prog2_Gruppe1
     {
         static RenderWindow window = null;
 
-        private ProjectRenderWindow()
-        {
-        }
-
+        /// <summary>
+        /// Opens new window, if no window is already open.
+        /// </summary>
+        /// <returns>
+        /// Window.
+        /// </returns>
         public static RenderWindow GetRenderWindowInstance()
         {
             if(window == null)

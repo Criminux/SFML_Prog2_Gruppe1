@@ -24,6 +24,9 @@ namespace SFML_Prog2_Gruppe1
 
         const float MovementSpeed = 5;
 
+        /// <summary>
+        /// Applies basic stats to the player. Loads correct texture and applies starting position.
+        /// </summary>
         public Player() : base()
         {
             characterType = CharacterID.Player;
@@ -38,6 +41,12 @@ namespace SFML_Prog2_Gruppe1
             SetAndApplyPosition(new Vector2f(200, 200));
         }
 
+        /// <summary>
+        /// Calls the input method, updates the base and calls the CheckForRoomChange method.
+        /// </summary>
+        /// <param name="room">
+        /// Current room.
+        /// </param>
         public override void Update(Tile[,] room)
         {
             //TODO: Refactor Input
@@ -52,6 +61,9 @@ namespace SFML_Prog2_Gruppe1
             CheckForRoomChange();
         }
 
+        /// <summary>
+        /// Checks if the room has to change regarding the player position.
+        /// </summary>
         private void CheckForRoomChange()
         {
             if (Position.X < 0 - (characterSprite.GetGlobalBounds().Width / 2))
@@ -76,6 +88,9 @@ namespace SFML_Prog2_Gruppe1
             }
         }
 
+        /// <summary>
+        /// Checks for user input and enables the player to move.
+        /// </summary>
         void CheckInputs()
         {
             if (Keyboard.IsKeyPressed(Keyboard.Key.D) || Keyboard.IsKeyPressed(Keyboard.Key.Right))

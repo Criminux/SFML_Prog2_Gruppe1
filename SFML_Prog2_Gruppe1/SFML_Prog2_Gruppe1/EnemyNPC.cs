@@ -21,6 +21,9 @@ namespace SFML_Prog2_Gruppe1
         private Clock movementDelay;
         private Direction movementState;
 
+        /// <summary>
+        /// Applies basic stats to the enemy NPC. Loads correct texture and applies starting position.
+        /// </summary>
         public EnemyNPC() : base()
         {
             characterType = CharacterID.EnemyNPC;
@@ -36,6 +39,12 @@ namespace SFML_Prog2_Gruppe1
             movementDelay = new Clock();
         }
 
+        /// <summary>
+        /// Calls the MoveRandom function and updates the base.
+        /// </summary>
+        /// <param name="room">
+        /// Current room.
+        /// </param>
         public override void Update(Tile[,] room)
         {
             MoveRandom();
@@ -43,6 +52,9 @@ namespace SFML_Prog2_Gruppe1
             base.Update(room);
         }
 
+        /// <summary>
+        /// Enables the NPC to move random along the x and y axis.
+        /// </summary>
         private void MoveRandom()
         {
             if(movementDelay.ElapsedTime.AsSeconds() > RandomMovementChangeDelay)

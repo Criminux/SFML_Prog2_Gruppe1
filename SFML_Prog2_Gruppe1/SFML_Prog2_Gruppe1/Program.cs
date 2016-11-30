@@ -30,8 +30,11 @@ namespace SFML_Prog2_Gruppe1
             //ProjectRenderWindow.GetRenderWindowInstance().Closed += new EventHandler(OnClosed);
             //ProjectRenderWindow.GetRenderWindowInstance().KeyPressed += new EventHandler<KeyEventArgs>(OnKeyPressed);     
             ProjectRenderWindow.GetRenderWindowInstance().Closed += (o, a) => ProjectRenderWindow.GetRenderWindowInstance().Close();
+            
+            //The following tho lines raise the events as a pointer to the method
             ProjectRenderWindow.GetRenderWindowInstance().KeyPressed += (o, a) => HandleKeyboardInput(a.Code, true);
             ProjectRenderWindow.GetRenderWindowInstance().KeyReleased += (o, a) => HandleKeyboardInput(a.Code, false);
+
             while (stateMachine.CurrentState != GameStates.QuitState)
             {
                 ApplicationLoop();
@@ -39,11 +42,23 @@ namespace SFML_Prog2_Gruppe1
             }
         }
 
+        /// <summary>
+        /// Delegates input to the current state.
+        /// </summary>
+        /// <param name="key">
+        /// The pressed key.
+        /// </param>
+        /// <param name="isPressed">
+        /// Enables different key states/actions depending on if pressed or released.
+        /// </param>
         private static void HandleKeyboardInput(Keyboard.Key key, bool isPressed)
         {
             stateMachine.HandleInput(key, isPressed);
         }
 
+        /// <summary>
+        /// Lets the game loop itself.
+        /// </summary>
         private static void ApplicationLoop()
         {
             //Update

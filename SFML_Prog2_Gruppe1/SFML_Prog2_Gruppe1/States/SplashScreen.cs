@@ -32,9 +32,8 @@ namespace SFML_Prog2_Gruppe1.States
             ProjectRenderWindow.GetRenderWindowInstance().Clear(Color.Blue);
         }
 
-        public override bool HandleInput(Keyboard.Key key, bool isPressed)
+        public override void HandleInput(Keyboard.Key key, bool isPressed)
         {
-            return false;
         }
 
         public override void Initialize()

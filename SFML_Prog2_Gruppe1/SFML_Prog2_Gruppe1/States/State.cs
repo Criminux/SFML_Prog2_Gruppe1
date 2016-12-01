@@ -25,6 +25,6 @@ namespace SFML_Prog2_Gruppe1
 
         public abstract void Dispose();
 
-        public abstract bool HandleInput(Keyboard.Key key, bool isPressed);
+        public abstract void HandleInput(Keyboard.Key key, bool isPressed);
     }
 }

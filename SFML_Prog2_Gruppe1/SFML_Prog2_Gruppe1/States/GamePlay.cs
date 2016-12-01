@@ -40,6 +40,7 @@ namespace SFML_Prog2_Gruppe1.States
         /// </param>
         private void onPlayerRoomChange(Direction direction)
         {
+            //TODO: switch case
             if (direction == Direction.DOWN)
             {
                 if (world.GetActiveRoom().ConnectedRooms.ContainsKey("botRoom")) { world.CurrentID = world.GetActiveRoom().ConnectedRooms["botRoom"]; }
@@ -91,7 +92,6 @@ namespace SFML_Prog2_Gruppe1.States
             player.Update(world.GetActiveRoom().Tilemap);
             enemyNPC.Update(world.GetActiveRoom().Tilemap);
             return GameStates.GamePlayState;
-            //throw new NotImplementedException();
         }
 
         /// <summary>
@@ -106,13 +106,12 @@ namespace SFML_Prog2_Gruppe1.States
         /// <returns>
         /// 
         /// </returns>
-        public override bool HandleInput(Keyboard.Key key, bool isPressed)
+        public override void HandleInput(Keyboard.Key key, bool isPressed)
         {
             if(isPressed && key == Keyboard.Key.Escape)
             {
                 ProjectRenderWindow.GetRenderWindowInstance().Close();
             }
-            return true;
         }
     }
 }

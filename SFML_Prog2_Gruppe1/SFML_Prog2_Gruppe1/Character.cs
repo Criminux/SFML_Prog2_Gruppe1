@@ -58,7 +58,10 @@ namespace SFML_Prog2_Gruppe1
             set { position = value; }
         }
         
-
+        /// <summary>
+        /// Method to update character-velocity and possible collisions.
+        /// </summary>
+        /// <param name="room">Tilemap of active room.</param>
         public virtual void Update(Tile[,] room)
         {
             Console.WriteLine("Velocity pre Collision: " + velocity.ToString());
@@ -175,6 +178,10 @@ namespace SFML_Prog2_Gruppe1
             position += velocity;
         }
 
+        /// <summary>
+        /// Delegate Method for applying depth on X and Y axis.
+        /// </summary>
+        /// <param name="depth">Correction on X or Y axis.</param>
         private delegate void CollisionDepthApplyer(Vector2f depth);
     }
 }

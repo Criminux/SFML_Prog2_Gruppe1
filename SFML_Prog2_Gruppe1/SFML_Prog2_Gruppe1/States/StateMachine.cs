@@ -33,6 +33,9 @@ namespace SFML_Prog2_Gruppe1
             Initialize();
         }
 
+        /// <summary>
+        /// Initializes the different states.
+        /// </summary>
         private void Initialize()
         {
             //Sets the starting state
@@ -47,6 +50,10 @@ namespace SFML_Prog2_Gruppe1
             creditScreen = new CreditScreen();
         }
 
+        /// <summary>
+        /// Initializes a soecific state.
+        /// </summary>
+        /// <param name="state">State to be initialized.</param>
         private void InitializeState(State state)
         {
             if (previousState != currentState)
@@ -66,6 +73,9 @@ namespace SFML_Prog2_Gruppe1
             }
         }
 
+        /// <summary>
+        /// Checks state and updates it.
+        /// </summary>
         public void Update()
         {
             switch (currentState)
@@ -104,6 +114,9 @@ namespace SFML_Prog2_Gruppe1
             }
         }
 
+        /// <summary>
+        /// Draws the active state.
+        /// </summary>
         public void Draw()
         {
             switch (currentState)
@@ -126,6 +139,11 @@ namespace SFML_Prog2_Gruppe1
             }
         }
 
+        /// <summary>
+        /// Delegates the input to active state.
+        /// </summary>
+        /// <param name="key">Pressed key.</param>
+        /// <param name="isPressed">Is the key pressed.</param>
         public void HandleInput(Keyboard.Key key, bool isPressed)
         {
             switch(currentState)

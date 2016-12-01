@@ -23,7 +23,7 @@ namespace SFML_Prog2_Gruppe1
         /// <param name="max">
         /// Stands for the maximum which the variable can have.
         /// </param>
-        /// <returns></returns>
+        /// <returns>Clamped value between minimum and maximum.</returns>
         public static T Clamp<T>(T val, T min, T max) where T : IComparable<T>
         {
             if (val.CompareTo(min) < 0) return min;

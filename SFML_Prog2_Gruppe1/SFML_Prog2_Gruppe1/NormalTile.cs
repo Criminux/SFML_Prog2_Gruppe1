@@ -15,6 +15,10 @@ namespace SFML_Prog2_Gruppe1
 {
     public class NormalTile : Tile
     {
+        /// <summary>
+        /// Constructor for a walkable tile.
+        /// </summary>
+        /// <param name="position">Position.</param>
         public NormalTile(Vector2f position) : base()
         {
             Initialize();

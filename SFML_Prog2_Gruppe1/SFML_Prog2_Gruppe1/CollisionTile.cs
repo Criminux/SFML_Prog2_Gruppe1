@@ -14,7 +14,10 @@ namespace SFML_Prog2_Gruppe1
 {
     class CollisionTile : Tile
     {
-
+        /// <summary>
+        /// Constructor for collidable tile.
+        /// </summary>
+        /// <param name="position">Position.</param>
         public CollisionTile(Vector2f position) : base()
         {
             Initialize();

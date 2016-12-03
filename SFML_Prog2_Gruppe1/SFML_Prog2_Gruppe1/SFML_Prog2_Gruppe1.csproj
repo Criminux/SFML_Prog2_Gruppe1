@@ -55,6 +55,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractCommand.cs" />
+    <Compile Include="CommandQueue.cs" />
     <Compile Include="EnemyNPC.cs" />
     <Compile Include="QuestNPC.cs" />
     <Compile Include="CollisionTile.cs" />

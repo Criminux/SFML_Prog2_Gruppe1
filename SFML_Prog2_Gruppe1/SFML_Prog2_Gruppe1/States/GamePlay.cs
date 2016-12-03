@@ -19,6 +19,7 @@ namespace SFML_Prog2_Gruppe1.States
         Player player;
         QuestNPC questNPC;
         EnemyNPC enemyNPC;
+        CommandQueue commandQueue;
 
         /// <summary>
         /// The different object instances are created, which are needed for the gameplay state.
@@ -30,6 +31,7 @@ namespace SFML_Prog2_Gruppe1.States
             player.roomChangeEvent += onPlayerRoomChange;
             questNPC = new QuestNPC();
             enemyNPC = new EnemyNPC();
+            commandQueue = new CommandQueue();
         }
 
         /// <summary>
@@ -82,16 +84,34 @@ namespace SFML_Prog2_Gruppe1.States
         }
 
         /// <summary>
-        /// Updates the active rooms for players and NPCs and returns the active GameState.
+        /// Updates the active rooms for players and NPCs, adds commands to the movementQueue and returns the active GameState.
         /// </summary>
         /// <returns>
         /// Returns the active GameState, in this case the gameplay state.
         /// </returns>
         public override GameStates Update()
         {
+            player.CheckInputs(commandQueue);
+
+            if (!commandQueue.IsEmpty())
+            {
+                OnCommand(commandQueue.Pop());
+            }
+
             player.Update(world.GetActiveRoom().Tilemap);
             enemyNPC.Update(world.GetActiveRoom().Tilemap);
             return GameStates.GamePlayState;
+        }
+
+        /// <summary>
+        /// This code executes the movement command.
+        /// </summary>
+        /// <param name="command">
+        /// Movement command from commandQueue.
+        /// </param>
+        private void OnCommand(AbstractCommand command)
+        {
+            command.Execute(player);
         }
 
         /// <summary>

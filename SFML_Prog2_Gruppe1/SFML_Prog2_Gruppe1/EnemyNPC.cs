@@ -31,9 +31,7 @@ namespace SFML_Prog2_Gruppe1
             stamina = 25;
             damage = 10;
             armor = 10;
-
-            characterTexture = new Texture("Character/EnemyNPC.png");
-            characterSprite.Texture = characterTexture;
+            
 
             SetAndApplyPosition(new Vector2f(350, 350));
             movementDelay = new Clock();

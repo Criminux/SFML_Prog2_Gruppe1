@@ -27,16 +27,18 @@ namespace SFML_Prog2_Gruppe1
         protected int damage;
         protected int armor;
         protected Vector2f position;
-        protected Sprite characterSprite;
-        protected Texture characterTexture;
         protected Vector2f velocity;
+
+        protected Animation animation;
+        protected Texture spriteSheet;
 
         /// <summary>
         /// Character sprites and standard velocity of 0 are getting assigned.
         /// </summary>
         public Character()
         {
-            characterSprite = new Sprite();
+            spriteSheet = new Texture("Character/CharMove.png");
+            animation = new Animation(spriteSheet, 4, 1, 32, 32, 100);
             velocity = new Vector2f(0, 0);
         }
 
@@ -64,6 +66,8 @@ namespace SFML_Prog2_Gruppe1
         /// <param name="room">Tilemap of active room.</param>
         public virtual void Update(Tile[,] room)
         {
+            animation.Update();
+
             Console.WriteLine("Velocity pre Collision: " + velocity.ToString());
             Console.WriteLine("Position pre Collision: " + position.ToString());
 
@@ -85,7 +89,7 @@ namespace SFML_Prog2_Gruppe1
         /// </summary>
         public virtual void Draw()
         {
-            ProjectRenderWindow.GetRenderWindowInstance().Draw(characterSprite);
+            animation.Draw(position, false);
         }
         
         /// <summary>
@@ -137,8 +141,8 @@ namespace SFML_Prog2_Gruppe1
         {
             if (tile is CollisionTile)
             {
-                Console.WriteLine("charSprite: " + characterSprite.GetGlobalBounds().ToString());
-                Vector2f depth = CollisionUtil.CalculateCollisionDepth(characterSprite.GetGlobalBounds(), tile.Rectangle);
+                Console.WriteLine("charSprite: " + animation.Sprite.GetGlobalBounds().ToString());
+                Vector2f depth = CollisionUtil.CalculateCollisionDepth(animation.Sprite.GetGlobalBounds(), tile.Rectangle);
                 Console.WriteLine("Depth:" + depth.ToString());
 
                 if (depth != new Vector2f(0f, 0f))
@@ -167,7 +171,7 @@ namespace SFML_Prog2_Gruppe1
         /// </summary>
         private void ApplyPosition()
         {
-            characterSprite.Position = position;
+            animation.Sprite.Position = position;
         }
 
        /// <summary>

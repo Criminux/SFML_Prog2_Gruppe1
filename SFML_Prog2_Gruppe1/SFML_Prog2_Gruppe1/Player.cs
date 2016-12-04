@@ -52,9 +52,7 @@ namespace SFML_Prog2_Gruppe1
             stamina = 100;
             damage = 1;
             armor = 0;
-
-            characterTexture = new Texture("Character/Player.png");
-            characterSprite.Texture = characterTexture;
+            
 
             SetAndApplyPosition(new Vector2f(200, 200));
         }
@@ -79,22 +77,22 @@ namespace SFML_Prog2_Gruppe1
         /// </summary>
         private void CheckForRoomChange()
         {
-            if (Position.X < 0 - (characterSprite.GetGlobalBounds().Width / 2))
+            if (Position.X < 0 - (animation.Sprite.GetGlobalBounds().Width / 2))
             {
                 Position = new Vector2f(Position.X + 1280, Position.Y);
                 roomChangeEvent(Direction.LEFT);
             }
-            else if (Position.X > 1280 - (characterSprite.GetGlobalBounds().Width / 2))
+            else if (Position.X > 1280 - (animation.Sprite.GetGlobalBounds().Width / 2))
             {
                 Position = new Vector2f(Position.X - 1280, Position.Y);
                 roomChangeEvent(Direction.RIGHT);
             }
-            else if (Position.Y < 0 - (characterSprite.GetGlobalBounds().Height / 2))
+            else if (Position.Y < 0 - (animation.Sprite.GetGlobalBounds().Height / 2))
             {
                 Position = new Vector2f(Position.X, Position.Y + 720);
                 roomChangeEvent(Direction.UP);
             }
-            else if (Position.Y > 720 - (characterSprite.GetGlobalBounds().Height / 2))
+            else if (Position.Y > 720 - (animation.Sprite.GetGlobalBounds().Height / 2))
             {
                 Position = new Vector2f(Position.X, Position.Y - 720);
                 roomChangeEvent(Direction.DOWN);

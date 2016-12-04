@@ -12,6 +12,9 @@ namespace SFML_Prog2_Gruppe1
         private int id;
         private Dictionary<string, int> connectedRooms;
 
+        private List<EnemyNPC> enemies;
+        private List<QuestNPC> npcs;
+
         /// <summary>
         /// Getter and Setter for the tilemap.
         /// </summary>
@@ -40,18 +43,71 @@ namespace SFML_Prog2_Gruppe1
         }
 
         /// <summary>
-        /// Applies a new dictionary to the connectedRooms variable.
+        /// Getter and setter for the list of enemies.
+        /// </summary>
+        public List<EnemyNPC> Enemies
+        {
+            get { return enemies; }
+            set { enemies = value; }
+        }
+
+        /// <summary>
+        /// Getter and setter for the list of npcs.
+        /// </summary>
+        public List<QuestNPC> Npcs
+        {
+            get { return npcs; }
+            set { npcs = value; }
+        }
+
+        /// <summary>
+        /// Empty constructor for initializing the fields.
         /// </summary>
         public Room()
         {
             connectedRooms = new Dictionary<string, int>();
+            enemies = new List<EnemyNPC>();
+            npcs = new List<QuestNPC>();
         }
 
-        public Room(Tile[,] tilemap, int ID, Dictionary<string, int> connectedRooms)
+        public Room(Tile[,] tilemap, int ID, Dictionary<string, int> connectedRooms, List<EnemyNPC> enemies, List<QuestNPC> npcs)
         {
             this.tilemap = tilemap;
             this.id = ID;
             this.connectedRooms = connectedRooms;
+            this.enemies = enemies;
+            this.npcs = npcs;
+        }
+
+        public void Update()
+        {
+            foreach (EnemyNPC tempEnemy in enemies)
+            {
+                tempEnemy.Update(tilemap);
+            }
+            foreach (QuestNPC tempNPC in npcs)
+            {
+                tempNPC.Update(tilemap);
+            }
+        }
+
+        /// <summary>
+        /// Draw Method for tilemap, enemies and npcs.
+        /// </summary>
+        public void Draw()
+        {
+            foreach (Tile tempTile in tilemap)
+            {
+                tempTile.Draw();
+            }
+            foreach (EnemyNPC tempEnemy in enemies)
+            {
+                tempEnemy.Draw();
+            }
+            foreach (QuestNPC tempNPC in npcs)
+            {
+                tempNPC.Draw();
+            }
         }
     }
 }

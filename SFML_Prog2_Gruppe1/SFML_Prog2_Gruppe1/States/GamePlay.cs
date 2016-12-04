@@ -17,8 +17,6 @@ namespace SFML_Prog2_Gruppe1.States
     {
         World world;
         Player player;
-        QuestNPC questNPC;
-        EnemyNPC enemyNPC;
         CommandQueue commandQueue;
 
         /// <summary>
@@ -29,8 +27,6 @@ namespace SFML_Prog2_Gruppe1.States
             world = new World();
             player = new Player();
             player.roomChangeEvent += onPlayerRoomChange;
-            questNPC = new QuestNPC();
-            enemyNPC = new EnemyNPC();
             commandQueue = new CommandQueue();
         }
 
@@ -73,9 +69,6 @@ namespace SFML_Prog2_Gruppe1.States
         {
             world.Draw();
             player.Draw();
-            questNPC.Draw();
-            enemyNPC.Draw();
-            //throw new NotImplementedException();
         }
 
         public override void Initialize()
@@ -99,7 +92,8 @@ namespace SFML_Prog2_Gruppe1.States
             }
 
             player.Update(world.GetActiveRoom().Tilemap);
-            enemyNPC.Update(world.GetActiveRoom().Tilemap);
+            world.Update();
+
             return GameStates.GamePlayState;
         }
 

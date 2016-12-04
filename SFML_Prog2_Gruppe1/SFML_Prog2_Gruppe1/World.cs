@@ -78,6 +78,26 @@ namespace SFML_Prog2_Gruppe1
                         room.ConnectedRooms.Add("leftRoom", Convert.ToInt32(roomChild.InnerText));
                     if (roomChild.Name == "rightRoom")
                         room.ConnectedRooms.Add("rightRoom", Convert.ToInt32(roomChild.InnerText));
+                    if (roomChild.Name == "Enemy")
+                    {
+                        EnemyNPC enemy = new EnemyNPC();
+                        foreach(XmlNode enemyChild in roomChild.ChildNodes)
+                        {
+                            if (enemyChild.Name == "PositionX") enemy.Position = new Vector2f(Convert.ToInt32(enemyChild.InnerText), enemy.Position.Y);
+                            if (enemyChild.Name == "PositionY") enemy.Position = new Vector2f(enemy.Position.X, Convert.ToInt32(enemyChild.InnerText));
+                        }
+                        room.Enemies.Add(enemy);
+                    }
+                    if (roomChild.Name == "NPC")
+                    {
+                        QuestNPC npc = new QuestNPC();
+                        foreach (XmlNode enemyChild in roomChild.ChildNodes)
+                        {
+                            if (enemyChild.Name == "PositionX") npc.Position = new Vector2f(Convert.ToInt32(enemyChild.InnerText), npc.Position.Y);
+                            if (enemyChild.Name == "PositionY") npc.Position = new Vector2f(npc.Position.X, Convert.ToInt32(enemyChild.InnerText));
+                        }
+                        room.Npcs.Add(npc);
+                    }
                 }
 
                 world.Add(room);
@@ -133,12 +153,14 @@ namespace SFML_Prog2_Gruppe1
             return tileMap;
         }
 
+        public void Update()
+        {
+            GetActiveRoom().Update();
+        }
+
         public void Draw()
         {
-            foreach(Tile tempTile in GetActiveRoom().Tilemap)
-            {
-                tempTile.Draw();
-            }
+            GetActiveRoom().Draw();
         }
     }
 }

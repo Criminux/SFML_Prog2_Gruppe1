@@ -28,6 +28,14 @@
     <botRoom>32</botRoom>
     <leftRoom>21</leftRoom>
     <rightRoom>23</rightRoom>
+    <Enemy>
+      <PositionX>1000</PositionX>
+      <PositionY>500</PositionY>
+    </Enemy>
+    <NPC>
+      <PositionX>100</PositionX>
+      <PositionY>100</PositionY>
+    </NPC>
   </Room>
   <Room>
     <Tilemap>
@@ -56,5 +64,9 @@
     <topRoom>11</topRoom>
     <botRoom>31</botRoom>
     <rightRoom>22</rightRoom>
+    <Enemy>
+      <PositionX>200</PositionX>
+      <PositionY>500</PositionY>
+    </Enemy>
   </Room>
 </World>

@@ -141,10 +141,10 @@ namespace SFML_Prog2_Gruppe1
                     switch (IDs[x])
                     {
                         case "00":
-                            tileMap[x, y] = new NormalTile(new Vector2f(x * Tile.Width, y * Tile.Height));
+                            tileMap[x, y] = new NormalTile(new Vector2f(x * Tile.Width, y * Tile.Height), NormalTileType.Background);
                             break;
                         case "01":
-                            tileMap[x, y] = new CollisionTile(new Vector2f(x * Tile.Width, y * Tile.Height));
+                            tileMap[x, y] = new CollisionTile(new Vector2f(x * Tile.Width, y * Tile.Height), CollisionTileType.Wall);
                             break;
                     }
                 }

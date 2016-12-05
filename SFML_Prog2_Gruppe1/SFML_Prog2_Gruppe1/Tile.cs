@@ -12,6 +12,17 @@ using SFML.Audio;
 
 namespace SFML_Prog2_Gruppe1
 {
+    public enum NormalTileType
+    {
+        Background = 1
+    }
+
+    public enum CollisionTileType
+    {
+        Wall = 1
+    }
+
+
     public abstract class Tile
     {
         public const int Width = 32;

@@ -18,11 +18,17 @@ namespace SFML_Prog2_Gruppe1
         /// Constructor for collidable tile.
         /// </summary>
         /// <param name="position">Position.</param>
-        public CollisionTile(Vector2f position) : base()
+        public CollisionTile(Vector2f position, CollisionTileType type) : base()
         {
             Initialize();
 
-            texture = new Texture("Tile/CollisionTile.png");
+            switch(type)
+            {
+                case CollisionTileType.Wall:
+                    texture = new Texture("Tile/CollisionTile.png");
+                    break;
+
+            }
             this.position = position;
 
             sprite.Texture = texture;

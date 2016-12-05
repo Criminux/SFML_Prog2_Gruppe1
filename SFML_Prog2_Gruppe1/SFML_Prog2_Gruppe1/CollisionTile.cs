@@ -28,6 +28,17 @@ namespace SFML_Prog2_Gruppe1
                     texture = new Texture("Tile/CollisionTile.png");
                     break;
 
+                case CollisionTileType.Ruin:
+                    texture = new Texture("Tile/CollisionTile_ruin.png");
+                    break;
+
+                case CollisionTileType.Tree1:
+                    texture = new Texture("Tile/CollisionTile_tree1.png");
+                    break;
+
+                case CollisionTileType.Tree2:
+                    texture = new Texture("Tile/CollisionTile_tree2.png");
+                    break;
             }
             this.position = position;
 

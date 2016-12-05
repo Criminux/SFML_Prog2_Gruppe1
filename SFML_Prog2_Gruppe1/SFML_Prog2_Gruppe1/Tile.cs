@@ -14,12 +14,19 @@ namespace SFML_Prog2_Gruppe1
 {
     public enum NormalTileType
     {
-        Background = 1
+        Grass       = 1,
+        GrassTop    = 2,
+        GrassBot    = 3,
+        GrassL      = 4,
+        GrassR      = 5
     }
 
     public enum CollisionTileType
     {
-        Wall = 1
+        Wall    = 1,
+        Ruin    = 2,
+        Tree1   = 3,
+        Tree2   = 4
     }
 
 

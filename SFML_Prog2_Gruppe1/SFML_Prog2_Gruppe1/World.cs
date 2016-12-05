@@ -141,11 +141,34 @@ namespace SFML_Prog2_Gruppe1
                     switch (IDs[x])
                     {
                         case "00":
-                            tileMap[x, y] = new NormalTile(new Vector2f(x * Tile.Width, y * Tile.Height), NormalTileType.Background);
+                            tileMap[x, y] = new NormalTile(new Vector2f(x * Tile.Width, y * Tile.Height), NormalTileType.Grass);
                             break;
                         case "01":
+                            tileMap[x, y] = new NormalTile(new Vector2f(x * Tile.Width, y * Tile.Height), NormalTileType.GrassTop);
+                            break;
+                        case "02":
+                            tileMap[x, y] = new NormalTile(new Vector2f(x * Tile.Width, y * Tile.Height), NormalTileType.GrassBot);
+                            break;
+                        case "03":
+                            tileMap[x, y] = new NormalTile(new Vector2f(x * Tile.Width, y * Tile.Height), NormalTileType.GrassL);
+                            break;
+                        case "04":
+                            tileMap[x, y] = new NormalTile(new Vector2f(x * Tile.Width, y * Tile.Height), NormalTileType.GrassR);
+                            break;
+
+                        case "10":
                             tileMap[x, y] = new CollisionTile(new Vector2f(x * Tile.Width, y * Tile.Height), CollisionTileType.Wall);
                             break;
+                        case "11":
+                            tileMap[x, y] = new CollisionTile(new Vector2f(x * Tile.Width, y * Tile.Height), CollisionTileType.Ruin);
+                            break;
+                        case "12":
+                            tileMap[x, y] = new CollisionTile(new Vector2f(x * Tile.Width, y * Tile.Height), CollisionTileType.Tree1);
+                            break;
+                        case "13":
+                            tileMap[x, y] = new CollisionTile(new Vector2f(x * Tile.Width, y * Tile.Height), CollisionTileType.Tree2);
+                            break;
+
                     }
                 }
             }

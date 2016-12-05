@@ -23,12 +23,27 @@ namespace SFML_Prog2_Gruppe1
         {
             Initialize();
 
-            texture = new Texture("Tile/NormalTile.png");
+            //texture = new Texture("Tile/NormalTile.png");
             switch(type)
             {
-                case NormalTileType.Background:
+                case NormalTileType.Grass:
                     texture = new Texture("Tile/NormalTile.png");
+                    break;
 
+                case NormalTileType.GrassTop:
+                    texture = new Texture("Tile/NormalTile_top.png");
+                    break;
+
+                case NormalTileType.GrassBot:
+                    texture = new Texture("Tile/NormalTile_bottom.png");
+                    break;
+
+                case NormalTileType.GrassL:
+                    texture = new Texture("Tile/NormalTile_left.png");
+                    break;
+
+                case NormalTileType.GrassR:
+                    texture = new Texture("Tile/NormalTile_right.png");
                     break;
             }
 

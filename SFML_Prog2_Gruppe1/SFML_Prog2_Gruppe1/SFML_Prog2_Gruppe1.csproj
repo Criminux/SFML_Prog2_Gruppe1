@@ -61,6 +61,7 @@
     <Compile Include="EnemyNPC.cs" />
     <Compile Include="QuestNPC.cs" />
     <Compile Include="CollisionTile.cs" />
+    <Compile Include="UI\UIManager.cs" />
     <Compile Include="Util\CollisionUtil.cs" />
     <Compile Include="Util\Direction.cs" />
     <Compile Include="Util\MathUtil.cs" />
@@ -119,6 +120,9 @@
     <Content Include="Tile\NormalTile.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="UI\UIBar.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="World.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -126,6 +130,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

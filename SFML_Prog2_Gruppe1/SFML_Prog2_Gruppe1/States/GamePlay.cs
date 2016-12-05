@@ -17,6 +17,7 @@ namespace SFML_Prog2_Gruppe1.States
     {
         World world;
         Player player;
+        UIManager uimanager;
         CommandQueue commandQueue;
 
         /// <summary>
@@ -27,6 +28,7 @@ namespace SFML_Prog2_Gruppe1.States
             world = new World();
             player = new Player();
             player.roomChangeEvent += onPlayerRoomChange;
+            uimanager = new UIManager();
             commandQueue = new CommandQueue();
         }
 
@@ -69,6 +71,7 @@ namespace SFML_Prog2_Gruppe1.States
         {
             world.Draw();
             player.Draw();
+            uimanager.Draw();
         }
 
         public override void Initialize()

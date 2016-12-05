@@ -89,12 +89,12 @@ namespace SFML_Prog2_Gruppe1
             }
             else if (Position.Y < 0 - (animation.Sprite.GetGlobalBounds().Height / 2))
             {
-                Position = new Vector2f(Position.X, Position.Y + 720);
+                Position = new Vector2f(Position.X, Position.Y + 640);
                 roomChangeEvent(Direction.UP);
             }
-            else if (Position.Y > 720 - (animation.Sprite.GetGlobalBounds().Height / 2))
+            else if (Position.Y > 640 - (animation.Sprite.GetGlobalBounds().Height / 2))
             {
-                Position = new Vector2f(Position.X, Position.Y - 720);
+                Position = new Vector2f(Position.X, Position.Y - 640);
                 roomChangeEvent(Direction.DOWN);
             }
         }

@@ -19,6 +19,7 @@ namespace SFML_Prog2_Gruppe1.States
         Player player;
         UIManager uimanager;
         CommandQueue commandQueue;
+        GameStates targetState;
 
         /// <summary>
         /// The different object instances are created, which are needed for the gameplay state.
@@ -30,6 +31,7 @@ namespace SFML_Prog2_Gruppe1.States
             player.roomChangeEvent += onPlayerRoomChange;
             uimanager = new UIManager();
             commandQueue = new CommandQueue();
+            targetState = GameStates.GamePlayState;
         }
 
         /// <summary>
@@ -40,22 +42,20 @@ namespace SFML_Prog2_Gruppe1.States
         /// </param>
         private void onPlayerRoomChange(Direction direction)
         {
-            //TODO: switch case
-            if (direction == Direction.DOWN)
+            switch(direction)
             {
-                if (world.GetActiveRoom().ConnectedRooms.ContainsKey("botRoom")) { world.CurrentID = world.GetActiveRoom().ConnectedRooms["botRoom"]; }
-            }
-            else if (direction == Direction.LEFT)
-            {
-                if (world.GetActiveRoom().ConnectedRooms.ContainsKey("leftRoom")) { world.CurrentID = world.GetActiveRoom().ConnectedRooms["leftRoom"]; }
-            }
-            else if (direction == Direction.RIGHT)
-            {
-                if (world.GetActiveRoom().ConnectedRooms.ContainsKey("rightRoom")) { world.CurrentID = world.GetActiveRoom().ConnectedRooms["rightRoom"]; }
-            }
-            else if (direction == Direction.UP)
-            {
-                if (world.GetActiveRoom().ConnectedRooms.ContainsKey("topRoom")) { world.CurrentID = world.GetActiveRoom().ConnectedRooms["topRoom"]; }
+                case Direction.DOWN:
+                    if (world.GetActiveRoom().ConnectedRooms.ContainsKey("botRoom")) { world.CurrentID = world.GetActiveRoom().ConnectedRooms["botRoom"]; }
+                    break;
+                case Direction.LEFT:
+                    if (world.GetActiveRoom().ConnectedRooms.ContainsKey("leftRoom")) { world.CurrentID = world.GetActiveRoom().ConnectedRooms["leftRoom"]; }
+                    break;
+                case Direction.RIGHT:
+                    if (world.GetActiveRoom().ConnectedRooms.ContainsKey("rightRoom")) { world.CurrentID = world.GetActiveRoom().ConnectedRooms["rightRoom"]; }
+                    break;
+                case Direction.UP:
+                    if (world.GetActiveRoom().ConnectedRooms.ContainsKey("topRoom")) { world.CurrentID = world.GetActiveRoom().ConnectedRooms["topRoom"]; }
+                    break;
             }
         }
 
@@ -97,7 +97,7 @@ namespace SFML_Prog2_Gruppe1.States
             player.Update(world.GetActiveRoom().Tilemap);
             world.Update();
 
-            return GameStates.GamePlayState;
+            return targetState;
         }
 
         /// <summary>
@@ -127,7 +127,7 @@ namespace SFML_Prog2_Gruppe1.States
         {
             if(isPressed && key == Keyboard.Key.Escape)
             {
-                ProjectRenderWindow.GetRenderWindowInstance().Close();
+                targetState = GameStates.QuitState;
             }
         }
     }

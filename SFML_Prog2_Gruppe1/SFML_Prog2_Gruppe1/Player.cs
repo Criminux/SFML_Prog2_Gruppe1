@@ -65,8 +65,6 @@ namespace SFML_Prog2_Gruppe1
         /// </param>
         public override void Update(Tile[,] room)
         {
-            //TODO: Refactor Input
-
             base.Update(room);
 
             CheckForRoomChange();

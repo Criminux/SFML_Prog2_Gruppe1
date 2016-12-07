@@ -136,6 +136,9 @@ namespace SFML_Prog2_Gruppe1
                 case GameStates.CreditScreenState:
                     creditScreen.Draw();
                     break;
+                case GameStates.QuitState:
+                    ProjectRenderWindow.GetRenderWindowInstance().Clear(Color.Black);
+                    break;
             }
         }
 

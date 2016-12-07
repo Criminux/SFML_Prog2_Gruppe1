@@ -17,6 +17,7 @@ namespace SFML_Prog2_Gruppe1.States
     {
         private Button startButton;
         private Button exitButton;
+        private Button creditsButton;
 
         private Texture menuBackground;
         private Sprite menuSprite;
@@ -30,9 +31,11 @@ namespace SFML_Prog2_Gruppe1.States
         public MainMenu()
         {
             startButton = new Button(new Vector2f(500, 300), "Start");
-            exitButton = new Button(new Vector2f(500, 420), "Exit");
+            creditsButton = new Button(new Vector2f(500, 420), "Credits");
+            exitButton = new Button(new Vector2f(500, 540), "Exit");
             
             startButton.Click += startButton_Click;
+            creditsButton.Click += creditsButton_Click;
             exitButton.Click += exitButton_Click;
 
             targetState = GameStates.MainMenuState;
@@ -47,6 +50,10 @@ namespace SFML_Prog2_Gruppe1.States
         private void startButton_Click(object sender, System.EventArgs e)
         {
             targetState = GameStates.GamePlayState;
+        }
+        private void creditsButton_Click(object sender, System.EventArgs e)
+        {
+            targetState = GameStates.CreditScreenState;
         }
         private void exitButton_Click(object sender, System.EventArgs e)
         {
@@ -63,6 +70,7 @@ namespace SFML_Prog2_Gruppe1.States
 
             //Draw Buttons
             startButton.Draw();
+            creditsButton.Draw();
             exitButton.Draw();
         }
 
@@ -76,7 +84,7 @@ namespace SFML_Prog2_Gruppe1.States
             if ((isPressed && key == Keyboard.Key.S) || (isPressed && key == Keyboard.Key.Down))
             {
                 currentSelectionIndex = currentSelectionIndex + 1;
-                if (currentSelectionIndex > 1) currentSelectionIndex = 1;
+                if (currentSelectionIndex > 2) currentSelectionIndex = 2;
             }
 
             if (isPressed && key == Keyboard.Key.Return)
@@ -103,10 +111,17 @@ namespace SFML_Prog2_Gruppe1.States
             {
                 case 0:
                     startButton.Update(true, clicked);
+                    creditsButton.Update(false, clicked);
                     exitButton.Update(false, clicked);
                     break;
                 case 1:
                     startButton.Update(false, clicked);
+                    creditsButton.Update(true, clicked);
+                    exitButton.Update(false, clicked);
+                    break;
+                case 2:
+                    startButton.Update(false, clicked);
+                    creditsButton.Update(false, clicked);
                     exitButton.Update(true, clicked);
                     break;
             }

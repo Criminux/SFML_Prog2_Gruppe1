@@ -55,7 +55,7 @@ namespace SFML_Prog2_Gruppe1
         private void InitializeWorld()
         {
             XmlDocument document = new XmlDocument();
-            document.Load("World.xml");
+            document.Load("World/World.xml");
             
             XmlNode worldNode = document.SelectSingleNode("/World");
 

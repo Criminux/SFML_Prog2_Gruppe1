@@ -55,34 +55,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbstractCommand.cs" />
-    <Compile Include="Animation.cs" />
-    <Compile Include="CommandQueue.cs" />
-    <Compile Include="EnemyNPC.cs" />
-    <Compile Include="QuestNPC.cs" />
-    <Compile Include="CollisionTile.cs" />
+    <Compile Include="Util\AbstractCommand.cs" />
+    <Compile Include="Character\Animation.cs" />
+    <Compile Include="Util\CommandQueue.cs" />
+    <Compile Include="Character\EnemyNPC.cs" />
+    <Compile Include="Character\QuestNPC.cs" />
+    <Compile Include="Tile\CollisionTile.cs" />
     <Compile Include="States\Menu\Button.cs" />
     <Compile Include="UI\UIManager.cs" />
     <Compile Include="Util\CollisionUtil.cs" />
     <Compile Include="Util\Direction.cs" />
     <Compile Include="Util\MathUtil.cs" />
-    <Compile Include="Player.cs" />
-    <Compile Include="Room.cs" />
+    <Compile Include="Character\Player.cs" />
+    <Compile Include="World\Room.cs" />
     <Compile Include="States\CreditScreen.cs" />
     <Compile Include="States\GamePlay.cs" />
     <Compile Include="States\GameStates.cs" />
-    <Compile Include="NormalTile.cs" />
-    <Compile Include="Character.cs" />
+    <Compile Include="Tile\NormalTile.cs" />
+    <Compile Include="Character\Character.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="ProjectRenderWindow.cs" />
+    <Compile Include="Util\ProjectRenderWindow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="States\Menu\MainMenu.cs" />
     <Compile Include="States\Menu\PauseMenu.cs" />
     <Compile Include="States\SplashScreen.cs" />
     <Compile Include="States\State.cs" />
     <Compile Include="States\StateMachine.cs" />
-    <Compile Include="Tile.cs" />
-    <Compile Include="World.cs" />
+    <Compile Include="Tile\Tile.cs" />
+    <Compile Include="World\World.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -124,6 +124,9 @@
     <Content Include="States\Menu\ButtonPressed.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="States\Menu\PauseMenuBackground.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="States\Menu\MenuBackground.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -157,10 +160,10 @@
     <Content Include="UI\UIBar.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="World.txt">
+    <Content Include="World\World.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="World.xml">
+    <Content Include="World\World.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

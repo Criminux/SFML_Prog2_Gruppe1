@@ -33,6 +33,8 @@ namespace SFML_Prog2_Gruppe1.States.Menu
         }
 
         private bool isSelected;
+        private Text buttonText;
+        private Font font;
         private string text;
         FloatRect bounds;
 
@@ -45,12 +47,15 @@ namespace SFML_Prog2_Gruppe1.States.Menu
 
             texture = new Texture("States/Menu/Button.png");
             hoverTexture = new Texture("States/Menu/ButtonPressed.png");
+            font = new Font("States/Menu/POORICH.TTF");
 
             buttonSprite = new Sprite(texture);
             buttonSprite.Position = position;
 
             this.text = text;
+            buttonText = new Text(text, font);
             bounds = buttonSprite.GetGlobalBounds();
+            buttonText.Position = new Vector2f(bounds.Left + bounds.Width / 2, bounds.Top + bounds.Height / 2);
         }
 
         public void Update(bool isSecected, bool clicked)
@@ -75,6 +80,7 @@ namespace SFML_Prog2_Gruppe1.States.Menu
 
             //TODO: Add StringDrawing
             //spriteBatch.DrawString(spriteFont, text, position + new Vector2(texture.Width / 2f, texture.Height / 2f) - spriteFont.MeasureString(text) / 2f, Color.Black);
+            ProjectRenderWindow.GetRenderWindowInstance().Draw(buttonText);
         }
 
         protected void OnClick()

@@ -68,12 +68,12 @@ namespace SFML_Prog2_Gruppe1.States
 
         public override void HandleInput(Keyboard.Key key, bool isPressed)
         {
-            if (isPressed && key == Keyboard.Key.W)
+            if ((isPressed && key == Keyboard.Key.W) || (isPressed && key == Keyboard.Key.Up))
             {
                 currentSelectionIndex = currentSelectionIndex - 1;
                 if (currentSelectionIndex < 0) currentSelectionIndex = 0;
             }
-            if (isPressed && key == Keyboard.Key.S)
+            if ((isPressed && key == Keyboard.Key.S) || (isPressed && key == Keyboard.Key.Down))
             {
                 currentSelectionIndex = currentSelectionIndex + 1;
                 if (currentSelectionIndex > 1) currentSelectionIndex = 1;

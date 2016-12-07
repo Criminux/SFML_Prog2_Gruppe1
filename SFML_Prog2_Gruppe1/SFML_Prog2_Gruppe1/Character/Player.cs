@@ -24,6 +24,8 @@ namespace SFML_Prog2_Gruppe1
 
         const float MovementSpeed = 5;
 
+
+
         /// <summary>
         /// An command of this class will move the player in the desired direction.
         /// </summary>
@@ -52,7 +54,27 @@ namespace SFML_Prog2_Gruppe1
             stamina = 100;
             damage = 1;
             armor = 0;
-            
+
+            WalkLeft = new Texture("Character/PlayerWalkLeft.png");
+            WalkRight = new Texture("Character/PlayerWalkRight.png");
+            WalkUp = new Texture("Character/PlayerWalkUp.png");
+            WalkDown = new Texture("Character/PlayerWalkDown.png");
+
+            WalkLeftAnimation = new Animation(WalkLeft, 9, 1, 32, 32, 100);
+            WalkRightAnimation = new Animation(WalkRight, 9, 1, 32, 32, 100);
+            WalkUpAnimation = new Animation(WalkUp, 9, 1, 32, 32, 100);
+            WalkDownAnimation = new Animation(WalkDown, 9, 1, 32, 32, 100);
+
+            AttackLeft = new Texture("Character/PlayerAttackLeft.png");
+            AttackRight = new Texture("Character/PlayerAttackRight.png");
+            AttackUp = new Texture("Character/PlayerAttackUp.png");
+            AttackDown = new Texture("Character/PlayerAttackDown.png");
+
+            AttackLeftAnimation = new Animation(AttackLeft, 7, 1, 32, 32, 100);
+            AttackRightAnimation = new Animation(AttackRight, 7, 1, 32, 32, 100);
+            AttackUpAnimation = new Animation(AttackUp, 7, 1, 32, 32, 100);
+            AttackDownAnimation = new Animation(AttackDown, 7, 1, 32, 32, 100);
+
 
             SetAndApplyPosition(new Vector2f(200, 200));
         }
@@ -105,18 +127,22 @@ namespace SFML_Prog2_Gruppe1
             if (Keyboard.IsKeyPressed(Keyboard.Key.D) || Keyboard.IsKeyPressed(Keyboard.Key.Right))
             {
                 commandQueue.Push(new PlayerMover(MovementSpeed, 0));
+                currentAnimationState = AnimationStates.PlayerWalkRight;
             }
             else if (Keyboard.IsKeyPressed(Keyboard.Key.A) || Keyboard.IsKeyPressed(Keyboard.Key.Left))
             {
                 commandQueue.Push(new PlayerMover(-MovementSpeed, 0));
+                currentAnimationState = AnimationStates.PlayerWalkLeft;
             }
             else if (Keyboard.IsKeyPressed(Keyboard.Key.W) || Keyboard.IsKeyPressed(Keyboard.Key.Up))
             {
                 commandQueue.Push(new PlayerMover(0, -MovementSpeed));
+                currentAnimationState = AnimationStates.PlayerWalkUp;
             }
             else if (Keyboard.IsKeyPressed(Keyboard.Key.S) || Keyboard.IsKeyPressed(Keyboard.Key.Down))
             {
                 commandQueue.Push(new PlayerMover(0, MovementSpeed));
+                currentAnimationState = AnimationStates.PlayerWalkDown;
             }
         }
     }

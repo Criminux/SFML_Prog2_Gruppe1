@@ -32,6 +32,31 @@ namespace SFML_Prog2_Gruppe1
         protected Animation animation;
         protected Texture spriteSheet;
 
+        protected Animation WalkLeftAnimation;
+        protected Animation WalkRightAnimation;
+        protected Animation WalkUpAnimation;
+        protected Animation WalkDownAnimation;
+
+        protected Animation AttackLeftAnimation;
+        protected Animation AttackRightAnimation;
+        protected Animation AttackDownAnimation;
+        protected Animation AttackUpAnimation;
+
+        protected Animation ToDrawAnimation;
+
+        protected Texture WalkLeft;
+        protected Texture WalkRight;
+        protected Texture WalkUp;
+        protected Texture WalkDown;
+
+        protected Texture AttackLeft;
+        protected Texture AttackRight;
+        protected Texture AttackUp;
+        protected Texture AttackDown;
+
+        protected AnimationStates currentAnimationState;
+        
+
         /// <summary>
         /// Character sprites and standard velocity of 0 are getting assigned.
         /// </summary>
@@ -39,7 +64,10 @@ namespace SFML_Prog2_Gruppe1
         {
             spriteSheet = new Texture("Character/CharMove.png");
             animation = new Animation(spriteSheet, 4, 1, 32, 32, 100);
+            animation.Sprite.Texture = spriteSheet;
             velocity = new Vector2f(0, 0);
+            ToDrawAnimation = animation; //TODO: animation weg
+
         }
 
         /// <summary>
@@ -67,6 +95,18 @@ namespace SFML_Prog2_Gruppe1
         public virtual void Update(Tile[,] room)
         {
             animation.Update();
+            animation.Sprite.Position = position;
+
+            ToDrawAnimation = animation;
+
+            if(this is Player) //TODO: weg
+            {
+
+                WalkLeftAnimation.Update();
+                WalkRightAnimation.Update();
+                WalkUpAnimation.Update();
+                WalkDownAnimation.Update();
+            }
 
             Console.WriteLine("Velocity pre Collision: " + velocity.ToString());
             Console.WriteLine("Position pre Collision: " + position.ToString());
@@ -82,6 +122,39 @@ namespace SFML_Prog2_Gruppe1
             ApplyPosition();
 
             Velocity = new Vector2f(0, 0);
+
+            SetActiveAnimation();
+        }
+
+        private void SetActiveAnimation()
+        {
+            switch (currentAnimationState) //TODO: ohne Player states
+            {
+                case AnimationStates.UnspecifiedState:
+                    ToDrawAnimation = WalkDownAnimation;
+                    break;
+                case AnimationStates.PlayerWalkLeft:
+                    ToDrawAnimation = WalkLeftAnimation;
+                    break;
+                case AnimationStates.PlayerWalkRight:
+                    ToDrawAnimation = WalkRightAnimation;
+                    break;
+                case AnimationStates.PlayerWalkUp:
+                    ToDrawAnimation = WalkUpAnimation;
+                    break;
+                case AnimationStates.PlayerWalkDown:
+                    ToDrawAnimation = WalkDownAnimation;
+                    break;
+                case AnimationStates.PlayerAttackLeft:
+                    break;
+                case AnimationStates.PlayerAttackRight:
+                    break;
+                case AnimationStates.PlayerAttackUp:
+                    break;
+                case AnimationStates.PlayerAttackDown:
+                    break;
+               
+            }
         }
 
         /// <summary>
@@ -89,7 +162,10 @@ namespace SFML_Prog2_Gruppe1
         /// </summary>
         public virtual void Draw()
         {
-            animation.Draw(position, false);
+            if(this is Player) //TODO: Weg
+            {
+                ToDrawAnimation.Draw(position, false);
+            }
         }
         
         /// <summary>
@@ -141,8 +217,8 @@ namespace SFML_Prog2_Gruppe1
         {
             if (tile is CollisionTile)
             {
-                Console.WriteLine("charSprite: " + animation.Sprite.GetGlobalBounds().ToString());
-                Vector2f depth = CollisionUtil.CalculateCollisionDepth(animation.Sprite.GetGlobalBounds(), tile.Rectangle);
+                Console.WriteLine("charSprite: " + ToDrawAnimation.Sprite.GetGlobalBounds().ToString());
+                Vector2f depth = CollisionUtil.CalculateCollisionDepth(ToDrawAnimation.Sprite.GetGlobalBounds(), tile.Rectangle);
                 Console.WriteLine("Depth:" + depth.ToString());
 
                 if (depth != new Vector2f(0f, 0f))

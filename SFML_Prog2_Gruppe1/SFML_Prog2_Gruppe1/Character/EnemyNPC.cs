@@ -21,6 +21,26 @@ namespace SFML_Prog2_Gruppe1
         private Clock movementDelay;
         private Direction movementState;
 
+        private Animation enemyNPCWalkLeftAnimation;
+        private Animation enemyNPCWalkRightAnimation;
+        private Animation enemyNPCWalkUpAnimation;
+        private Animation enemyNPCWalkDownAnimation;
+
+        private Animation enemyNPCAttackLeftAnimation;
+        private Animation enemyNPCAttackRightAnimation;
+        private Animation enemyNPCAttackDownAnimation;
+        private Animation enemyNPCAttackUpAnimation;
+
+        private Texture enemyNPCWalkLeft;
+        private Texture enemyNPCWalkRight;
+        private Texture enemyNPCWalkUp;
+        private Texture enemyNPCWalkDown;
+
+        private Texture enemyNPCAttackLeft;
+        private Texture enemyNPCAttackRight;
+        private Texture enemyNPCAttackUp;
+        private Texture enemyNPCAttackDown;
+
         /// <summary>
         /// Applies basic stats to the enemy NPC. Loads correct texture and applies starting position.
         /// </summary>

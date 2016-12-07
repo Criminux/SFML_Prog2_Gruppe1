@@ -21,6 +21,11 @@ namespace SFML_Prog2_Gruppe1.States
         CommandQueue commandQueue;
         GameStates targetState;
 
+        public GameStates TargetState
+        {
+            get { return targetState; }
+        }
+
         /// <summary>
         /// The different object instances are created, which are needed for the gameplay state.
         /// </summary>
@@ -76,7 +81,7 @@ namespace SFML_Prog2_Gruppe1.States
 
         public override void Initialize()
         {
-            //throw new NotImplementedException();
+            targetState = GameStates.GamePlayState;
         }
 
         /// <summary>
@@ -127,7 +132,7 @@ namespace SFML_Prog2_Gruppe1.States
         {
             if(isPressed && key == Keyboard.Key.Escape)
             {
-                targetState = GameStates.QuitState;
+                targetState = GameStates.PauseMenuState;
             }
         }
     }

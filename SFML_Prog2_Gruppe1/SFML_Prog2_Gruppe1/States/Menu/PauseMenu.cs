@@ -9,14 +9,15 @@ using SFML.System;
 using SFML.Window;
 using SFML.Graphics;
 using SFML.Audio;
+
 using SFML_Prog2_Gruppe1.States.Menu;
 
 namespace SFML_Prog2_Gruppe1.States
 {
-    public class MainMenu : State
+    public class PauseMenu : State
     {
-        private Button startButton;
-        private Button exitButton;
+        private Button resumeButton;
+        private Button menuButton;
 
         private Texture menuBackground;
         private Sprite menuSprite;
@@ -26,31 +27,35 @@ namespace SFML_Prog2_Gruppe1.States
         private int currentSelectionIndex;
         private bool clicked;
 
-
-        public MainMenu()
+        public GameStates TargetState
         {
-            startButton = new Button(new Vector2f(500, 300), "Start");
-            exitButton = new Button(new Vector2f(500, 420), "Exit");
-            
-            startButton.Click += startButton_Click;
-            exitButton.Click += exitButton_Click;
+            get { return targetState; }
+        }
 
-            targetState = GameStates.MainMenuState;
+        public PauseMenu()
+        {
+            resumeButton = new Button(new Vector2f(500, 300), "Resume");
+            menuButton = new Button(new Vector2f(500, 420), "Back to Menu");
+
+            resumeButton.Click += resumeButton_Click;
+            menuButton.Click += exitButton_Click;
+
+            targetState = GameStates.PauseMenuState;
             clicked = false;
 
-            menuBackground = new Texture("States/Menu/MenuBackground.png");
+            menuBackground = new Texture("States/Menu/PauseMenuBackground.png");
             menuSprite = new Sprite(menuBackground);
 
             currentSelectionIndex = 0;
         }
-        
-        private void startButton_Click(object sender, System.EventArgs e)
+
+        private void resumeButton_Click(object sender, System.EventArgs e)
         {
             targetState = GameStates.GamePlayState;
         }
         private void exitButton_Click(object sender, System.EventArgs e)
         {
-            targetState = GameStates.QuitState;
+            targetState = GameStates.MainMenuState;
         }
 
         public override void Dispose()
@@ -62,8 +67,8 @@ namespace SFML_Prog2_Gruppe1.States
             ProjectRenderWindow.GetRenderWindowInstance().Draw(menuSprite);
 
             //Draw Buttons
-            startButton.Draw();
-            exitButton.Draw();
+            resumeButton.Draw();
+            menuButton.Draw();
         }
 
         public override void HandleInput(Keyboard.Key key, bool isPressed)
@@ -87,27 +92,27 @@ namespace SFML_Prog2_Gruppe1.States
 
             if (isPressed && key == Keyboard.Key.Escape)
             {
-                targetState = GameStates.QuitState;
+                targetState = GameStates.GamePlayState;
             }
         }
 
         public override void Initialize()
         {
-            targetState = GameStates.MainMenuState;
+            targetState = GameStates.PauseMenuState;
             clicked = false;
         }
 
         public override GameStates Update()
         {
-            switch(currentSelectionIndex)
+            switch (currentSelectionIndex)
             {
                 case 0:
-                    startButton.Update(true, clicked);
-                    exitButton.Update(false, clicked);
+                    resumeButton.Update(true, clicked);
+                    menuButton.Update(false, clicked);
                     break;
                 case 1:
-                    startButton.Update(false, clicked);
-                    exitButton.Update(true, clicked);
+                    resumeButton.Update(false, clicked);
+                    menuButton.Update(true, clicked);
                     break;
             }
 

@@ -92,6 +92,16 @@ namespace SFML_Prog2_Gruppe1
                     DisposeState(mainMenu);
                     break;
 
+                case GameStates.PauseMenuState:
+                    InitializeState(pauseMenu);
+                    targetState = pauseMenu.Update();
+                    if (pauseMenu.TargetState == GameStates.MainMenuState)
+                    {
+                        gamePlay = new GamePlay();
+                    }
+                    DisposeState(pauseMenu);
+                    break;
+
                 case GameStates.CreditScreenState:
                     InitializeState(creditScreen);
                     targetState = creditScreen.Update();
@@ -101,11 +111,11 @@ namespace SFML_Prog2_Gruppe1
                 case GameStates.GamePlayState:
                     InitializeState(gamePlay);
                     targetState = gamePlay.Update();
-                    DisposeState(gamePlay);
-                    if (targetState == GameStates.CreditScreenState)
+                    if (gamePlay.TargetState == GameStates.CreditScreenState || gamePlay.TargetState == GameStates.MainMenuState)
                     {
                         gamePlay = new GamePlay();
                     }
+                    DisposeState(gamePlay);
                     break;
 
                 case GameStates.QuitState:
@@ -127,6 +137,10 @@ namespace SFML_Prog2_Gruppe1
 
                 case GameStates.MainMenuState:
                     mainMenu.Draw();
+                    break;
+
+                case GameStates.PauseMenuState:
+                    pauseMenu.Draw();
                     break;
 
                 case GameStates.GamePlayState:
@@ -157,6 +171,10 @@ namespace SFML_Prog2_Gruppe1
 
                 case GameStates.MainMenuState:
                     mainMenu.HandleInput(key, isPressed);
+                    break;
+
+                case GameStates.PauseMenuState:
+                    pauseMenu.HandleInput(key, isPressed);
                     break;
 
                 case GameStates.GamePlayState:

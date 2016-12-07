@@ -53,9 +53,10 @@ namespace SFML_Prog2_Gruppe1.States.Menu
             buttonSprite.Position = position;
 
             this.text = text;
-            buttonText = new Text(text, font);
+            buttonText = new Text(text, font, 30);
             bounds = buttonSprite.GetGlobalBounds();
-            buttonText.Position = new Vector2f(bounds.Left + bounds.Width / 2, bounds.Top + bounds.Height / 2);
+            buttonText.Position = new Vector2f(position.X + buttonSprite.GetGlobalBounds().Width / 2f, position.Y + buttonSprite.GetGlobalBounds().Height / 2f) - new Vector2f(buttonText.GetGlobalBounds().Width / 2f, buttonText.GetGlobalBounds().Height / 2f);
+            //buttonText.Position = new Vector2f(bounds.Left + bounds.Width / 2, bounds.Top + bounds.Height / 2);
         }
 
         public void Update(bool isSecected, bool clicked)

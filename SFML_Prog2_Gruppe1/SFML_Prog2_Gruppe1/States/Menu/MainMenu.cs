@@ -24,6 +24,8 @@ namespace SFML_Prog2_Gruppe1.States
         private GameStates targetState;
 
         private int currentSelectionIndex;
+        private bool clicked;
+
 
         public MainMenu()
         {
@@ -34,6 +36,7 @@ namespace SFML_Prog2_Gruppe1.States
             exitButton.Click += exitButton_Click;
 
             targetState = GameStates.MainMenuState;
+            clicked = false;
 
             menuBackground = new Texture("States/Menu/MenuBackground.png");
             menuSprite = new Sprite(menuBackground);
@@ -65,6 +68,22 @@ namespace SFML_Prog2_Gruppe1.States
 
         public override void HandleInput(Keyboard.Key key, bool isPressed)
         {
+            if (isPressed && key == Keyboard.Key.W)
+            {
+                currentSelectionIndex = currentSelectionIndex - 1;
+                if (currentSelectionIndex < 0) currentSelectionIndex = 0;
+            }
+            if (isPressed && key == Keyboard.Key.S)
+            {
+                currentSelectionIndex = currentSelectionIndex + 1;
+                if (currentSelectionIndex > 1) currentSelectionIndex = 1;
+            }
+
+            if (isPressed && key == Keyboard.Key.Return)
+            {
+                clicked = true;
+            }
+            else clicked = false;
         }
 
         public override void Initialize()
@@ -73,19 +92,15 @@ namespace SFML_Prog2_Gruppe1.States
 
         public override GameStates Update()
         {
-            //TODO: Check Interact Command
-
-            //Update selectionIndex
-
             switch(currentSelectionIndex)
             {
                 case 0:
-                    startButton.Update(true);
-                    exitButton.Update(false);
+                    startButton.Update(true, clicked);
+                    exitButton.Update(false, clicked);
                     break;
                 case 1:
-                    startButton.Update(false);
-                    exitButton.Update(true);
+                    startButton.Update(false, clicked);
+                    exitButton.Update(true, clicked);
                     break;
             }
 

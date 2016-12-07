@@ -52,7 +52,7 @@ namespace SFML_Prog2_Gruppe1.States
         {
             if(clock.ElapsedTime.AsSeconds() >= 1f)
             {
-                return GameStates.GamePlayState;
+                return GameStates.MainMenuState;
             }
             return GameStates.SplashScreenState;
         }

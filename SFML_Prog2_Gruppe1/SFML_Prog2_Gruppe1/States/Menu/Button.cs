@@ -53,20 +53,18 @@ namespace SFML_Prog2_Gruppe1.States.Menu
             bounds = buttonSprite.GetGlobalBounds();
         }
 
-        public void Update(bool isSecected)
+        public void Update(bool isSecected, bool clicked)
         {
             //Set isHoveredOver bool
             this.isSelected = isSecected;
 
             if (isSecected) buttonSprite.Texture = hoverTexture;
             else buttonSprite.Texture = texture;
-            
-            //TODO: Get Interact Command
-            //if (isSelected && StateMachine.inputManager.MouseClicked())
-            //{
-            //    //Call Onclick Method
-            //    OnClick();
-            //}
+
+            if (isSelected && clicked)
+            {
+                OnClick();
+            }
 
 
         }

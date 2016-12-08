@@ -25,8 +25,6 @@ namespace SFML_Prog2_Gruppe1
         const float MovementSpeed = 5;
         private int finishedQuests;
 
-<<<<<<< HEAD
-=======
         private Clock lifeCooldown;
 
         /// <summary>
@@ -46,7 +44,6 @@ namespace SFML_Prog2_Gruppe1
                 player.Velocity = velocity;
             }
         }
->>>>>>> origin/master
 
         /// <summary>
         /// Applies basic stats to the player. Loads correct texture and applies starting position.

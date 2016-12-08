@@ -23,26 +23,8 @@ namespace SFML_Prog2_Gruppe1
         public event RoomChangeEventHandler roomChangeEvent;
 
         const float MovementSpeed = 5;
+        private int finishedQuests;
 
-
-
-        /// <summary>
-        /// An command of this class will move the player in the desired direction.
-        /// </summary>
-        internal class PlayerMover : AbstractCommand
-        {
-            private Vector2f velocity;
-
-            public PlayerMover(float x, float y)
-            {
-                velocity = new Vector2f(x, y);
-            }
-
-            public override void Execute(Player player)
-            {
-                player.Velocity = velocity;
-            }
-        }
 
         /// <summary>
         /// Applies basic stats to the player. Loads correct texture and applies starting position.
@@ -124,6 +106,11 @@ namespace SFML_Prog2_Gruppe1
         /// </summary>
         public void CheckInputs(CommandQueue commandQueue)
         {
+            if (Keyboard.IsKeyPressed(Keyboard.Key.E))
+            {
+                commandQueue.Push(new Interaction(finishedQuests));
+            }
+
             if (Keyboard.IsKeyPressed(Keyboard.Key.D) || Keyboard.IsKeyPressed(Keyboard.Key.Right))
             {
                 commandQueue.Push(new PlayerMover(MovementSpeed, 0));
@@ -143,6 +130,20 @@ namespace SFML_Prog2_Gruppe1
             {
                 commandQueue.Push(new PlayerMover(0, MovementSpeed));
                 currentAnimationState = AnimationStates.PlayerWalkDown;
+            }
+        }
+
+        private bool isQuestAvailable()
+        {
+            // TODO: Return true if Player can receive a quest (is in range of quest NPC)
+            return true;
+        }
+
+        public void GetNewQuest()
+        {
+            if (isQuestAvailable())
+            {
+                // TODO: Instantiate a quest for the player
             }
         }
     }

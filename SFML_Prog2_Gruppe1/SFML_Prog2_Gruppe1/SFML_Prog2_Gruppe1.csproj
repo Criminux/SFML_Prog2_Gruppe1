@@ -56,9 +56,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Character\AnimationStates.cs" />
-    <Compile Include="Util\AbstractCommand.cs" />
+    <Compile Include="Commands\Interaction.cs" />
+    <Compile Include="Commands\PlayerMover.cs" />
+    <Compile Include="Commands\AbstractCommand.cs" />
     <Compile Include="Character\Animation.cs" />
-    <Compile Include="Util\CommandQueue.cs" />
+    <Compile Include="Commands\CommandQueue.cs" />
     <Compile Include="Character\EnemyNPC.cs" />
     <Compile Include="Character\QuestNPC.cs" />
     <Compile Include="Tile\CollisionTile.cs" />

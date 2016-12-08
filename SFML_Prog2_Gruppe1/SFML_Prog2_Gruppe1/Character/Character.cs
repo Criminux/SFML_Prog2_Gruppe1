@@ -138,7 +138,7 @@ namespace SFML_Prog2_Gruppe1
 
         private void SetActiveAnimation()
         {
-            switch (currentAnimationState) //TODO: ohne Player states
+            switch (currentAnimationState)
             {
                 case AnimationStates.UnspecifiedState:
                     ToDrawAnimation = WalkDownAnimation;

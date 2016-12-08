@@ -24,7 +24,7 @@ namespace SFML_Prog2_Gruppe1
 
         const float MovementSpeed = 5;
 
-
+        private Clock lifeCooldown;
 
         /// <summary>
         /// An command of this class will move the player in the desired direction.
@@ -54,6 +54,8 @@ namespace SFML_Prog2_Gruppe1
             stamina = 100;
             damage = 1;
             armor = 0;
+
+            lifeCooldown = new Clock();
 
             WalkLeft = new Texture("Character/PlayerWalkLeft.png");
             WalkRight = new Texture("Character/PlayerWalkRight.png");
@@ -100,7 +102,11 @@ namespace SFML_Prog2_Gruppe1
             {
                 if(ToDrawAnimation.Sprite.GetGlobalBounds().Intersects(enemy.Bounds))
                 {
-                    health = health - 1;
+                    if(lifeCooldown.ElapsedTime.AsSeconds() >= 1f)
+                    {
+                        health = health - 1;
+                        lifeCooldown.Restart();
+                    }
                 }
             }
         }

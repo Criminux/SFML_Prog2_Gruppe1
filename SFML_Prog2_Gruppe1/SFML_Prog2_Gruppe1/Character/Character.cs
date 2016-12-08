@@ -62,7 +62,7 @@ namespace SFML_Prog2_Gruppe1
         }
         public FloatRect Bounds
         {
-            get { return animation.Sprite.GetGlobalBounds(); }
+            get { return ToDrawAnimation.Sprite.GetGlobalBounds(); }
         }
 
         /// <summary>

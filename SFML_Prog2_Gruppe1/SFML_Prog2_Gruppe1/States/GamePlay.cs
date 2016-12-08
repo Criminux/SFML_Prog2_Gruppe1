@@ -104,6 +104,8 @@ namespace SFML_Prog2_Gruppe1.States
 
             uimanager.Update(player.Health);
 
+            if (player.Health <= 0) targetState = GameStates.CreditScreenState;
+
             return targetState;
         }
 

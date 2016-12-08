@@ -21,25 +21,7 @@ namespace SFML_Prog2_Gruppe1
         private Clock movementDelay;
         private Direction movementState;
 
-        private Animation enemyNPCWalkLeftAnimation;
-        private Animation enemyNPCWalkRightAnimation;
-        private Animation enemyNPCWalkUpAnimation;
-        private Animation enemyNPCWalkDownAnimation;
 
-        private Animation enemyNPCAttackLeftAnimation;
-        private Animation enemyNPCAttackRightAnimation;
-        private Animation enemyNPCAttackDownAnimation;
-        private Animation enemyNPCAttackUpAnimation;
-
-        private Texture enemyNPCWalkLeft;
-        private Texture enemyNPCWalkRight;
-        private Texture enemyNPCWalkUp;
-        private Texture enemyNPCWalkDown;
-
-        private Texture enemyNPCAttackLeft;
-        private Texture enemyNPCAttackRight;
-        private Texture enemyNPCAttackUp;
-        private Texture enemyNPCAttackDown;
 
         /// <summary>
         /// Applies basic stats to the enemy NPC. Loads correct texture and applies starting position.
@@ -51,7 +33,27 @@ namespace SFML_Prog2_Gruppe1
             stamina = 25;
             damage = 10;
             armor = 10;
-            
+
+            WalkLeft = new Texture("Character/EnemyNPCWalkLeft.png");
+            WalkRight = new Texture("Character/EnemyNPCWalkRight.png");
+            WalkUp = new Texture("Character/EnemyNPCWalkUp.png");
+            WalkDown = new Texture("Character/EnemyNPCWalkDown.png");
+
+            WalkLeftAnimation = new Animation(WalkLeft, 9, 1, 32, 32, 100);
+            WalkRightAnimation = new Animation(WalkRight, 9, 1, 32, 32, 100);
+            WalkUpAnimation = new Animation(WalkUp, 9, 1, 32, 32, 100);
+            WalkDownAnimation = new Animation(WalkDown, 9, 1, 32, 32, 100);
+
+            //AttackLeft = new Texture("Character/PlayerAttackLeft.png");
+            //AttackRight = new Texture("Character/PlayerAttackRight.png");
+            //AttackUp = new Texture("Character/PlayerAttackUp.png");
+            //AttackDown = new Texture("Character/PlayerAttackDown.png");
+
+            //AttackLeftAnimation = new Animation(AttackLeft, 7, 1, 32, 32, 100);
+            //AttackRightAnimation = new Animation(AttackRight, 7, 1, 32, 32, 100);
+            //AttackUpAnimation = new Animation(AttackUp, 7, 1, 32, 32, 100);
+            //AttackDownAnimation = new Animation(AttackDown, 7, 1, 32, 32, 100);
+
 
             SetAndApplyPosition(new Vector2f(350, 350));
             movementDelay = new Clock();
@@ -63,7 +65,7 @@ namespace SFML_Prog2_Gruppe1
         /// <param name="room">
         /// Current room.
         /// </param>
-        public override void Update(Tile[,] room)
+        public override void Update(Room room)
         {
             MoveRandom();
 
@@ -88,10 +90,26 @@ namespace SFML_Prog2_Gruppe1
                 movementDelay.Restart();
             }
 
-            if (movementState == Direction.UP) Velocity = new Vector2f(MovementSpeed, 0);
-            if (movementState == Direction.DOWN) Velocity = new Vector2f(0, MovementSpeed);
-            if (movementState == Direction.LEFT) Velocity = new Vector2f(-MovementSpeed, 0);
-            if (movementState == Direction.RIGHT) Velocity = new Vector2f(0, -MovementSpeed);
+            if (movementState == Direction.UP)
+            { 
+                Velocity = new Vector2f(0, -MovementSpeed);
+                currentAnimationState = AnimationStates.WalkUp;
+            }
+            if (movementState == Direction.DOWN)
+            {
+                Velocity = new Vector2f(0, MovementSpeed);
+                currentAnimationState = AnimationStates.WalkDown;
+            }
+            if (movementState == Direction.LEFT)
+            {
+                Velocity = new Vector2f(-MovementSpeed, 0);
+                currentAnimationState = AnimationStates.WalkLeft;
+            }
+            if (movementState == Direction.RIGHT)
+            {
+                Velocity = new Vector2f(MovementSpeed, 0);
+                currentAnimationState = AnimationStates.WalkRight;
+            }
         }
     }
 }

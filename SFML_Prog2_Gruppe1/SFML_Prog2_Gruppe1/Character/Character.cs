@@ -56,6 +56,14 @@ namespace SFML_Prog2_Gruppe1
 
         protected AnimationStates currentAnimationState;
         
+        public int Health
+        {
+            get { return health; }
+        }
+        public FloatRect Bounds
+        {
+            get { return ToDrawAnimation.Sprite.GetGlobalBounds(); }
+        }
 
         /// <summary>
         /// Character sprites and standard velocity of 0 are getting assigned.
@@ -92,21 +100,23 @@ namespace SFML_Prog2_Gruppe1
         /// Method to update character-velocity and possible collisions.
         /// </summary>
         /// <param name="room">Tilemap of active room.</param>
-        public virtual void Update(Tile[,] room)
+        public virtual void Update(Room room)
         {
             animation.Update();
             animation.Sprite.Position = position;
 
             ToDrawAnimation = animation;
 
-            if(this is Player) //TODO: weg
-            {
 
+            if (this is Player || this is EnemyNPC)
+            {
                 WalkLeftAnimation.Update();
                 WalkRightAnimation.Update();
                 WalkUpAnimation.Update();
                 WalkDownAnimation.Update();
             }
+
+
 
             Console.WriteLine("Velocity pre Collision: " + velocity.ToString());
             Console.WriteLine("Position pre Collision: " + position.ToString());
@@ -115,7 +125,7 @@ namespace SFML_Prog2_Gruppe1
             Console.WriteLine("Position past ApplyVelo(): " + position.ToString());
             ApplyPosition();
 
-            HandleCollisions(room);
+            HandleCollisions(room.Tilemap);
 
             Console.WriteLine("Position after Collision: " + position.ToString());
 
@@ -133,25 +143,25 @@ namespace SFML_Prog2_Gruppe1
                 case AnimationStates.UnspecifiedState:
                     ToDrawAnimation = WalkDownAnimation;
                     break;
-                case AnimationStates.PlayerWalkLeft:
+                case AnimationStates.WalkLeft:
                     ToDrawAnimation = WalkLeftAnimation;
                     break;
-                case AnimationStates.PlayerWalkRight:
+                case AnimationStates.WalkRight:
                     ToDrawAnimation = WalkRightAnimation;
                     break;
-                case AnimationStates.PlayerWalkUp:
+                case AnimationStates.WalkUp:
                     ToDrawAnimation = WalkUpAnimation;
                     break;
-                case AnimationStates.PlayerWalkDown:
+                case AnimationStates.WalkDown:
                     ToDrawAnimation = WalkDownAnimation;
                     break;
-                case AnimationStates.PlayerAttackLeft:
+                case AnimationStates.AttackLeft:
                     break;
-                case AnimationStates.PlayerAttackRight:
+                case AnimationStates.AttackRight:
                     break;
-                case AnimationStates.PlayerAttackUp:
+                case AnimationStates.AttackUp:
                     break;
-                case AnimationStates.PlayerAttackDown:
+                case AnimationStates.AttackDown:
                     break;
                
             }
@@ -162,10 +172,12 @@ namespace SFML_Prog2_Gruppe1
         /// </summary>
         public virtual void Draw()
         {
-            if(this is Player) //TODO: Weg
+            if (this is Player ||this is EnemyNPC)
             {
                 ToDrawAnimation.Draw(position, false);
             }
+
+
         }
         
         /// <summary>

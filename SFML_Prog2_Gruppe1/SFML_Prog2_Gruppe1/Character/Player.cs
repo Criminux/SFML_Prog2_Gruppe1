@@ -25,6 +25,28 @@ namespace SFML_Prog2_Gruppe1
         const float MovementSpeed = 5;
         private int finishedQuests;
 
+<<<<<<< HEAD
+=======
+        private Clock lifeCooldown;
+
+        /// <summary>
+        /// An command of this class will move the player in the desired direction.
+        /// </summary>
+        internal class PlayerMover : AbstractCommand
+        {
+            private Vector2f velocity;
+
+            public PlayerMover(float x, float y)
+            {
+                velocity = new Vector2f(x, y);
+            }
+
+            public override void Execute(Player player)
+            {
+                player.Velocity = velocity;
+            }
+        }
+>>>>>>> origin/master
 
         /// <summary>
         /// Applies basic stats to the player. Loads correct texture and applies starting position.
@@ -32,10 +54,12 @@ namespace SFML_Prog2_Gruppe1
         public Player() : base()
         {
             characterType = CharacterID.Player;
-            health = 100;
+            health = 5;
             stamina = 100;
             damage = 1;
             armor = 0;
+
+            lifeCooldown = new Clock();
 
             WalkLeft = new Texture("Character/PlayerWalkLeft.png");
             WalkRight = new Texture("Character/PlayerWalkRight.png");
@@ -67,11 +91,28 @@ namespace SFML_Prog2_Gruppe1
         /// <param name="room">
         /// Current room.
         /// </param>
-        public override void Update(Tile[,] room)
+        public override void Update(Room room)
         {
             base.Update(room);
 
+            CheckForEnemyCollision(room.Enemies);
+
             CheckForRoomChange();
+        }
+
+        private void CheckForEnemyCollision(List<EnemyNPC> enemies)
+        {
+            foreach(EnemyNPC enemy in enemies)
+            {
+                if(ToDrawAnimation.Sprite.GetGlobalBounds().Intersects(enemy.Bounds))
+                {
+                    if(lifeCooldown.ElapsedTime.AsSeconds() >= 1f)
+                    {
+                        health = health - 1;
+                        lifeCooldown.Restart();
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -114,22 +155,22 @@ namespace SFML_Prog2_Gruppe1
             if (Keyboard.IsKeyPressed(Keyboard.Key.D) || Keyboard.IsKeyPressed(Keyboard.Key.Right))
             {
                 commandQueue.Push(new PlayerMover(MovementSpeed, 0));
-                currentAnimationState = AnimationStates.PlayerWalkRight;
+                currentAnimationState = AnimationStates.WalkRight;
             }
             else if (Keyboard.IsKeyPressed(Keyboard.Key.A) || Keyboard.IsKeyPressed(Keyboard.Key.Left))
             {
                 commandQueue.Push(new PlayerMover(-MovementSpeed, 0));
-                currentAnimationState = AnimationStates.PlayerWalkLeft;
+                currentAnimationState = AnimationStates.WalkLeft;
             }
             else if (Keyboard.IsKeyPressed(Keyboard.Key.W) || Keyboard.IsKeyPressed(Keyboard.Key.Up))
             {
                 commandQueue.Push(new PlayerMover(0, -MovementSpeed));
-                currentAnimationState = AnimationStates.PlayerWalkUp;
+                currentAnimationState = AnimationStates.WalkUp;
             }
             else if (Keyboard.IsKeyPressed(Keyboard.Key.S) || Keyboard.IsKeyPressed(Keyboard.Key.Down))
             {
                 commandQueue.Push(new PlayerMover(0, MovementSpeed));
-                currentAnimationState = AnimationStates.PlayerWalkDown;
+                currentAnimationState = AnimationStates.WalkDown;
             }
         }
 

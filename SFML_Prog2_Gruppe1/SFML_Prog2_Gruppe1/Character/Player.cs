@@ -127,22 +127,22 @@ namespace SFML_Prog2_Gruppe1
             if (Keyboard.IsKeyPressed(Keyboard.Key.D) || Keyboard.IsKeyPressed(Keyboard.Key.Right))
             {
                 commandQueue.Push(new PlayerMover(MovementSpeed, 0));
-                currentAnimationState = AnimationStates.PlayerWalkRight;
+                currentAnimationState = AnimationStates.WalkRight;
             }
             else if (Keyboard.IsKeyPressed(Keyboard.Key.A) || Keyboard.IsKeyPressed(Keyboard.Key.Left))
             {
                 commandQueue.Push(new PlayerMover(-MovementSpeed, 0));
-                currentAnimationState = AnimationStates.PlayerWalkLeft;
+                currentAnimationState = AnimationStates.WalkLeft;
             }
             else if (Keyboard.IsKeyPressed(Keyboard.Key.W) || Keyboard.IsKeyPressed(Keyboard.Key.Up))
             {
                 commandQueue.Push(new PlayerMover(0, -MovementSpeed));
-                currentAnimationState = AnimationStates.PlayerWalkUp;
+                currentAnimationState = AnimationStates.WalkUp;
             }
             else if (Keyboard.IsKeyPressed(Keyboard.Key.S) || Keyboard.IsKeyPressed(Keyboard.Key.Down))
             {
                 commandQueue.Push(new PlayerMover(0, MovementSpeed));
-                currentAnimationState = AnimationStates.PlayerWalkDown;
+                currentAnimationState = AnimationStates.WalkDown;
             }
         }
     }

@@ -99,14 +99,16 @@ namespace SFML_Prog2_Gruppe1
 
             ToDrawAnimation = animation;
 
-            if(this is Player) //TODO: weg
-            {
 
+            if (this is Player || this is EnemyNPC)
+            {
                 WalkLeftAnimation.Update();
                 WalkRightAnimation.Update();
                 WalkUpAnimation.Update();
                 WalkDownAnimation.Update();
             }
+
+
 
             Console.WriteLine("Velocity pre Collision: " + velocity.ToString());
             Console.WriteLine("Position pre Collision: " + position.ToString());
@@ -133,25 +135,25 @@ namespace SFML_Prog2_Gruppe1
                 case AnimationStates.UnspecifiedState:
                     ToDrawAnimation = WalkDownAnimation;
                     break;
-                case AnimationStates.PlayerWalkLeft:
+                case AnimationStates.WalkLeft:
                     ToDrawAnimation = WalkLeftAnimation;
                     break;
-                case AnimationStates.PlayerWalkRight:
+                case AnimationStates.WalkRight:
                     ToDrawAnimation = WalkRightAnimation;
                     break;
-                case AnimationStates.PlayerWalkUp:
+                case AnimationStates.WalkUp:
                     ToDrawAnimation = WalkUpAnimation;
                     break;
-                case AnimationStates.PlayerWalkDown:
+                case AnimationStates.WalkDown:
                     ToDrawAnimation = WalkDownAnimation;
                     break;
-                case AnimationStates.PlayerAttackLeft:
+                case AnimationStates.AttackLeft:
                     break;
-                case AnimationStates.PlayerAttackRight:
+                case AnimationStates.AttackRight:
                     break;
-                case AnimationStates.PlayerAttackUp:
+                case AnimationStates.AttackUp:
                     break;
-                case AnimationStates.PlayerAttackDown:
+                case AnimationStates.AttackDown:
                     break;
                
             }
@@ -162,10 +164,12 @@ namespace SFML_Prog2_Gruppe1
         /// </summary>
         public virtual void Draw()
         {
-            if(this is Player) //TODO: Weg
+            if (this is Player ||this is EnemyNPC)
             {
                 ToDrawAnimation.Draw(position, false);
             }
+
+
         }
         
         /// <summary>

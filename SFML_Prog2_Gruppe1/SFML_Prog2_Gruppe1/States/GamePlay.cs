@@ -99,8 +99,10 @@ namespace SFML_Prog2_Gruppe1.States
                 OnCommand(commandQueue.Pop());
             }
 
-            player.Update(world.GetActiveRoom().Tilemap);
+            player.Update(world.GetActiveRoom());
             world.Update();
+
+            uimanager.Update(player.Health);
 
             return targetState;
         }

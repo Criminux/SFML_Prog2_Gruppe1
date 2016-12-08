@@ -197,6 +197,12 @@
     <Content Include="Tile\NormalTile_top.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="UI\EmptyHeart.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="UI\FullHeart.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="UI\UIBar.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -65,7 +65,7 @@ namespace SFML_Prog2_Gruppe1
         /// <param name="room">
         /// Current room.
         /// </param>
-        public override void Update(Tile[,] room)
+        public override void Update(Room room)
         {
             MoveRandom();
 

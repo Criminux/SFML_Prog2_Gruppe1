@@ -56,6 +56,14 @@ namespace SFML_Prog2_Gruppe1
 
         protected AnimationStates currentAnimationState;
         
+        public int Health
+        {
+            get { return health; }
+        }
+        public FloatRect Bounds
+        {
+            get { return animation.Sprite.GetGlobalBounds(); }
+        }
 
         /// <summary>
         /// Character sprites and standard velocity of 0 are getting assigned.
@@ -92,7 +100,7 @@ namespace SFML_Prog2_Gruppe1
         /// Method to update character-velocity and possible collisions.
         /// </summary>
         /// <param name="room">Tilemap of active room.</param>
-        public virtual void Update(Tile[,] room)
+        public virtual void Update(Room room)
         {
             animation.Update();
             animation.Sprite.Position = position;
@@ -117,7 +125,7 @@ namespace SFML_Prog2_Gruppe1
             Console.WriteLine("Position past ApplyVelo(): " + position.ToString());
             ApplyPosition();
 
-            HandleCollisions(room);
+            HandleCollisions(room.Tilemap);
 
             Console.WriteLine("Position after Collision: " + position.ToString());
 

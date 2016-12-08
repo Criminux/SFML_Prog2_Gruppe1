@@ -50,7 +50,7 @@ namespace SFML_Prog2_Gruppe1
         public Player() : base()
         {
             characterType = CharacterID.Player;
-            health = 100;
+            health = 5;
             stamina = 100;
             damage = 1;
             armor = 0;
@@ -85,11 +85,24 @@ namespace SFML_Prog2_Gruppe1
         /// <param name="room">
         /// Current room.
         /// </param>
-        public override void Update(Tile[,] room)
+        public override void Update(Room room)
         {
             base.Update(room);
 
+            CheckForEnemyCollision(room.Enemies);
+
             CheckForRoomChange();
+        }
+
+        private void CheckForEnemyCollision(List<EnemyNPC> enemies)
+        {
+            foreach(EnemyNPC enemy in enemies)
+            {
+                if(ToDrawAnimation.Sprite.GetGlobalBounds().Intersects(enemy.Bounds))
+                {
+                    health = health - 1;
+                }
+            }
         }
 
         /// <summary>

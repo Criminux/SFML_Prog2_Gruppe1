@@ -83,11 +83,11 @@ namespace SFML_Prog2_Gruppe1
         {
             foreach (EnemyNPC tempEnemy in enemies)
             {
-                tempEnemy.Update(tilemap);
+                tempEnemy.Update(this);
             }
             foreach (QuestNPC tempNPC in npcs)
             {
-                tempNPC.Update(tilemap);
+                tempNPC.Update(this);
             }
         }
 

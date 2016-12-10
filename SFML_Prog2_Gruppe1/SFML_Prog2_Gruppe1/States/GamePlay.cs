@@ -76,7 +76,7 @@ namespace SFML_Prog2_Gruppe1.States
         {
             world.Draw();
             player.Draw();
-            uimanager.Draw();
+            uimanager.Draw(player.Quest);
         }
 
         public override void Initialize()

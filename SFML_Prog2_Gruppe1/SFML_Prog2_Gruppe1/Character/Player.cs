@@ -23,7 +23,14 @@ namespace SFML_Prog2_Gruppe1
         public event RoomChangeEventHandler roomChangeEvent;
 
         const float MovementSpeed = 5;
+
+        private Quest quest;
         private int finishedQuests;
+
+        public Quest Quest
+        {
+            get { return quest; }
+        }
 
         private Clock lifeCooldown;
 
@@ -80,6 +87,9 @@ namespace SFML_Prog2_Gruppe1
 
 
             SetAndApplyPosition(new Vector2f(200, 200));
+
+            //TODO: Testing purpose
+            if (quest == null) quest = new Quest();
         }
 
         /// <summary>
@@ -91,6 +101,8 @@ namespace SFML_Prog2_Gruppe1
         public override void Update(Room room)
         {
             base.Update(room);
+
+            if (quest != null) quest.Update();
 
             CheckForEnemyCollision(room.Enemies);
 
@@ -184,5 +196,7 @@ namespace SFML_Prog2_Gruppe1
                 // TODO: Instantiate a quest for the player
             }
         }
+
+       
     }
 }

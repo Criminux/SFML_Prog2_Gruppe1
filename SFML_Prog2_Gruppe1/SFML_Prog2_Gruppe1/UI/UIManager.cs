@@ -72,7 +72,7 @@ namespace SFML_Prog2_Gruppe1
         /// <summary>
         /// Draws the UI.
         /// </summary>
-        public void Draw()
+        public void Draw(Quest quest)
         {
             ProjectRenderWindow.GetRenderWindowInstance().Draw(sprite);
             
@@ -80,6 +80,8 @@ namespace SFML_Prog2_Gruppe1
             {
                 ProjectRenderWindow.GetRenderWindowInstance().Draw(tempSprite); 
             }
+
+            if (quest != null) quest.Draw();
             
         }
     }

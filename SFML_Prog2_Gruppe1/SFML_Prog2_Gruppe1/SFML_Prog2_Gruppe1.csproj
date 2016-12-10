@@ -71,6 +71,7 @@
     <Compile Include="Util\Direction.cs" />
     <Compile Include="Util\MathUtil.cs" />
     <Compile Include="Character\Player.cs" />
+    <Compile Include="World\Item.cs" />
     <Compile Include="World\Room.cs" />
     <Compile Include="States\CreditScreen.cs" />
     <Compile Include="States\GamePlay.cs" />
@@ -207,6 +208,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="UI\UIBar.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="World\Item.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="World\World.txt">

@@ -14,6 +14,7 @@ namespace SFML_Prog2_Gruppe1
 
         private List<EnemyNPC> enemies;
         private List<QuestNPC> npcs;
+        private List<Item> items;
 
         /// <summary>
         /// Getter and Setter for the tilemap.
@@ -61,6 +62,15 @@ namespace SFML_Prog2_Gruppe1
         }
 
         /// <summary>
+        /// Getter and setter for the list of items.
+        /// </summary>
+        public List<Item> Items
+        {
+            get { return items; }
+            set { items = value; }
+        }
+
+        /// <summary>
         /// Empty constructor for initializing the fields.
         /// </summary>
         public Room()
@@ -68,15 +78,17 @@ namespace SFML_Prog2_Gruppe1
             connectedRooms = new Dictionary<string, int>();
             enemies = new List<EnemyNPC>();
             npcs = new List<QuestNPC>();
+            items = new List<Item>();
         }
 
-        public Room(Tile[,] tilemap, int ID, Dictionary<string, int> connectedRooms, List<EnemyNPC> enemies, List<QuestNPC> npcs)
+        public Room(Tile[,] tilemap, int ID, Dictionary<string, int> connectedRooms, List<EnemyNPC> enemies, List<QuestNPC> npcs, List<Item> items)
         {
             this.tilemap = tilemap;
             this.id = ID;
             this.connectedRooms = connectedRooms;
             this.enemies = enemies;
             this.npcs = npcs;
+            this.items = items;
         }
 
         public void Update()
@@ -107,6 +119,10 @@ namespace SFML_Prog2_Gruppe1
             foreach (QuestNPC tempNPC in npcs)
             {
                 tempNPC.Draw();
+            }
+            foreach (Item tempItem in items)
+            {
+                tempItem.Draw();
             }
         }
     }

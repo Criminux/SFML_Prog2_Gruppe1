@@ -42,6 +42,7 @@ namespace SFML_Prog2_Gruppe1
             set { currentID = value; }
         }
 
+        //TODO: Spawn random Enemies and Items
         public World()
         {
             world = new List<Room>();
@@ -97,6 +98,18 @@ namespace SFML_Prog2_Gruppe1
                             if (enemyChild.Name == "PositionY") npc.Position = new Vector2f(npc.Position.X, Convert.ToInt32(enemyChild.InnerText));
                         }
                         room.Npcs.Add(npc);
+                    }
+                    if (roomChild.Name == "Item")
+                    {
+                        int tempX = 0;
+                        int tempY = 0;
+                        foreach (XmlNode enemyChild in roomChild.ChildNodes)
+                        {
+                            if (enemyChild.Name == "PositionX") tempX = Convert.ToInt32(enemyChild.InnerText);
+                            if (enemyChild.Name == "PositionY") tempY = Convert.ToInt32(enemyChild.InnerText);
+                        }
+                        Item item = new Item(new Vector2f((float)tempX, (float)tempY));
+                        room.Items.Add(item);
                     }
                 }
 

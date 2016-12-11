@@ -220,7 +220,7 @@ namespace SFML_Prog2_Gruppe1
                 interactionAttempt = 0;
             }
 
-            if (Keyboard.IsKeyPressed(Keyboard.Key.D) || Keyboard.IsKeyPressed(Keyboard.Key.Right))
+            else if (Keyboard.IsKeyPressed(Keyboard.Key.D) || Keyboard.IsKeyPressed(Keyboard.Key.Right))
             {
                 commandQueue.Push(new PlayerMover(MovementSpeed, 0));
                 currentAnimationState = AnimationStates.WalkRight;
@@ -240,6 +240,31 @@ namespace SFML_Prog2_Gruppe1
                 commandQueue.Push(new PlayerMover(0, MovementSpeed));
                 currentAnimationState = AnimationStates.WalkDown;
             }
+            else if (Keyboard.IsKeyPressed(Keyboard.Key.Space))
+            {
+                Attack(commandQueue);
+            }
+        }
+
+        private AnimationStates Attack(CommandQueue commandQueue)
+        {
+            if (Keyboard.IsKeyPressed(Keyboard.Key.A))
+            {
+                currentAnimationState = AnimationStates.AttackLeft;
+            }
+            else if (Keyboard.IsKeyPressed(Keyboard.Key.W))
+            {
+                currentAnimationState = AnimationStates.AttackUp;
+            }
+            else if (Keyboard.IsKeyPressed(Keyboard.Key.D))
+            {
+                currentAnimationState = AnimationStates.AttackRight;
+            }
+            else if (Keyboard.IsKeyPressed(Keyboard.Key.S))
+            {
+                currentAnimationState = AnimationStates.AttackDown;
+            }
+            return currentAnimationState;
         }
 
         /// <summary>

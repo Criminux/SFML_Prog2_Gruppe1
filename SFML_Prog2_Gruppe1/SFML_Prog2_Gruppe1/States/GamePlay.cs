@@ -34,9 +34,18 @@ namespace SFML_Prog2_Gruppe1.States
             world = new World();
             player = new Player();
             player.roomChangeEvent += onPlayerRoomChange;
+            player.QuestEvent += onPlayerQuest;
             uimanager = new UIManager();
             commandQueue = new CommandQueue();
             targetState = GameStates.GamePlayState;
+        }
+
+        private void onPlayerQuest()
+        {
+            if(isQuestAvailable())
+            {
+                player.Quest = new Quest();
+            }
         }
 
         /// <summary>
@@ -151,12 +160,10 @@ namespace SFML_Prog2_Gruppe1.States
             float distance = 20;
             float distancesqrd = 0;
             Vector2f PlayerPos = player.Position;
-            Room currentRoom = world.GetActiveRoom();
 
-            int currentID = 0;
-            if (World.isAtStart(currentID))
+            if (world.GetActiveRoom().ID == 22)
             {
-                foreach (QuestNPC npc in currentRoom.Npcs)
+                foreach (QuestNPC npc in world.GetActiveRoom().Npcs)
                 {
                     Vector2f NpcPos = npc.Position;
 

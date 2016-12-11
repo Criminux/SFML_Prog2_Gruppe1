@@ -16,11 +16,12 @@ namespace SFML_Prog2_Gruppe1
 {
     public class Player : Character
     {
-
-
+        
         public delegate void RoomChangeEventHandler(Direction direction);
+        public delegate void QuestEventHandler();
 
         public event RoomChangeEventHandler roomChangeEvent;
+        public event QuestEventHandler QuestEvent;
 
         const float MovementSpeed = 5;
 
@@ -30,6 +31,7 @@ namespace SFML_Prog2_Gruppe1
         public Quest Quest
         {
             get { return quest; }
+            set { quest = value; }
         }
 
         private Clock lifeCooldown;
@@ -158,9 +160,8 @@ namespace SFML_Prog2_Gruppe1
         {
             if (Keyboard.IsKeyPressed(Keyboard.Key.E))
             {
-                StateMachine machine = new StateMachine();
-                if (isInQuestRange(machine))
-                commandQueue.Push(new Interaction(finishedQuests));
+                QuestEvent();
+                //commandQueue.Push(new Interaction(finishedQuests));
             }
 
             if (Keyboard.IsKeyPressed(Keyboard.Key.D) || Keyboard.IsKeyPressed(Keyboard.Key.Right))

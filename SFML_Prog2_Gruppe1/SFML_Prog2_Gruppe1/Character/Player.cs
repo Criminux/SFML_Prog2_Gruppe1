@@ -158,6 +158,8 @@ namespace SFML_Prog2_Gruppe1
         {
             if (Keyboard.IsKeyPressed(Keyboard.Key.E))
             {
+                StateMachine machine = new StateMachine();
+                if (isInQuestRange(machine))
                 commandQueue.Push(new Interaction(finishedQuests));
             }
 
@@ -183,18 +185,15 @@ namespace SFML_Prog2_Gruppe1
             }
         }
 
-        private bool isQuestAvailable()
+        private bool isInQuestRange(StateMachine machine)
         {
             // TODO: Return true if Player can receive a quest (is in range of quest NPC)
-            return true;
+            return machine.isQuestAvailable();
         }
 
         public void GetNewQuest()
         {
-            if (isQuestAvailable())
-            {
-                // TODO: Instantiate a quest for the player
-            }
+            throw new NotImplementedException();
         }
 
        

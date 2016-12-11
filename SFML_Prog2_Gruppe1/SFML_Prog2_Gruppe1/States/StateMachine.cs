@@ -186,5 +186,10 @@ namespace SFML_Prog2_Gruppe1
                     break;
             }
         }
+
+        public bool isQuestAvailable()
+        {
+            return gamePlay.isQuestAvailable();
+        }
     }
 }

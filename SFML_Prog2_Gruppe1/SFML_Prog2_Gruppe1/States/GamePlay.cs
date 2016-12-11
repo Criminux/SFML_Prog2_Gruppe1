@@ -139,5 +139,40 @@ namespace SFML_Prog2_Gruppe1.States
                 targetState = GameStates.PauseMenuState;
             }
         }
+
+        /// <summary>
+        /// Ruby ruby ruby ruby
+        /// </summary>
+        /// <returns>
+        /// Do you do you etc
+        /// </returns>
+        public bool isQuestAvailable()
+        {
+            float distance = 20;
+            float distancesqrd = 0;
+            Vector2f PlayerPos = player.Position;
+            Room currentRoom = world.GetActiveRoom();
+
+            int currentID = 0;
+            if (World.isAtStart(currentID))
+            {
+                foreach (QuestNPC npc in currentRoom.Npcs)
+                {
+                    Vector2f NpcPos = npc.Position;
+
+                    distancesqrd = ((PlayerPos.X - NpcPos.X) * (PlayerPos.X - NpcPos.X) +
+                        (PlayerPos.Y - NpcPos.Y) * (PlayerPos.Y - NpcPos.Y));
+                    if (distancesqrd <= (distance * distance))
+                    {
+                        return true;
+                    }
+                    else { return false; }
+                }
+            }
+            {
+                return false;
+            }
+        }
+
     }
 }

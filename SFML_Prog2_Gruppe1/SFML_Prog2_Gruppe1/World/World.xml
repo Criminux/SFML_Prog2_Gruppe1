@@ -26,10 +26,6 @@
     <ID>11</ID>
     <botRoom>21</botRoom>
     <rightRoom>12</rightRoom>
-    <NPC>
-      <PositionX>100</PositionX>
-      <PositionY>100</PositionY>
-    </NPC>
   </Room>
   <Room>
     <Tilemap>

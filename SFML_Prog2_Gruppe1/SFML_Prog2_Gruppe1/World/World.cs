@@ -189,6 +189,18 @@ namespace SFML_Prog2_Gruppe1
             return tileMap;
         }
 
+        public static bool isAtStart(int currentID)
+        {
+            if (currentID == 22)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public void Update()
         {
             GetActiveRoom().Update();

@@ -26,7 +26,8 @@ namespace SFML_Prog2_Gruppe1
         const float MovementSpeed = 5;
 
         private Quest quest;
-        private int finishedQuests;
+        int interactionAttempt = 0;
+
 
         public Quest Quest
         {
@@ -160,8 +161,16 @@ namespace SFML_Prog2_Gruppe1
         {
             if (Keyboard.IsKeyPressed(Keyboard.Key.E))
             {
-                QuestEvent();
-                //commandQueue.Push(new Interaction(finishedQuests));
+                if (interactionAttempt == 0)
+                {
+                    interactionAttempt = 1;
+                    commandQueue.Push(new Interaction());
+                }
+            }
+
+            if (!Keyboard.IsKeyPressed(Keyboard.Key.E))
+            {
+                interactionAttempt = 0;
             }
 
             if (Keyboard.IsKeyPressed(Keyboard.Key.D) || Keyboard.IsKeyPressed(Keyboard.Key.Right))
@@ -186,17 +195,12 @@ namespace SFML_Prog2_Gruppe1
             }
         }
 
-        private bool isInQuestRange(StateMachine machine)
-        {
-            // TODO: Return true if Player can receive a quest (is in range of quest NPC)
-            return machine.isQuestAvailable();
-        }
-
+        /// <summary>
+        /// Event that is raised when the player should receive a new quest.
+        /// </summary>
         public void GetNewQuest()
         {
-            throw new NotImplementedException();
-        }
-
-       
+            QuestEvent();
+        }       
     }
 }

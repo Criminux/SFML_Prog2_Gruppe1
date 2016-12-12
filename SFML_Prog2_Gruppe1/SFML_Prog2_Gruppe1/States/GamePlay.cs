@@ -150,10 +150,10 @@ namespace SFML_Prog2_Gruppe1.States
         }
 
         /// <summary>
-        /// Ruby ruby ruby ruby
+        /// Checks if the player is is within the defined distance of an npc.
         /// </summary>
         /// <returns>
-        /// Do you do you etc
+        /// True if the condition is met.
         /// </returns>
         public bool isQuestAvailable()
         {

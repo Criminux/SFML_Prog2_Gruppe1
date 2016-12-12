@@ -19,6 +19,9 @@ namespace SFML_Prog2_Gruppe1
         /// <summary>
         /// An command of this class will move the player in the desired direction.
         /// </summary>
+        /// <param name="player">
+        /// Command is applied to player.
+        /// </param>
         public override void Execute(Player player)
         {
             player.Velocity = velocity;

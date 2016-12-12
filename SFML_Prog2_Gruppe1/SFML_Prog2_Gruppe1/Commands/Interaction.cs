@@ -8,24 +8,15 @@ namespace SFML_Prog2_Gruppe1
 {
     class Interaction : AbstractCommand
     {
-        public Interaction(int finishedQuests)
-        {
-            switch (finishedQuests)
-            {
-                case 0:
-                    { 
-                        // Spawn a quest item
-                    }
-                    break;
+        public Interaction()
+        {}
 
-                case 1:
-                    {
-                        // Spawn a quest enemy
-                    }
-                    break;
-            }
-        }
-
+        /// <summary>
+        /// This command allows interaction with npc characters.
+        /// </summary>
+        /// <param name="player">
+        /// Command is applied to player.
+        /// </param>
         public override void Execute(Player player)
         {
             player.GetNewQuest();

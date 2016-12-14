@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Character\AnimationStates.cs" />
+    <Compile Include="Character\Projectile.cs" />
     <Compile Include="Character\Quest.cs" />
     <Compile Include="Commands\Interaction.cs" />
     <Compile Include="Commands\PlayerMover.cs" />
@@ -142,6 +143,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Character\Player.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Character\Projectile.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Character\QuestNPC.png">

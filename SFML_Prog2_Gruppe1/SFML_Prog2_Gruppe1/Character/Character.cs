@@ -114,21 +114,22 @@ namespace SFML_Prog2_Gruppe1
             if (this is Player || this is EnemyNPC)
             {
                 if (!(velocity.X == 0 && velocity.Y == 0))
-            {
-                WalkLeftAnimation.Update();
-                WalkRightAnimation.Update();
-                WalkUpAnimation.Update();
-                WalkDownAnimation.Update();
-                IdleAnimation.Update();
+                {
+                    WalkLeftAnimation.Update();
+                    WalkRightAnimation.Update();
+                    WalkUpAnimation.Update();
+                    WalkDownAnimation.Update();
+                }
             }
+
+            if(this is Player)
+            {
                 AttackLeftAnimation.Update();
                 AttackUpAnimation.Update();
                 AttackRightAnimation.Update();
                 AttackDownAnimation.Update();
-           
-                
             }
-            
+
 
             ApplyVelocity();
             ApplyPosition();

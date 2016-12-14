@@ -28,8 +28,10 @@ namespace SFML_Prog2_Gruppe1
         public event ItemEventHandler ItemEvent;
 
         const float MovementSpeed = 5;
+        const float ProjectileSpeed = 8;
 
         private Quest quest;
+        private List<Projectile> projectiles;
         int interactionAttempt = 0;
 
 
@@ -71,10 +73,7 @@ namespace SFML_Prog2_Gruppe1
             armor = 0;
 
             lifeCooldown = new Clock();
-
-            IdleTexture = new Texture("Character/PlayerWalkDown.png");
-
-            IdleAnimation = new Animation(IdleTexture, 1, 1, 32, 32, 100);
+            
 
             WalkLeft = new Texture("Character/PlayerWalkLeft.png");
             WalkRight = new Texture("Character/PlayerWalkRight.png");
@@ -101,6 +100,8 @@ namespace SFML_Prog2_Gruppe1
 
             //TODO: Testing purpose
             if (quest == null) quest = new Quest();
+
+            projectiles = new List<Projectile>();
         }
 
         /// <summary>
@@ -115,6 +116,11 @@ namespace SFML_Prog2_Gruppe1
 
             if (quest != null) quest.Update();
 
+            foreach(Projectile projectile in projectiles)
+            {
+                projectile.Update();
+            }
+
             CheckForEnemyCollision(room.Enemies);
             CheckForItemCollision(room.Items);
 
@@ -127,10 +133,9 @@ namespace SFML_Prog2_Gruppe1
         /// <param name="enemies">List of enemies.</param>
         private void CheckForEnemyCollision(List<EnemyNPC> enemies)
         {
-            //TODO: Add Attack Logic
             List<int> savedIndex = new List<int>();
 
-            for(int i = 0; i < enemies.Count; i++)
+            for(int i = enemies.Count - 1; i >= 0; i--)
             {
                 if (ToDrawAnimation.Sprite.GetGlobalBounds().Intersects(enemies[i].Bounds))
                 {
@@ -141,18 +146,16 @@ namespace SFML_Prog2_Gruppe1
                     }
                 }
 
-                if (enemies[i].Health <= 0)
+                foreach(Projectile projectile in projectiles)
                 {
-                    savedIndex.Add(i);
+                    if(projectile.Bounds.Intersects(enemies[i].Bounds))
+                    {
+                        enemies.RemoveAt(i);
+                        EnemyEvent();
+                    }
                 }
             }
-
-            foreach (int index in savedIndex)
-            {
-                enemies.RemoveAt(index);
-                EnemyEvent();
-            }
-
+            
         }
 
         /// <summary>
@@ -163,19 +166,15 @@ namespace SFML_Prog2_Gruppe1
         {
             List<int> savedIndex = new List<int>();
 
-            for(int i = 0; i < items.Count; i++)
+            for(int i = items.Count - 1; i >= 0; i--)
             {
                 if(Bounds.Intersects(items[i].Bounds))
                 {
-                    savedIndex.Add(i);
+                    items.RemoveAt(i);
+                    ItemEvent();
                 }
             }
-
-            foreach(int index in savedIndex)
-            {
-                items.RemoveAt(index);
-                ItemEvent();
-            }
+            
         }
 
         /// <summary>
@@ -260,19 +259,25 @@ namespace SFML_Prog2_Gruppe1
             if (currentAnimationState == AnimationStates.WalkLeft)
             {
                 currentAnimationState = AnimationStates.AttackLeft;
+                projectiles.Add(new Projectile(position, new Vector2f(-ProjectileSpeed, 0)));
             }
             else if (currentAnimationState == AnimationStates.WalkUp)
             {
                 currentAnimationState = AnimationStates.AttackUp;
+                projectiles.Add(new Projectile(position, new Vector2f(0, -ProjectileSpeed)));
             }
             else if (currentAnimationState == AnimationStates.WalkRight)
             {
                 currentAnimationState = AnimationStates.AttackRight;
+                projectiles.Add(new Projectile(position, new Vector2f(ProjectileSpeed, 0)));
             }
             else if (currentAnimationState == AnimationStates.WalkDown)
             {
                 currentAnimationState = AnimationStates.AttackDown;
+                projectiles.Add(new Projectile(position, new Vector2f(0, ProjectileSpeed)));
             }
+
+
             return currentAnimationState;
         }
 
@@ -282,6 +287,15 @@ namespace SFML_Prog2_Gruppe1
         public void GetNewQuest()
         {
             QuestEvent();
-        }       
+        }
+
+        public override void Draw()
+        {
+            foreach (Projectile projectile in projectiles)
+            {
+                projectile.Draw();
+            }
+            base.Draw();
+        }
     }
 }

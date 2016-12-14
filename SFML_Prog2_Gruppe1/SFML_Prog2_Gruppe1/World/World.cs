@@ -15,6 +15,9 @@ namespace SFML_Prog2_Gruppe1
 {
     public class World
     {
+        private const int NumberOfEnemies = 5;
+        private const int NumberOfItems = 5;
+
         private List<Room> world;
         private int currentID;
 
@@ -79,15 +82,15 @@ namespace SFML_Prog2_Gruppe1
                         room.ConnectedRooms.Add("leftRoom", Convert.ToInt32(roomChild.InnerText));
                     if (roomChild.Name == "rightRoom")
                         room.ConnectedRooms.Add("rightRoom", Convert.ToInt32(roomChild.InnerText));
-                    if (roomChild.Name == "Enemy")
+                    if (roomChild.Name == "Spawn")
                     {
-                        EnemyNPC enemy = new EnemyNPC();
+                        Vector2f spawn = new Vector2f();
                         foreach(XmlNode enemyChild in roomChild.ChildNodes)
                         {
-                            if (enemyChild.Name == "PositionX") enemy.Position = new Vector2f(Convert.ToInt32(enemyChild.InnerText), enemy.Position.Y);
-                            if (enemyChild.Name == "PositionY") enemy.Position = new Vector2f(enemy.Position.X, Convert.ToInt32(enemyChild.InnerText));
+                            if (enemyChild.Name == "PositionX") spawn.X = Convert.ToInt32(enemyChild.InnerText);
+                            if (enemyChild.Name == "PositionY") spawn.Y = Convert.ToInt32(enemyChild.InnerText);
                         }
-                        room.Enemies.Add(enemy);
+                        room.Spawns.Add(spawn);
                     }
                     if (roomChild.Name == "NPC")
                     {
@@ -99,24 +102,63 @@ namespace SFML_Prog2_Gruppe1
                         }
                         room.Npcs.Add(npc);
                     }
-                    if (roomChild.Name == "Item")
-                    {
-                        int tempX = 0;
-                        int tempY = 0;
-                        foreach (XmlNode enemyChild in roomChild.ChildNodes)
-                        {
-                            if (enemyChild.Name == "PositionX") tempX = Convert.ToInt32(enemyChild.InnerText);
-                            if (enemyChild.Name == "PositionY") tempY = Convert.ToInt32(enemyChild.InnerText);
-                        }
-                        Item item = new Item(new Vector2f((float)tempX, (float)tempY));
-                        room.Items.Add(item);
-                    }
                 }
 
                 world.Add(room);
                 
             }
+
+            for(int i = 0; i <= NumberOfEnemies; i++)
+            {
+                SpawnEnemy();
+            }
+            for (int i = 0; i <= NumberOfItems; i++)
+            {
+                SpawnItem();
+            }
         }
+
+        /// <summary>
+        /// Spawns a random enemy.
+        /// </summary>
+        public void SpawnEnemy()
+        {
+            Random rand = new Random(DateTime.Now.Millisecond);
+
+            int randomRoom;
+            while(true)
+            {
+                randomRoom = rand.Next(0, world.Count);
+                if (world[randomRoom] != GetActiveRoom()) break;
+            }
+
+            int randomSpawn = rand.Next(0, world[randomRoom].Spawns.Count);
+
+            EnemyNPC enemy = new EnemyNPC();
+            enemy.Position = world[randomRoom].Spawns[randomSpawn];
+
+            world[randomRoom].Enemies.Add(enemy);
+        }
+
+        //TODO: Check if an item is already spawned at position.
+        public void SpawnItem()
+        {
+            Random rand = new Random(DateTime.Now.Millisecond);
+
+            int randomRoom;
+            while (true)
+            {
+                randomRoom = rand.Next(0, world.Count);
+                if (world[randomRoom] != GetActiveRoom()) break;
+            }
+
+            int randomSpawn = rand.Next(0, world[randomRoom].Spawns.Count);
+
+            Item item = new Item(world[randomRoom].Spawns[randomSpawn]);
+
+            world[randomRoom].Items.Add(item);
+        }
+
 
         /// <summary>
         /// Creates the Tilemap based on a string of Tile-IDs.

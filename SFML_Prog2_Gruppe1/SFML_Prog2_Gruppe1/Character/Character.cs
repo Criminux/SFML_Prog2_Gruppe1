@@ -115,19 +115,14 @@ namespace SFML_Prog2_Gruppe1
                 WalkUpAnimation.Update();
                 WalkDownAnimation.Update();
             }
-
-
-
-            Console.WriteLine("Velocity pre Collision: " + velocity.ToString());
-            Console.WriteLine("Position pre Collision: " + position.ToString());
+            
 
             ApplyVelocity();
-            Console.WriteLine("Position past ApplyVelo(): " + position.ToString());
             ApplyPosition();
 
             HandleCollisions(room.Tilemap);
 
-            Console.WriteLine("Position after Collision: " + position.ToString());
+            if(this is Player) Console.WriteLine("Position after Collision: " + position.ToString());
 
             ApplyPosition();
 

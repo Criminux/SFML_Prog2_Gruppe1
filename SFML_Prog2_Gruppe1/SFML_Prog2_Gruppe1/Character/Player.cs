@@ -19,9 +19,13 @@ namespace SFML_Prog2_Gruppe1
         
         public delegate void RoomChangeEventHandler(Direction direction);
         public delegate void QuestEventHandler();
+        public delegate void EnemyEventHandler();
+        public delegate void ItemEventHandler();
 
         public event RoomChangeEventHandler roomChangeEvent;
         public event QuestEventHandler QuestEvent;
+        public event EnemyEventHandler EnemyEvent;
+        public event ItemEventHandler ItemEvent;
 
         const float MovementSpeed = 5;
 
@@ -120,17 +124,31 @@ namespace SFML_Prog2_Gruppe1
         private void CheckForEnemyCollision(List<EnemyNPC> enemies)
         {
             //TODO: Add Attack Logic
-            foreach(EnemyNPC enemy in enemies)
+            List<int> savedIndex = new List<int>();
+
+            for(int i = 0; i < enemies.Count; i++)
             {
-                if(ToDrawAnimation.Sprite.GetGlobalBounds().Intersects(enemy.Bounds))
+                if (ToDrawAnimation.Sprite.GetGlobalBounds().Intersects(enemies[i].Bounds))
                 {
-                    if(lifeCooldown.ElapsedTime.AsSeconds() >= 1f)
+                    if (lifeCooldown.ElapsedTime.AsSeconds() >= 1f)
                     {
                         health = health - 1;
                         lifeCooldown.Restart();
                     }
                 }
+
+                if (enemies[i].Health <= 0)
+                {
+                    savedIndex.Add(i);
+                }
             }
+
+            foreach (int index in savedIndex)
+            {
+                enemies.RemoveAt(index);
+                EnemyEvent();
+            }
+
         }
 
         /// <summary>
@@ -146,14 +164,13 @@ namespace SFML_Prog2_Gruppe1
                 if(Bounds.Intersects(items[i].Bounds))
                 {
                     savedIndex.Add(i);
-                    damage++;
                 }
             }
 
             foreach(int index in savedIndex)
             {
                 items.RemoveAt(index);
-                //TODO: new Item Event for handling spawn and Quest
+                ItemEvent();
             }
         }
 

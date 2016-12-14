@@ -35,9 +35,21 @@ namespace SFML_Prog2_Gruppe1.States
             player = new Player();
             player.roomChangeEvent += onPlayerRoomChange;
             player.QuestEvent += onPlayerQuest;
+            player.EnemyEvent += onEnemyEvent;
+            player.ItemEvent += onItemEvent;
             uimanager = new UIManager();
             commandQueue = new CommandQueue();
             targetState = GameStates.GamePlayState;
+        }
+
+        private void onItemEvent()
+        {
+            world.SpawnItem();
+        }
+
+        private void onEnemyEvent()
+        {
+            world.SpawnEnemy();
         }
 
         private void onPlayerQuest()

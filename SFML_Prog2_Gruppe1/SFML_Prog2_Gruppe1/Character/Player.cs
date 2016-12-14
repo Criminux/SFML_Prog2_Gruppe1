@@ -108,12 +108,18 @@ namespace SFML_Prog2_Gruppe1
             if (quest != null) quest.Update();
 
             CheckForEnemyCollision(room.Enemies);
+            CheckForItemCollision(room.Items);
 
             CheckForRoomChange();
         }
 
+        /// <summary>
+        /// Handles collision with enemy and attacks.
+        /// </summary>
+        /// <param name="enemies">List of enemies.</param>
         private void CheckForEnemyCollision(List<EnemyNPC> enemies)
         {
+            //TODO: Add Attack Logic
             foreach(EnemyNPC enemy in enemies)
             {
                 if(ToDrawAnimation.Sprite.GetGlobalBounds().Intersects(enemy.Bounds))
@@ -124,6 +130,30 @@ namespace SFML_Prog2_Gruppe1
                         lifeCooldown.Restart();
                     }
                 }
+            }
+        }
+
+        /// <summary>
+        /// Handles collision with items.
+        /// </summary>
+        /// <param name="items">List of items.</param>
+        private void CheckForItemCollision(List<Item> items)
+        {
+            List<int> savedIndex = new List<int>();
+
+            for(int i = 0; i < items.Count; i++)
+            {
+                if(Bounds.Intersects(items[i].Bounds))
+                {
+                    savedIndex.Add(i);
+                    damage++;
+                }
+            }
+
+            foreach(int index in savedIndex)
+            {
+                items.RemoveAt(index);
+                //TODO: new Item Event for handling spawn and Quest
             }
         }
 

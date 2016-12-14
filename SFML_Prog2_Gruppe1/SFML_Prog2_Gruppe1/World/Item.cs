@@ -18,6 +18,11 @@ namespace SFML_Prog2_Gruppe1
         private Sprite sprite;
         private Vector2f position;
 
+        public FloatRect Bounds
+        {
+            get { return sprite.GetGlobalBounds(); }
+        }
+
         /// <summary>
         /// Instantiate a new Item.
         /// </summary>

@@ -21,6 +21,12 @@ namespace SFML_Prog2_Gruppe1
         private Vector2f position;
         private Vector2f velocity;
 
+        private Clock destructionTimer;
+
+        public Clock DestructionTimer
+        {
+            get { return destructionTimer; }
+        }
 
         public FloatRect Bounds
         {
@@ -33,6 +39,8 @@ namespace SFML_Prog2_Gruppe1
         {
             projectileTexture = new Texture("Character/Projectile.png");
             projectileSprite = new Sprite(projectileTexture);
+
+            destructionTimer = new Clock();
 
             this.position = position;
             this.velocity = velocity;

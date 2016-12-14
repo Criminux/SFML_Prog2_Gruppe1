@@ -27,7 +27,7 @@ namespace SFML_Prog2_Gruppe1
         public event EnemyEventHandler EnemyEvent;
         public event ItemEventHandler ItemEvent;
 
-        const float MovementSpeed = 5;
+        float MovementSpeed;
         const float ProjectileSpeed = 8;
 
         private Clock attackTimer;
@@ -73,6 +73,8 @@ namespace SFML_Prog2_Gruppe1
             stamina = 100;
             damage = 1;
             armor = 0;
+
+            MovementSpeed = 5;
 
             attackTimer = new Clock();
 
@@ -120,10 +122,17 @@ namespace SFML_Prog2_Gruppe1
 
             if (quest != null) quest.Update();
 
-            foreach(Projectile projectile in projectiles)
+            for (int i = projectiles.Count -1; i >= 0; i--)
             {
-                projectile.Update();
+                projectiles[i].Update();
+
+                if (projectiles[i].DestructionTimer.ElapsedTime.AsSeconds() > 1)
+                {
+                    projectiles.RemoveAt(i);
+                }
+
             }
+                
 
             CheckForEnemyCollision(room.Enemies);
             CheckForItemCollision(room.Items);
@@ -155,6 +164,7 @@ namespace SFML_Prog2_Gruppe1
                     if(projectile.Bounds.Intersects(enemies[i].Bounds))
                     {
                         enemies.RemoveAt(i);
+                        MovementSpeed += 1;
                         EnemyEvent();
                     }
                 }
@@ -189,22 +199,26 @@ namespace SFML_Prog2_Gruppe1
             if (Position.X < 0 - (animation.Sprite.GetGlobalBounds().Width / 2))
             {
                 Position = new Vector2f(Position.X + 1280, Position.Y);
+                projectiles = new List<Projectile>();
                 roomChangeEvent(Direction.LEFT);
             }
             else if (Position.X > 1280 - (animation.Sprite.GetGlobalBounds().Width / 2))
             {
                 Position = new Vector2f(Position.X - 1280, Position.Y);
                 roomChangeEvent(Direction.RIGHT);
+                projectiles = new List<Projectile>();
             }
             else if (Position.Y < 0 - (animation.Sprite.GetGlobalBounds().Height / 2))
             {
                 Position = new Vector2f(Position.X, Position.Y + 640);
                 roomChangeEvent(Direction.UP);
+                projectiles = new List<Projectile>();
             }
             else if (Position.Y > 640 - (animation.Sprite.GetGlobalBounds().Height / 2))
             {
                 Position = new Vector2f(Position.X, Position.Y - 640);
                 roomChangeEvent(Direction.DOWN);
+                projectiles = new List<Projectile>();
             }
         }
 

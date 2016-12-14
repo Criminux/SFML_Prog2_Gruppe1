@@ -44,11 +44,13 @@ namespace SFML_Prog2_Gruppe1.States
 
         private void onItemEvent()
         {
+            player.Quest.ItemsToCollect--;
             world.SpawnItem();
         }
 
         private void onEnemyEvent()
         {
+            player.Quest.EnemiesToKill--;
             world.SpawnEnemy();
         }
 
@@ -126,6 +128,11 @@ namespace SFML_Prog2_Gruppe1.States
             uimanager.Update(player.Health);
 
             if (player.Health <= 0) targetState = GameStates.CreditScreenState;
+
+            if((player.Quest.Type == QuestType.Collect && player.Quest.ItemsToCollect == 0) || (player.Quest.Type == QuestType.Kill && player.Quest.EnemiesToKill == 0))
+            {
+                player.Quest = new Quest();
+            }
 
             return targetState;
         }

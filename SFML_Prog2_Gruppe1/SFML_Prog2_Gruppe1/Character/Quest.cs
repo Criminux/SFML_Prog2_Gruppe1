@@ -37,6 +37,10 @@ namespace SFML_Prog2_Gruppe1
             get { return itemsToCollect; }
             set { itemsToCollect = value; }
         }
+        public QuestType Type
+        {
+            get { return type; }
+        }
 
         /// <summary>
         /// Instantiates a new random quest.

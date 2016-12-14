@@ -33,8 +33,7 @@ namespace SFML_Prog2_Gruppe1.States
             targetState = GameStates.PauseMenuState;
             clicked = false;
 
-            //TODO: Add CreditScreen
-            creditsScreen = new Texture("States/Menu/PauseMenuBackground.png");
+            creditsScreen = new Texture("States/Menu/CreditsScreenBackground.png");
             creditSprite = new Sprite(creditsScreen);
         }
 
@@ -49,7 +48,7 @@ namespace SFML_Prog2_Gruppe1.States
 
         public override void Draw()
         {
-            ProjectRenderWindow.GetRenderWindowInstance().Clear(Color.White);
+            ProjectRenderWindow.GetRenderWindowInstance().Draw(creditSprite);
 
             backButton.Draw();
         }

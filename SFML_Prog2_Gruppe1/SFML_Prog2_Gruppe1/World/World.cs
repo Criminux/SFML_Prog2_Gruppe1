@@ -45,7 +45,6 @@ namespace SFML_Prog2_Gruppe1
             set { currentID = value; }
         }
 
-        //TODO: Spawn random Enemies and Items
         public World()
         {
             world = new List<Room>();

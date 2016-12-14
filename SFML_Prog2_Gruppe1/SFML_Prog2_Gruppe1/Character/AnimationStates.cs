@@ -17,5 +17,6 @@ namespace SFML_Prog2_Gruppe1
         AttackRight = 12,
         AttackUp = 13,
         AttackDown = 14,
+        Idle = 21
     }
 }

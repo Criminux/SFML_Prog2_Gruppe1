@@ -72,6 +72,10 @@ namespace SFML_Prog2_Gruppe1
 
             lifeCooldown = new Clock();
 
+            IdleTexture = new Texture("Character/PlayerWalkDown.png");
+
+            IdleAnimation = new Animation(IdleTexture, 1, 1, 32, 32, 100);
+
             WalkLeft = new Texture("Character/PlayerWalkLeft.png");
             WalkRight = new Texture("Character/PlayerWalkRight.png");
             WalkUp = new Texture("Character/PlayerWalkUp.png");
@@ -220,7 +224,9 @@ namespace SFML_Prog2_Gruppe1
                 interactionAttempt = 0;
             }
 
-            else if (Keyboard.IsKeyPressed(Keyboard.Key.D) || Keyboard.IsKeyPressed(Keyboard.Key.Right))
+            
+
+            if (Keyboard.IsKeyPressed(Keyboard.Key.D) || Keyboard.IsKeyPressed(Keyboard.Key.Right))
             {
                 commandQueue.Push(new PlayerMover(MovementSpeed, 0));
                 currentAnimationState = AnimationStates.WalkRight;
@@ -240,27 +246,30 @@ namespace SFML_Prog2_Gruppe1
                 commandQueue.Push(new PlayerMover(0, MovementSpeed));
                 currentAnimationState = AnimationStates.WalkDown;
             }
-            else if (Keyboard.IsKeyPressed(Keyboard.Key.Space))
+
+
+            if (Keyboard.IsKeyPressed(Keyboard.Key.Space))
             {
+                //currentAnimationState = AnimationStates.AttackLeft;
                 Attack(commandQueue);
             }
         }
 
         private AnimationStates Attack(CommandQueue commandQueue)
         {
-            if (Keyboard.IsKeyPressed(Keyboard.Key.A))
+            if (currentAnimationState == AnimationStates.WalkLeft)
             {
                 currentAnimationState = AnimationStates.AttackLeft;
             }
-            else if (Keyboard.IsKeyPressed(Keyboard.Key.W))
+            else if (currentAnimationState == AnimationStates.WalkUp)
             {
                 currentAnimationState = AnimationStates.AttackUp;
             }
-            else if (Keyboard.IsKeyPressed(Keyboard.Key.D))
+            else if (currentAnimationState == AnimationStates.WalkRight)
             {
                 currentAnimationState = AnimationStates.AttackRight;
             }
-            else if (Keyboard.IsKeyPressed(Keyboard.Key.S))
+            else if (currentAnimationState == AnimationStates.WalkDown)
             {
                 currentAnimationState = AnimationStates.AttackDown;
             }

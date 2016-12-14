@@ -78,9 +78,6 @@ namespace SFML_Prog2_Gruppe1.States.Menu
         public void Draw()
         {
             ProjectRenderWindow.GetRenderWindowInstance().Draw(buttonSprite);
-
-            //TODO: Add StringDrawing
-            //spriteBatch.DrawString(spriteFont, text, position + new Vector2(texture.Width / 2f, texture.Height / 2f) - spriteFont.MeasureString(text) / 2f, Color.Black);
             ProjectRenderWindow.GetRenderWindowInstance().Draw(buttonText);
         }
 

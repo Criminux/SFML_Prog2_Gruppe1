@@ -32,6 +32,8 @@ namespace SFML_Prog2_Gruppe1
         protected Animation animation;
         protected Texture spriteSheet;
 
+        protected Animation IdleAnimation;
+
         protected Animation WalkLeftAnimation;
         protected Animation WalkRightAnimation;
         protected Animation WalkUpAnimation;
@@ -43,6 +45,8 @@ namespace SFML_Prog2_Gruppe1
         protected Animation AttackUpAnimation;
 
         protected Animation ToDrawAnimation;
+
+        protected Texture IdleTexture;
 
         protected Texture WalkLeft;
         protected Texture WalkRight;
@@ -107,13 +111,22 @@ namespace SFML_Prog2_Gruppe1
 
             ToDrawAnimation = animation;
 
-
             if (this is Player || this is EnemyNPC)
+            {
+                if (!(velocity.X == 0 && velocity.Y == 0))
             {
                 WalkLeftAnimation.Update();
                 WalkRightAnimation.Update();
                 WalkUpAnimation.Update();
                 WalkDownAnimation.Update();
+                IdleAnimation.Update();
+            }
+                AttackLeftAnimation.Update();
+                AttackUpAnimation.Update();
+                AttackRightAnimation.Update();
+                AttackDownAnimation.Update();
+           
+                
             }
             
 
@@ -151,14 +164,20 @@ namespace SFML_Prog2_Gruppe1
                     ToDrawAnimation = WalkDownAnimation;
                     break;
                 case AnimationStates.AttackLeft:
+                    ToDrawAnimation = AttackLeftAnimation;
                     break;
                 case AnimationStates.AttackRight:
+                    ToDrawAnimation = AttackRightAnimation;
                     break;
                 case AnimationStates.AttackUp:
+                    ToDrawAnimation = AttackUpAnimation;
                     break;
                 case AnimationStates.AttackDown:
+                    ToDrawAnimation = AttackDownAnimation;
                     break;
-               
+                case AnimationStates.Idle:
+                    ToDrawAnimation = IdleAnimation;
+                    break;
             }
         }
 

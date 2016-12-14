@@ -48,7 +48,7 @@ namespace SFML_Prog2_Gruppe1
 
         public void Draw()
         {
-            ProjectRenderWindow.GetRenderWindowInstance().Draw(projectileSprite);
+                ProjectRenderWindow.GetRenderWindowInstance().Draw(projectileSprite);
         }
 
 

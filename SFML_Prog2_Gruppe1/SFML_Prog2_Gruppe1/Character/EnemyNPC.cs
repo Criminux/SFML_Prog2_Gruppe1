@@ -16,7 +16,7 @@ namespace SFML_Prog2_Gruppe1
 {
     public class EnemyNPC : Character
     {
-        const float MovementSpeed = 5;
+        const float MovementSpeed = 3;
         const int RandomMovementChangeDelay = 1;
         private Clock movementDelay;
         private Direction movementState;

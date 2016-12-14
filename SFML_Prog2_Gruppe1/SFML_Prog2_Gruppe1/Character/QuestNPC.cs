@@ -21,23 +21,17 @@ namespace SFML_Prog2_Gruppe1
         {
             characterType = CharacterID.QuestNPC;
 
-            Position = new Vector2f(250,250);
-
             Velocity = new Vector2f(0, 0);
-            Position = new Vector2f(250, 250);
+
+            Idle = new Texture("Character/QuestNPCIdle.png");
+            IdleAnimation = new Animation(Idle, 10, 1, 32, 32, 100);
+
+            currentAnimationState = AnimationStates.Idle;
+
             SetAndApplyPosition(position);
         }
 
-        /// <summary>
-        /// Updates the base.
-        /// </summary>
-        /// <param name="room">
-        /// Current room.
-        /// </param>
-        public override void Update(Room room)
-        {
-            base.Update(room);
-        }
+        
 
     }
 }

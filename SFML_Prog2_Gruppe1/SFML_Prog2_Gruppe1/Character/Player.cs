@@ -30,6 +30,8 @@ namespace SFML_Prog2_Gruppe1
         const float MovementSpeed = 5;
         const float ProjectileSpeed = 8;
 
+        private Clock attackTimer;
+
         private Quest quest;
         private List<Projectile> projectiles;
         int interactionAttempt = 0;
@@ -71,6 +73,8 @@ namespace SFML_Prog2_Gruppe1
             stamina = 100;
             damage = 1;
             armor = 0;
+
+            attackTimer = new Clock();
 
             lifeCooldown = new Clock();
             
@@ -259,22 +263,40 @@ namespace SFML_Prog2_Gruppe1
             if (currentAnimationState == AnimationStates.WalkLeft)
             {
                 currentAnimationState = AnimationStates.AttackLeft;
-                projectiles.Add(new Projectile(position, new Vector2f(-ProjectileSpeed, 0)));
+                if (attackTimer.ElapsedTime.AsSeconds() > 1)
+                {
+                    projectiles.Add(new Projectile(position, new Vector2f(-ProjectileSpeed, 0)));
+                    attackTimer.Restart();
+                }
             }
             else if (currentAnimationState == AnimationStates.WalkUp)
             {
                 currentAnimationState = AnimationStates.AttackUp;
-                projectiles.Add(new Projectile(position, new Vector2f(0, -ProjectileSpeed)));
+                if (attackTimer.ElapsedTime.AsSeconds() > 1)
+                {
+                    projectiles.Add(new Projectile(position, new Vector2f(0, -ProjectileSpeed)));
+                    attackTimer.Restart();
+                }
+
             }
             else if (currentAnimationState == AnimationStates.WalkRight)
             {
                 currentAnimationState = AnimationStates.AttackRight;
-                projectiles.Add(new Projectile(position, new Vector2f(ProjectileSpeed, 0)));
+                if (attackTimer.ElapsedTime.AsSeconds() > 1)
+                {
+                    projectiles.Add(new Projectile(position, new Vector2f(ProjectileSpeed, 0)));
+                    attackTimer.Restart();
+                }
             }
             else if (currentAnimationState == AnimationStates.WalkDown)
             {
                 currentAnimationState = AnimationStates.AttackDown;
-                projectiles.Add(new Projectile(position, new Vector2f(0, ProjectileSpeed)));
+                if (attackTimer.ElapsedTime.AsSeconds() > 1)
+                {
+                    projectiles.Add(new Projectile(position, new Vector2f(0, ProjectileSpeed)));
+                    attackTimer.Restart();
+                }
+
             }
 
 

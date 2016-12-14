@@ -46,7 +46,7 @@ namespace SFML_Prog2_Gruppe1
 
         protected Animation ToDrawAnimation;
 
-        protected Texture IdleTexture;
+        protected Texture Idle;
 
         protected Texture WalkLeft;
         protected Texture WalkRight;
@@ -130,6 +130,10 @@ namespace SFML_Prog2_Gruppe1
                 AttackDownAnimation.Update();
             }
 
+            if (this is QuestNPC)
+            {
+                IdleAnimation.Update();
+            }
 
             ApplyVelocity();
             ApplyPosition();
@@ -187,7 +191,7 @@ namespace SFML_Prog2_Gruppe1
         /// </summary>
         public virtual void Draw()
         {
-            if (this is Player ||this is EnemyNPC)
+            if (this is Player ||this is EnemyNPC || this is QuestNPC)
             {
                 ToDrawAnimation.Draw(position, false);
             }

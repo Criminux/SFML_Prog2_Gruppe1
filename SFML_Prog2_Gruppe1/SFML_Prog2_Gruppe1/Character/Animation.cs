@@ -26,7 +26,6 @@ namespace SFML_Prog2_Gruppe1
         private List<IntRect> animationSprites;
         private Clock clock;
 
-        private AnimationStates currentState;
 
         public Sprite Sprite
         {

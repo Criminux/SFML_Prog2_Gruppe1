@@ -151,6 +151,9 @@
     <Content Include="Character\QuestNPC.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Character\QuestNPCIdle.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="csfml-audio-2.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

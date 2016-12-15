@@ -42,22 +42,63 @@ namespace SFML_Prog2_Gruppe1.States
             targetState = GameStates.GamePlayState;
         }
 
+        /// <summary>
+        /// Updates the "collect items" quest for each collected item.
+        /// </summary>
         private void onItemEvent()
         {
-            player.Quest.ItemsToCollect--;
             world.SpawnItem();
+
+            if ((player.QuestCompleted == false) && (player.Quest.Type == QuestType.Collect))
+            {
+                player.Quest.ItemsToCollect--;
+
+                if (player.Quest.ItemsToCollect <= 0)
+                {
+                    player.Quest.ItemsToCollect = 0;
+                    QuestSuccess();
+                }
+            }
         }
 
+        /// <summary>
+        /// Updates the "kill enemies" quest for each eliminated enemy.
+        /// </summary>
         private void onEnemyEvent()
         {
-            player.Quest.EnemiesToKill--;
             world.SpawnEnemy();
+
+            if ((player.QuestCompleted == false) && (player.Quest.Type == QuestType.Kill))
+            {
+                player.Quest.EnemiesToKill--;
+
+                if (player.Quest.EnemiesToKill <= 0)
+                {
+                    player.Quest.EnemiesToKill = 0;
+                    QuestSuccess();
+                }
+            }
         }
 
+        /// <summary>
+        /// This method causes the improvement of the player's capabilities on quest completion.
+        /// </summary>
+        private void QuestSuccess()
+        {
+            player.QuestCompleted = true;
+            player.ShotCoolDown -= 50;
+            player.ProjectileSpeed += 4;
+            player.MovementSpeed += 2;
+        }
+
+        /// <summary>
+        /// Instantiates a new quest if all prerequisites are met.
+        /// </summary>
         private void onPlayerQuest()
         {
             if(isQuestAvailable())
             {
+                player.QuestCompleted = false;
                 player.Quest = new Quest();
             }
         }
@@ -128,15 +169,7 @@ namespace SFML_Prog2_Gruppe1.States
             uimanager.Update(player.Health);
 
             if (player.Health <= 0) targetState = GameStates.CreditScreenState;
-
-            if((player.Quest.Type == QuestType.Collect && player.Quest.ItemsToCollect <= 0) || (player.Quest.Type == QuestType.Kill && player.Quest.EnemiesToKill <= 0))
-            {
-                player.ShotCoolDown -= 50;
-                player.ProjectileSpeed += 4;
-                player.MovementSpeed += 2;
-                player.Quest = new Quest();
-            }
-
+            
             return targetState;
         }
 

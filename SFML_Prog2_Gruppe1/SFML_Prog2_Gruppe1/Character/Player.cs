@@ -76,7 +76,12 @@ namespace SFML_Prog2_Gruppe1
 
         private float shotCoolDown;
 
-
+        private bool questCompleted;
+        public bool QuestCompleted
+        {
+            get { return questCompleted; }
+            set { questCompleted = value; }
+        }
 
         private Quest quest;
         private List<Projectile> projectiles;
@@ -119,6 +124,8 @@ namespace SFML_Prog2_Gruppe1
             stamina = 100;
             damage = 1;
             armor = 0;
+            
+            questCompleted = false;
 
             movementSpeed = 5;
 
@@ -373,7 +380,11 @@ namespace SFML_Prog2_Gruppe1
         /// </summary>
         public void GetNewQuest()
         {
-            QuestEvent();
+            if (questCompleted == true)
+            {
+                QuestEvent();
+            }
+
         }
 
         public override void Draw()

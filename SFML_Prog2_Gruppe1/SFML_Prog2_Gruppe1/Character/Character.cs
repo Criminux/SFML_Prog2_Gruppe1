@@ -28,9 +28,7 @@ namespace SFML_Prog2_Gruppe1
         protected int armor;
         protected Vector2f position;
         protected Vector2f velocity;
-
-        protected Animation animation;
-        protected Texture spriteSheet;
+        
 
         protected Animation IdleAnimation;
 
@@ -74,13 +72,14 @@ namespace SFML_Prog2_Gruppe1
         /// </summary>
         public Character()
         {
-            spriteSheet = new Texture("Character/CharMove.png");
-            animation = new Animation(spriteSheet, 4, 1, 32, 32, 100);
-            animation.Sprite.Texture = spriteSheet;
             velocity = new Vector2f(0, 0);
-            ToDrawAnimation = animation; //TODO: animation weg
-
         }
+
+        protected void Initialize()
+        {
+            ToDrawAnimation = WalkDownAnimation;
+        }
+        
 
         /// <summary>
         /// Getter and setter for movement.
@@ -106,10 +105,6 @@ namespace SFML_Prog2_Gruppe1
         /// <param name="room">Tilemap of active room.</param>
         public virtual void Update(Room room)
         {
-            animation.Update();
-            animation.Sprite.Position = position;
-
-            ToDrawAnimation = animation;
 
             if (this is Player || this is EnemyNPC)
             {
@@ -191,12 +186,7 @@ namespace SFML_Prog2_Gruppe1
         /// </summary>
         public virtual void Draw()
         {
-            if (this is Player ||this is EnemyNPC || this is QuestNPC)
-            {
-                ToDrawAnimation.Draw(position, false);
-            }
-
-
+            ToDrawAnimation.Draw(position, false);
         }
         
         /// <summary>
@@ -248,9 +238,7 @@ namespace SFML_Prog2_Gruppe1
         {
             if (tile is CollisionTile)
             {
-                Console.WriteLine("charSprite: " + ToDrawAnimation.Sprite.GetGlobalBounds().ToString());
                 Vector2f depth = CollisionUtil.CalculateCollisionDepth(ToDrawAnimation.Sprite.GetGlobalBounds(), tile.Rectangle);
-                Console.WriteLine("Depth:" + depth.ToString());
 
                 if (depth != new Vector2f(0f, 0f))
                 {
@@ -278,7 +266,7 @@ namespace SFML_Prog2_Gruppe1
         /// </summary>
         private void ApplyPosition()
         {
-            animation.Sprite.Position = position;
+           ToDrawAnimation.Sprite.Position = position;
         }
 
        /// <summary>

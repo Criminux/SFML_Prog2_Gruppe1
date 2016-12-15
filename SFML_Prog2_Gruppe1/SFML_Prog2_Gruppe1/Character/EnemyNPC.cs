@@ -43,6 +43,8 @@ namespace SFML_Prog2_Gruppe1
             WalkRightAnimation = new Animation(WalkRight, 9, 1, 32, 32, 100);
             WalkUpAnimation = new Animation(WalkUp, 9, 1, 32, 32, 100);
             WalkDownAnimation = new Animation(WalkDown, 9, 1, 32, 32, 100);
+            IdleAnimation = new Animation(WalkDown, 9, 1, 32, 32, 100);
+
 
             //AttackLeft = new Texture("Character/PlayerAttackLeft.png");
             //AttackRight = new Texture("Character/PlayerAttackRight.png");
@@ -54,6 +56,9 @@ namespace SFML_Prog2_Gruppe1
             //AttackUpAnimation = new Animation(AttackUp, 7, 1, 32, 32, 100);
             //AttackDownAnimation = new Animation(AttackDown, 7, 1, 32, 32, 100);
 
+            currentAnimationState = AnimationStates.Idle;
+
+            Initialize();
 
             SetAndApplyPosition(new Vector2f(350, 350));
             movementDelay = new Clock();
@@ -68,6 +73,7 @@ namespace SFML_Prog2_Gruppe1
         public override void Update(Room room)
         {
             MoveRandom();
+
 
             base.Update(room);
         }

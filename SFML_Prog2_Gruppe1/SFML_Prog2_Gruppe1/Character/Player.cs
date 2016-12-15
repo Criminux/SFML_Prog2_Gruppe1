@@ -111,6 +111,11 @@ namespace SFML_Prog2_Gruppe1
             AttackUpAnimation = new Animation(AttackUp, 7, 1, 32, 32, 100);
             AttackDownAnimation = new Animation(AttackDown, 7, 1, 32, 32, 100);
 
+            IdleAnimation = new Animation(WalkDown, 7, 1, 32, 32, 100);
+
+
+            currentAnimationState = AnimationStates.Idle;
+            Initialize();
 
             SetAndApplyPosition(new Vector2f(200, 200));
 
@@ -205,25 +210,25 @@ namespace SFML_Prog2_Gruppe1
         /// </summary>
         private void CheckForRoomChange()
         {
-            if (Position.X < 0 - (animation.Sprite.GetGlobalBounds().Width / 2))
+            if (Position.X < 0 - (ToDrawAnimation.Sprite.GetGlobalBounds().Width / 2))
             {
                 Position = new Vector2f(Position.X + 1280, Position.Y);
                 projectiles = new List<Projectile>();
                 roomChangeEvent(Direction.LEFT);
             }
-            else if (Position.X > 1280 - (animation.Sprite.GetGlobalBounds().Width / 2))
+            else if (Position.X > 1280 - (ToDrawAnimation.Sprite.GetGlobalBounds().Width / 2))
             {
                 Position = new Vector2f(Position.X - 1280, Position.Y);
                 roomChangeEvent(Direction.RIGHT);
                 projectiles = new List<Projectile>();
             }
-            else if (Position.Y < 0 - (animation.Sprite.GetGlobalBounds().Height / 2))
+            else if (Position.Y < 0 - (ToDrawAnimation.Sprite.GetGlobalBounds().Height / 2))
             {
                 Position = new Vector2f(Position.X, Position.Y + 640);
                 roomChangeEvent(Direction.UP);
                 projectiles = new List<Projectile>();
             }
-            else if (Position.Y > 640 - (animation.Sprite.GetGlobalBounds().Height / 2))
+            else if (Position.Y > 640 - (ToDrawAnimation.Sprite.GetGlobalBounds().Height / 2))
             {
                 Position = new Vector2f(Position.X, Position.Y - 640);
                 roomChangeEvent(Direction.DOWN);

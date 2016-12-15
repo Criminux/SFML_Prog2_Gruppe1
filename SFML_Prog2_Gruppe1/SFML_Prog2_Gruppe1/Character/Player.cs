@@ -27,7 +27,17 @@ namespace SFML_Prog2_Gruppe1
         public event EnemyEventHandler EnemyEvent;
         public event ItemEventHandler ItemEvent;
 
-        float MovementSpeed;
+        float movementSpeed;
+        public float MovementSpeed
+        {
+            get { return movementSpeed; }
+            set
+            {
+                if (value <= 15) movementSpeed = value;
+                else movementSpeed = 15;
+            }
+        }
+
         const float ProjectileSpeed = 8;
 
         private Clock attackTimer;
@@ -74,7 +84,7 @@ namespace SFML_Prog2_Gruppe1
             damage = 1;
             armor = 0;
 
-            MovementSpeed = 5;
+            movementSpeed = 5;
 
             attackTimer = new Clock();
 
@@ -164,7 +174,6 @@ namespace SFML_Prog2_Gruppe1
                     if(projectile.Bounds.Intersects(enemies[i].Bounds))
                     {
                         enemies.RemoveAt(i);
-                        MovementSpeed += 1;
                         EnemyEvent();
                     }
                 }
@@ -245,22 +254,22 @@ namespace SFML_Prog2_Gruppe1
 
             if (Keyboard.IsKeyPressed(Keyboard.Key.D) || Keyboard.IsKeyPressed(Keyboard.Key.Right))
             {
-                commandQueue.Push(new PlayerMover(MovementSpeed, 0));
+                commandQueue.Push(new PlayerMover(movementSpeed, 0));
                 currentAnimationState = AnimationStates.WalkRight;
             }
             else if (Keyboard.IsKeyPressed(Keyboard.Key.A) || Keyboard.IsKeyPressed(Keyboard.Key.Left))
             {
-                commandQueue.Push(new PlayerMover(-MovementSpeed, 0));
+                commandQueue.Push(new PlayerMover(-movementSpeed, 0));
                 currentAnimationState = AnimationStates.WalkLeft;
             }
             else if (Keyboard.IsKeyPressed(Keyboard.Key.W) || Keyboard.IsKeyPressed(Keyboard.Key.Up))
             {
-                commandQueue.Push(new PlayerMover(0, -MovementSpeed));
+                commandQueue.Push(new PlayerMover(0, -movementSpeed));
                 currentAnimationState = AnimationStates.WalkUp;
             }
             else if (Keyboard.IsKeyPressed(Keyboard.Key.S) || Keyboard.IsKeyPressed(Keyboard.Key.Down))
             {
-                commandQueue.Push(new PlayerMover(0, MovementSpeed));
+                commandQueue.Push(new PlayerMover(0, movementSpeed));
                 currentAnimationState = AnimationStates.WalkDown;
             }
 

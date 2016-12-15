@@ -14,7 +14,6 @@ namespace SFML_Prog2_Gruppe1
 {
     public class Projectile
     {
-        //TODO: Add destruction timer
         private Texture projectileTexture;
         private Sprite projectileSprite;
 

@@ -131,6 +131,8 @@ namespace SFML_Prog2_Gruppe1.States
 
             if((player.Quest.Type == QuestType.Collect && player.Quest.ItemsToCollect <= 0) || (player.Quest.Type == QuestType.Kill && player.Quest.EnemiesToKill <= 0))
             {
+                player.ShotCoolDown -= 50;
+                player.ProjectileSpeed += 4;
                 player.MovementSpeed += 2;
                 player.Quest = new Quest();
             }

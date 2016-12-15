@@ -38,9 +38,45 @@ namespace SFML_Prog2_Gruppe1
             }
         }
 
-        const float ProjectileSpeed = 8;
+        float projectileSpeed = 8;
+
+        public float ProjectileSpeed
+        {
+            get { return projectileSpeed; }
+            set
+            {
+                if (value <= 20)
+                {
+                    projectileSpeed = value;
+                }
+                else
+                {
+                    movementSpeed = 20;
+                }
+            }
+        }
 
         private Clock attackTimer;
+
+        public float ShotCoolDown
+        {
+            get { return shotCoolDown; }
+            set
+            {
+                if (value <= 800)
+                {
+                    shotCoolDown = value;
+                }
+                else
+                {
+                    shotCoolDown = 800;
+                }
+            }
+        }
+
+        private float shotCoolDown;
+
+
 
         private Quest quest;
         private List<Projectile> projectiles;
@@ -87,6 +123,7 @@ namespace SFML_Prog2_Gruppe1
             movementSpeed = 5;
 
             attackTimer = new Clock();
+            shotCoolDown = 1000;
 
             lifeCooldown = new Clock();
             
@@ -291,18 +328,18 @@ namespace SFML_Prog2_Gruppe1
             if (currentAnimationState == AnimationStates.WalkLeft)
             {
                 currentAnimationState = AnimationStates.AttackLeft;
-                if (attackTimer.ElapsedTime.AsSeconds() > 1)
+                if (attackTimer.ElapsedTime.AsMilliseconds() > shotCoolDown)
                 {
-                    projectiles.Add(new Projectile(position, new Vector2f(-ProjectileSpeed, 0)));
+                    projectiles.Add(new Projectile(position, new Vector2f(-projectileSpeed, 0)));
                     attackTimer.Restart();
                 }
             }
             else if (currentAnimationState == AnimationStates.WalkUp)
             {
                 currentAnimationState = AnimationStates.AttackUp;
-                if (attackTimer.ElapsedTime.AsSeconds() > 1)
+                if (attackTimer.ElapsedTime.AsMilliseconds() > shotCoolDown)
                 {
-                    projectiles.Add(new Projectile(position, new Vector2f(0, -ProjectileSpeed)));
+                    projectiles.Add(new Projectile(position, new Vector2f(0, -projectileSpeed)));
                     attackTimer.Restart();
                 }
 
@@ -310,18 +347,18 @@ namespace SFML_Prog2_Gruppe1
             else if (currentAnimationState == AnimationStates.WalkRight)
             {
                 currentAnimationState = AnimationStates.AttackRight;
-                if (attackTimer.ElapsedTime.AsSeconds() > 1)
+                if (attackTimer.ElapsedTime.AsMilliseconds() > shotCoolDown)
                 {
-                    projectiles.Add(new Projectile(position, new Vector2f(ProjectileSpeed, 0)));
+                    projectiles.Add(new Projectile(position, new Vector2f(projectileSpeed, 0)));
                     attackTimer.Restart();
                 }
             }
             else if (currentAnimationState == AnimationStates.WalkDown)
             {
                 currentAnimationState = AnimationStates.AttackDown;
-                if (attackTimer.ElapsedTime.AsSeconds() > 1)
+                if (attackTimer.ElapsedTime.AsMilliseconds() > shotCoolDown)
                 {
-                    projectiles.Add(new Projectile(position, new Vector2f(0, ProjectileSpeed)));
+                    projectiles.Add(new Projectile(position, new Vector2f(0, projectileSpeed)));
                     attackTimer.Restart();
                 }
 

@@ -213,8 +213,25 @@ namespace SFML_Prog2_Gruppe1
                 {
                     if (lifeCooldown.ElapsedTime.AsSeconds() >= 1f)
                     {
+
                         health = health - 1;
                         lifeCooldown.Restart();
+                        if (enemies[i].CurrentAnimationState == AnimationStates.WalkDown)
+                        {
+                            enemies[i].CurrentAnimationState = AnimationStates.AttackDown;
+                        }
+                        if (enemies[i].CurrentAnimationState == AnimationStates.WalkUp)
+                        {
+                            enemies[i].CurrentAnimationState = AnimationStates.AttackUp;
+                        }
+                        if (enemies[i].CurrentAnimationState == AnimationStates.WalkLeft)
+                        {
+                            enemies[i].CurrentAnimationState = AnimationStates.AttackLeft;
+                        }
+                        if (enemies[i].CurrentAnimationState == AnimationStates.WalkRight)
+                        {
+                            enemies[i].CurrentAnimationState = AnimationStates.AttackRight;
+                        }
                     }
                 }
 

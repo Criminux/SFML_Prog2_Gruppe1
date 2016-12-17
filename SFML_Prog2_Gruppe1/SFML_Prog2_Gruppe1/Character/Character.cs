@@ -58,6 +58,12 @@ namespace SFML_Prog2_Gruppe1
 
         protected AnimationStates currentAnimationState;
         
+        public AnimationStates CurrentAnimationState
+        {
+            get { return currentAnimationState; }
+            set { currentAnimationState = value; }
+        }
+
         public int Health
         {
             get { return health; }

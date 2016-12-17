@@ -46,15 +46,15 @@ namespace SFML_Prog2_Gruppe1
             IdleAnimation = new Animation(WalkDown, 9, 1, 32, 32, 100);
 
 
-            //AttackLeft = new Texture("Character/PlayerAttackLeft.png");
-            //AttackRight = new Texture("Character/PlayerAttackRight.png");
-            //AttackUp = new Texture("Character/PlayerAttackUp.png");
-            //AttackDown = new Texture("Character/PlayerAttackDown.png");
+            AttackLeft = new Texture("Character/EnemyNPCAttackLeft.png");
+            AttackRight = new Texture("Character/EnemyNPCAttackRight.png");
+            AttackUp = new Texture("Character/EnemyNPCAttackUp.png");
+            AttackDown = new Texture("Character/EnemyNPCAttackDown.png");
 
-            //AttackLeftAnimation = new Animation(AttackLeft, 7, 1, 32, 32, 100);
-            //AttackRightAnimation = new Animation(AttackRight, 7, 1, 32, 32, 100);
-            //AttackUpAnimation = new Animation(AttackUp, 7, 1, 32, 32, 100);
-            //AttackDownAnimation = new Animation(AttackDown, 7, 1, 32, 32, 100);
+            AttackLeftAnimation = new Animation(AttackLeft, 6, 1, 32, 32, 100);
+            AttackRightAnimation = new Animation(AttackRight, 6, 1, 32, 32, 100);
+            AttackUpAnimation = new Animation(AttackUp, 6, 1, 32, 32, 100);
+            AttackDownAnimation = new Animation(AttackDown, 6, 1, 32, 32, 100);
 
             currentAnimationState = AnimationStates.Idle;
 

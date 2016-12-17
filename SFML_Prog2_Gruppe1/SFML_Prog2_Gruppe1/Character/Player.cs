@@ -232,6 +232,7 @@ namespace SFML_Prog2_Gruppe1
                         {
                             enemies[i].CurrentAnimationState = AnimationStates.AttackRight;
                         }
+                        enemies[i].ResetAttackCooldown();
                     }
                 }
 

@@ -111,7 +111,7 @@ namespace SFML_Prog2_Gruppe1
         /// <param name="room">Tilemap of active room.</param>
         public virtual void Update(Room room)
         {
-
+            //TODO: Clean Up
             if (this is Player || this is EnemyNPC)
             {
                 if (!(velocity.X == 0 && velocity.Y == 0))
@@ -123,7 +123,7 @@ namespace SFML_Prog2_Gruppe1
                 }
             }
 
-            if(this is Player)
+            if(this is Player || this is EnemyNPC)
             {
                 AttackLeftAnimation.Update();
                 AttackUpAnimation.Update();

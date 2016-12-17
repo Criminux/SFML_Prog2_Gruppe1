@@ -21,6 +21,8 @@ namespace SFML_Prog2_Gruppe1
         private Clock movementDelay;
         private Direction movementState;
 
+        private Clock attackCooldown;
+        private const float attackCooldownLenght = 600;
 
 
         /// <summary>
@@ -57,6 +59,7 @@ namespace SFML_Prog2_Gruppe1
             AttackDownAnimation = new Animation(AttackDown, 6, 1, 32, 32, 100);
 
             currentAnimationState = AnimationStates.Idle;
+            attackCooldown = new Clock();
 
             Initialize();
 
@@ -99,23 +102,29 @@ namespace SFML_Prog2_Gruppe1
             if (movementState == Direction.UP)
             { 
                 Velocity = new Vector2f(0, -MovementSpeed);
-                currentAnimationState = AnimationStates.WalkUp;
+                if(attackCooldown.ElapsedTime.AsMilliseconds() >= 600) currentAnimationState = AnimationStates.WalkUp;
             }
             if (movementState == Direction.DOWN)
             {
                 Velocity = new Vector2f(0, MovementSpeed);
-                currentAnimationState = AnimationStates.WalkDown;
+                if (attackCooldown.ElapsedTime.AsMilliseconds() >= 600) currentAnimationState = AnimationStates.WalkDown;
             }
             if (movementState == Direction.LEFT)
             {
                 Velocity = new Vector2f(-MovementSpeed, 0);
-                currentAnimationState = AnimationStates.WalkLeft;
+                if (attackCooldown.ElapsedTime.AsMilliseconds() >= 600) currentAnimationState = AnimationStates.WalkLeft;
             }
             if (movementState == Direction.RIGHT)
             {
                 Velocity = new Vector2f(MovementSpeed, 0);
-                currentAnimationState = AnimationStates.WalkRight;
+                if (attackCooldown.ElapsedTime.AsMilliseconds() >= 600) currentAnimationState = AnimationStates.WalkRight;
             }
+        }
+
+
+        public void ResetAttackCooldown()
+        {
+            attackCooldown.Restart();
         }
     }
 }

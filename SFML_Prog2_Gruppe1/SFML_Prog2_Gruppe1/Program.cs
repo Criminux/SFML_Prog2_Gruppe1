@@ -3,26 +3,27 @@ using SFML.Window;
 using SFML.Graphics;
 using SFML_Prog2_Gruppe1.Util;
 using SFML_Prog2_Gruppe1.StateMachineSystem;
+using System;
 
 namespace SFML_Prog2_Gruppe1
 {
     class Program
     {
-        const int ApplicationInterval = 20;
+        static int ApplicationInterval = 17;
+        static int refreshAmount;
 
         static StateMachine stateMachine;
 
-        static Clock clock = new Clock();
-        static Time timeSinceLastFrame = Time.Zero;
-        static readonly Time timeForFrame = Time.FromSeconds(1/60f);
+        static Clock clockPerFrame = new Clock();
+        static Clock clockPerSecond = new Clock();
 
         static void Main()
         {
             ProjectRenderWindow.GetRenderWindowInstance().SetActive();
             stateMachine = new StateMachine();
-            clock = new Clock();
+            clockPerFrame = new Clock();
             ProjectRenderWindow.GetRenderWindowInstance().Closed += (o, a) => ProjectRenderWindow.GetRenderWindowInstance().Close();
-            
+
             //The following tho lines raise the events as a pointer to the method
             ProjectRenderWindow.GetRenderWindowInstance().KeyPressed += (o, a) => HandleKeyboardInput(a.Code, true);
             ProjectRenderWindow.GetRenderWindowInstance().KeyReleased += (o, a) => HandleKeyboardInput(a.Code, false);
@@ -65,31 +66,16 @@ namespace SFML_Prog2_Gruppe1
             //Sleep
 
             //Frames
-            var elapsedTime = clock.ElapsedTime;
-            clock.Restart();
-            timeSinceLastFrame += elapsedTime;
-
-            while (timeSinceLastFrame > timeForFrame)
+            ApplicationInterval = MathUtil.Clamp((30 - clockPerFrame.ElapsedTime.AsMilliseconds()), 0, 30);
+            refreshAmount += 1;
+            if(clockPerSecond.ElapsedTime.AsSeconds() >= 1)
             {
-                timeSinceLastFrame -= timeForFrame;
+                clockPerSecond.Restart();
+                Console.WriteLine(refreshAmount);
+                refreshAmount = 0;
             }
-
-            UpdateStatistics(elapsedTime);
-        }
-
-        static void UpdateStatistics(Time elapsedTime)
-        {
-            Time statisticsTime = new Time();
-            int statisticsFrames = 0;
-
-            statisticsTime += elapsedTime;
-            statisticsFrames += 1;
-
             
-            statisticsTime -= Time.FromSeconds(1);
-            statisticsFrames = 0;
-            
+            clockPerFrame.Restart();
         }
-        
-    }
+    }        
 }

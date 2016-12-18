@@ -90,8 +90,8 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
         {
             player.QuestCompleted = true;
             player.ShotCoolDown -= 50;
-            player.ProjectileSpeed += 4;
-            player.MovementSpeed += 2;
+            player.ProjectileSpeed += 2;
+            player.MovementSpeed += 1;
         }
 
         /// <summary>

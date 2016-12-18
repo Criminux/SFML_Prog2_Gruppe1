@@ -123,10 +123,6 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
                     WalkUpAnimation.Update();
                     WalkDownAnimation.Update();
                 }
-            }
-
-            if(this is Player || this is EnemyNPC)
-            {
                 AttackLeftAnimation.Update();
                 AttackUpAnimation.Update();
                 AttackRightAnimation.Update();
@@ -143,11 +139,7 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
 
             HandleCollisions(room.Tilemap);
 
-            if(this is Player) Console.WriteLine("Position after Collision: " + position.ToString());
-
-            ApplyPosition();
-
-            Velocity = new Vector2f(0, 0);
+            //Velocity = new Vector2f(0, 0);
 
             SetActiveAnimation();
         }

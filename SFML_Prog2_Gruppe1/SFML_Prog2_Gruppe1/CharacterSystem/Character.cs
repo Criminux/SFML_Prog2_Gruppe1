@@ -133,13 +133,13 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
             {
                 IdleAnimation.Update();
             }
-
+            
             ApplyVelocity();
             ApplyPosition();
 
             HandleCollisions(room.Tilemap);
 
-            //Velocity = new Vector2f(0, 0);
+            Velocity = new Vector2f(0, 0);
 
             SetActiveAnimation();
         }

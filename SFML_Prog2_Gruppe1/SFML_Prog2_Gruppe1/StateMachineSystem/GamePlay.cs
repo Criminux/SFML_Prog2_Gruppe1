@@ -169,7 +169,7 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
             player.Update(world.GetActiveRoom());
             world.Update();
 
-            uimanager.Update(player.Health);
+            uimanager.Update(player.Health, player.MovementSpeed);
 
             if (player.Health <= 0) targetState = GameStates.CreditScreenState;
             

@@ -25,6 +25,11 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
         private int health;
         private List<Sprite> heartSprites;
 
+        private float playerLevel;
+        private Font font;
+        private Text PlayerSpeed;
+        private string message;
+
         /// <summary>
         /// UI Manager constructor
         /// </summary>
@@ -33,6 +38,10 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
             uiBar = new Texture("StateMachineSystem/UI/UIBar.png");
             sprite = new Sprite(uiBar);
             sprite.Position = new Vector2f(0, 640);
+
+            font = new Font("StateMachineSystem/Menu/POORICH.TTF");
+            PlayerSpeed = new Text(message, font, 20);
+            PlayerSpeed.Position = new Vector2f(860, 685);
 
             fullHeart = new Texture("StateMachineSystem/UI/FullHeart.png");
             emptyHeart = new Texture("StateMachineSystem/UI/EmptyHeart.png");
@@ -55,9 +64,10 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
         /// Updates the UI.
         /// </summary>
         /// <param name="health">Health of the Player.</param>
-        public void Update(int health)
+        public void Update(int health, float speed)
         {
             this.health = health;
+            playerLevel = speed - 4;
 
             if (health >= 1) heartSprites[0].Texture = fullHeart;
             else heartSprites[0].Texture = emptyHeart;
@@ -69,6 +79,9 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
             else heartSprites[3].Texture = emptyHeart;
             if (health >= 5) heartSprites[4].Texture = fullHeart;
             else heartSprites[4].Texture = emptyHeart;
+
+            message = "Player Level: " + playerLevel.ToString();
+            PlayerSpeed.DisplayedString = message;
         }
 
         /// <summary>
@@ -82,6 +95,8 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
             {
                 ProjectRenderWindow.GetRenderWindowInstance().Draw(tempSprite); 
             }
+
+            ProjectRenderWindow.GetRenderWindowInstance().Draw(PlayerSpeed);
 
             if (quest != null) quest.Draw();
             

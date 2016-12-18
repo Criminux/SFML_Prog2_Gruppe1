@@ -167,7 +167,7 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
             }
 
             player.Update(world.GetActiveRoom());
-            world.Update();
+            world.Update(player.Position);
 
             uimanager.Update(player.Health, player.MovementSpeed);
 

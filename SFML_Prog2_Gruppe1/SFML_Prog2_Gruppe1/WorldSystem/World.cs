@@ -255,9 +255,9 @@ namespace SFML_Prog2_Gruppe1.WorldSystem
             }
         }
 
-        public void Update()
+        public void Update(Vector2f playerPosition)
         {
-            GetActiveRoom().Update();
+            GetActiveRoom().Update(playerPosition);
         }
 
         public void Draw()

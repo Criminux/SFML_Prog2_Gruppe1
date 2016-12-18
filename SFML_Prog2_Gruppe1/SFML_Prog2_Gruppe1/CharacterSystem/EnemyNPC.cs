@@ -82,11 +82,22 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
         /// <param name="room">
         /// Current room.
         /// </param>
-        public override void Update(Room room)
+        public void Update(Room room, Vector2f playerPosition)
         {
-            MoveRandom();
+            float distance = 200;
+            float distancesquared = ((playerPosition.X - position.X) * (playerPosition.X - position.X) +
+            (playerPosition.Y - position.Y) * (playerPosition.Y - position.Y));;
 
-
+            if (distancesquared <= distance * distance)
+            {
+                // TODO: Move to player
+                Vector2f direction = playerPosition - position;
+                Velocity = new Vector2f(MathUtil.Clamp<float>(direction.X,-MovementSpeed,MovementSpeed), MathUtil.Clamp<float>(direction.Y, -MovementSpeed, MovementSpeed));
+            }
+            else
+            {
+                MoveRandom();
+            }
             base.Update(room);
         }
 

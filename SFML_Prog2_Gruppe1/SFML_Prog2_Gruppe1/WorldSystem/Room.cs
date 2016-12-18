@@ -107,11 +107,11 @@ namespace SFML_Prog2_Gruppe1.WorldSystem
             this.spawns = spawns;
         }
 
-        public void Update()
+        public void Update(Vector2f playerPosition)
         {
             foreach (EnemyNPC tempEnemy in enemies)
             {
-                tempEnemy.Update(this);
+                tempEnemy.Update(this, playerPosition);
             }
             foreach (QuestNPC tempNPC in npcs)
             {

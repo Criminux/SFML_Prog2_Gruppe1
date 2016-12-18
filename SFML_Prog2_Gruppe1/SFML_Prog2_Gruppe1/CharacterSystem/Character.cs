@@ -32,7 +32,11 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
         protected Vector2f velocity;
 
         protected Sound stepSound;
-        protected SoundBuffer buffer;
+        protected Sound shootSound;
+        protected Sound diamondSound;
+        protected SoundBuffer walkBuffer;
+        protected SoundBuffer shootBuffer;
+        protected SoundBuffer diamondBuffer;
 
         protected Clock stepTimer;
         

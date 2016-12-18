@@ -24,7 +24,7 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
         {
 
             soundTrack = new Music("StateMachineSystem/BackGroundMusic.ogg");
-            soundTrack.Volume = 30;
+            soundTrack.Volume = 10;
             Initialize();
         }
 

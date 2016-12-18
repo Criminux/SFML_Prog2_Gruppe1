@@ -100,10 +100,16 @@
     <None Include="CharacterSystem\PlayerSteps.ogg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="CharacterSystem\Shoot.ogg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="StateMachineSystem\Menu\POORICH.TTF">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="StateMachineSystem\BackGroundMusic.ogg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="WorldSystem\Item.ogg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -214,6 +220,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="StateMachineSystem\Menu\CreditsScreenBackground.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="StateMachineSystem\Menu\Klack.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="StateMachineSystem\Menu\Klick.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="StateMachineSystem\Menu\PauseMenuBackground.png">

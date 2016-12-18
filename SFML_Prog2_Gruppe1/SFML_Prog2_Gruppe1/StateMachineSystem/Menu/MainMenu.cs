@@ -1,6 +1,7 @@
 ﻿using SFML.System;
 using SFML.Window;
 using SFML.Graphics;
+using SFML.Audio;
 using SFML_Prog2_Gruppe1.Util;
 
 namespace SFML_Prog2_Gruppe1.StateMachineSystem
@@ -14,6 +15,12 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
         private Texture menuBackground;
         private Sprite menuSprite;
 
+        private SoundBuffer switchButtonBuffer;
+        private SoundBuffer klickButtonBuffer;
+
+        private Sound switchButton;
+        private Sound klickButton;
+
         private GameStates targetState;
 
         private int currentSelectionIndex;
@@ -22,6 +29,12 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
 
         public MainMenu()
         {
+            switchButtonBuffer = new SoundBuffer("StateMachineSystem/Menu/Klick.wav");
+            switchButton = new Sound(switchButtonBuffer);
+
+            klickButtonBuffer = new SoundBuffer("StateMachineSystem/Menu/Klack.wav");
+            klickButton = new Sound(klickButtonBuffer);
+
             startButton = new Button(new Vector2f(500, 300), "Start");
             creditsButton = new Button(new Vector2f(500, 420), "Credits");
             exitButton = new Button(new Vector2f(500, 540), "Exit");
@@ -70,17 +83,20 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
         {
             if ((isPressed && key == Keyboard.Key.W) || (isPressed && key == Keyboard.Key.Up))
             {
+                switchButton.Play();
                 currentSelectionIndex = currentSelectionIndex - 1;
                 if (currentSelectionIndex < 0) currentSelectionIndex = 0;
             }
             if ((isPressed && key == Keyboard.Key.S) || (isPressed && key == Keyboard.Key.Down))
             {
+                switchButton.Play();
                 currentSelectionIndex = currentSelectionIndex + 1;
                 if (currentSelectionIndex > 2) currentSelectionIndex = 2;
             }
 
             if (isPressed && key == Keyboard.Key.Return)
             {
+                klickButton.Play();
                 clicked = true;
             }
             else clicked = false;

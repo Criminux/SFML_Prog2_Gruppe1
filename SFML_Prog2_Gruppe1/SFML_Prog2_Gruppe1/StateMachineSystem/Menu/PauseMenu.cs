@@ -1,6 +1,7 @@
 ﻿using SFML.System;
 using SFML.Window;
 using SFML.Graphics;
+using SFML.Audio;
 using SFML_Prog2_Gruppe1.Util;
 
 namespace SFML_Prog2_Gruppe1.StateMachineSystem
@@ -15,6 +16,12 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
 
         private GameStates targetState;
 
+        private SoundBuffer switchButtonBuffer;
+        private SoundBuffer klickButtonBuffer;
+
+        private Sound switchButton;
+        private Sound klickButton;
+
         private int currentSelectionIndex;
         private bool clicked;
 
@@ -25,6 +32,12 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
 
         public PauseMenu()
         {
+            switchButtonBuffer = new SoundBuffer("StateMachineSystem/Menu/Klick.wav");
+            switchButton = new Sound(switchButtonBuffer);
+
+            klickButtonBuffer = new SoundBuffer("StateMachineSystem/Menu/Klack.wav");
+            klickButton = new Sound(klickButtonBuffer);
+
             resumeButton = new Button(new Vector2f(500, 300), "Resume");
             menuButton = new Button(new Vector2f(500, 420), "Back to Menu");
 
@@ -66,17 +79,20 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
         {
             if ((isPressed && key == Keyboard.Key.W) || (isPressed && key == Keyboard.Key.Up))
             {
+                switchButton.Play();
                 currentSelectionIndex = currentSelectionIndex - 1;
                 if (currentSelectionIndex < 0) currentSelectionIndex = 0;
             }
             if ((isPressed && key == Keyboard.Key.S) || (isPressed && key == Keyboard.Key.Down))
             {
+                switchButton.Play();
                 currentSelectionIndex = currentSelectionIndex + 1;
                 if (currentSelectionIndex > 1) currentSelectionIndex = 1;
             }
 
             if (isPressed && key == Keyboard.Key.Return)
             {
+                klickButton.Play();
                 clicked = true;
             }
             else clicked = false;

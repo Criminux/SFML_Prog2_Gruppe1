@@ -137,8 +137,16 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
 
             lifeCooldown = new Clock();
 
-            buffer = new SoundBuffer("CharacterSystem/walk.wav");
-            stepSound = new Sound(buffer);
+            walkBuffer = new SoundBuffer("CharacterSystem/walk.wav");
+            stepSound = new Sound(walkBuffer);
+            stepSound.Volume = 30;
+
+            shootBuffer = new SoundBuffer("CharacterSystem/Shoot.ogg");
+            shootSound = new Sound(shootBuffer);
+            shootSound.Volume = 150;
+
+            diamondBuffer = new SoundBuffer("WorldSystem/Item.ogg");
+            diamondSound = new Sound(diamondBuffer);
 
             stepTimer = new Clock();
 
@@ -268,6 +276,7 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
             {
                 if(Bounds.Intersects(items[i].Bounds))
                 {
+                    diamondSound.Play();
                     items[i].Spawn.IsUsed = false;
                     items.RemoveAt(i);
                     ItemEvent();
@@ -393,6 +402,7 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
                 currentAnimationState = AnimationStates.AttackLeft;
                 if (attackTimer.ElapsedTime.AsMilliseconds() > shotCoolDown)
                 {
+                    shootSound.Play();
                     projectiles.Add(new Projectile(position, new Vector2f(-projectileSpeed, 0)));
                     attackTimer.Restart();
                 }
@@ -402,6 +412,7 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
                 currentAnimationState = AnimationStates.AttackUp;
                 if (attackTimer.ElapsedTime.AsMilliseconds() > shotCoolDown)
                 {
+                    shootSound.Play();
                     projectiles.Add(new Projectile(position, new Vector2f(0, -projectileSpeed)));
                     attackTimer.Restart();
                 }
@@ -412,6 +423,7 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
                 currentAnimationState = AnimationStates.AttackRight;
                 if (attackTimer.ElapsedTime.AsMilliseconds() > shotCoolDown)
                 {
+                    shootSound.Play();
                     projectiles.Add(new Projectile(position, new Vector2f(projectileSpeed, 0)));
                     attackTimer.Restart();
                 }
@@ -421,6 +433,7 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
                 currentAnimationState = AnimationStates.AttackDown;
                 if (attackTimer.ElapsedTime.AsMilliseconds() > shotCoolDown)
                 {
+                    shootSound.Play();
                     projectiles.Add(new Projectile(position, new Vector2f(0, projectileSpeed)));
                     attackTimer.Restart();
                 }

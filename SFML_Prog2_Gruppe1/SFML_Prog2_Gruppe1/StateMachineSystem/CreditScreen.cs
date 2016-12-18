@@ -1,6 +1,7 @@
 ﻿using SFML.System;
 using SFML.Window;
 using SFML.Graphics;
+using SFML.Audio;
 using SFML_Prog2_Gruppe1.Util;
 
 namespace SFML_Prog2_Gruppe1.StateMachineSystem
@@ -12,12 +13,18 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
         private Texture creditsScreen;
         private Sprite creditSprite;
 
+        private SoundBuffer klickButtonBuffer;
+        private Sound klickButton;
+
         private GameStates targetState;
 
         bool clicked;
 
         public CreditScreen()
         {
+            klickButtonBuffer = new SoundBuffer("StateMachineSystem/Menu/Klack.wav");
+            klickButton = new Sound(klickButtonBuffer);
+
             backButton = new Button(new Vector2f(100, 100), "Back to Menu");
             backButton.Click += backButton_Click;
 
@@ -48,6 +55,7 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
         {
             if (isPressed && key == Keyboard.Key.Return)
             {
+                klickButton.Play();
                 clicked = true;
             }
             else clicked = false;

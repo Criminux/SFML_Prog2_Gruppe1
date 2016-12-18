@@ -30,6 +30,11 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
         protected int armor;
         protected Vector2f position;
         protected Vector2f velocity;
+
+        protected Sound stepSound;
+        protected SoundBuffer buffer;
+
+        protected Clock stepTimer;
         
 
         protected Animation IdleAnimation;
@@ -122,6 +127,10 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
                     WalkRightAnimation.Update();
                     WalkUpAnimation.Update();
                     WalkDownAnimation.Update();
+                }
+                else
+                {
+                    stepSound.Stop();
                 }
                 AttackLeftAnimation.Update();
                 AttackUpAnimation.Update();

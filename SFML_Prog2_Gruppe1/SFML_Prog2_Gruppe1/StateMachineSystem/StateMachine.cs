@@ -1,5 +1,6 @@
 ﻿using SFML.Window;
 using SFML.Graphics;
+using SFML.Audio;
 using SFML_Prog2_Gruppe1.Util;
 
 namespace SFML_Prog2_Gruppe1.StateMachineSystem
@@ -12,6 +13,7 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
         private GamePlay gamePlay;
         private PauseMenu pauseMenu;
         private CreditScreen creditScreen;
+        private Music soundTrack;
 
         public GameStates CurrentState
         {
@@ -20,6 +22,9 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
 
         public StateMachine()
         {
+
+            soundTrack = new Music("StateMachineSystem/BackGroundMusic.ogg");
+            soundTrack.Volume = 30;
             Initialize();
         }
 
@@ -28,6 +33,8 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
         /// </summary>
         private void Initialize()
         {
+            soundTrack.Play();
+            soundTrack.Loop = true;
             //Sets the starting state
             currentState = GameStates.SplashScreenState;
             previousState = GameStates.UnspecifiedState;

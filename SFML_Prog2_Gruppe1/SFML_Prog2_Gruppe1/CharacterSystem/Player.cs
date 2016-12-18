@@ -36,7 +36,7 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
             set
             {
                 if (value <= 14) movementSpeed = value;
-                else movementSpeed = 15;
+                else movementSpeed = 14;
             }
         }
 
@@ -136,7 +136,11 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
             shotCoolDown = 1000;
 
             lifeCooldown = new Clock();
-            
+
+            buffer = new SoundBuffer("CharacterSystem/walk.wav");
+            stepSound = new Sound(buffer);
+
+            stepTimer = new Clock();
 
             WalkLeft = new Texture("CharacterSystem/PlayerWalkLeft.png");
             WalkRight = new Texture("CharacterSystem/PlayerWalkRight.png");
@@ -338,21 +342,45 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
 
             if (Keyboard.IsKeyPressed(Keyboard.Key.D) || Keyboard.IsKeyPressed(Keyboard.Key.Right))
             {
+                if (stepTimer.ElapsedTime.AsMilliseconds() >= 600)
+                {
+                    stepSound.Stop();
+                    stepSound.Play();
+                    stepTimer.Restart();
+                }
                 commandQueue.Push(new PlayerMover(movementSpeed, 0));
                 currentAnimationState = AnimationStates.WalkRight;
             }
             else if (Keyboard.IsKeyPressed(Keyboard.Key.A) || Keyboard.IsKeyPressed(Keyboard.Key.Left))
             {
+                if (stepTimer.ElapsedTime.AsMilliseconds() >= 600)
+                {
+                    stepSound.Stop();
+                    stepSound.Play();
+                    stepTimer.Restart();
+                }
                 commandQueue.Push(new PlayerMover(-movementSpeed, 0));
                 currentAnimationState = AnimationStates.WalkLeft;
             }
             else if (Keyboard.IsKeyPressed(Keyboard.Key.W) || Keyboard.IsKeyPressed(Keyboard.Key.Up))
             {
+                if (stepTimer.ElapsedTime.AsMilliseconds() >= 600)
+                {
+                    stepSound.Stop();
+                    stepSound.Play();
+                    stepTimer.Restart();
+                }
                 commandQueue.Push(new PlayerMover(0, -movementSpeed));
                 currentAnimationState = AnimationStates.WalkUp;
             }
             else if (Keyboard.IsKeyPressed(Keyboard.Key.S) || Keyboard.IsKeyPressed(Keyboard.Key.Down))
             {
+                if (stepTimer.ElapsedTime.AsMilliseconds() >= 600)
+                {
+                    stepSound.Stop();
+                    stepSound.Play();
+                    stepTimer.Restart();
+                }
                 commandQueue.Push(new PlayerMover(0, movementSpeed));
                 currentAnimationState = AnimationStates.WalkDown;
             }

@@ -90,7 +90,7 @@ namespace SFML_Prog2_Gruppe1.WorldSystem
                             if (enemyChild.Name == "PositionX") spawn.X = Convert.ToInt32(enemyChild.InnerText);
                             if (enemyChild.Name == "PositionY") spawn.Y = Convert.ToInt32(enemyChild.InnerText);
                         }
-                        room.Spawns.Add(spawn);
+                        room.Spawns.Add(new Spawn(spawn));
                     }
                     if (roomChild.Name == "NPC")
                     {
@@ -126,16 +126,22 @@ namespace SFML_Prog2_Gruppe1.WorldSystem
             Random rand = new Random(DateTime.Now.Millisecond);
 
             int randomRoom;
-            while(true)
+            int randomSpawn;
+
+            while (true)
             {
                 randomRoom = rand.Next(0, world.Count);
-                if (world[randomRoom] != GetActiveRoom()) break;
+                if (world[randomRoom] != GetActiveRoom())
+                {
+                    randomSpawn = rand.Next(0, world[randomRoom].Spawns.Count);
+                    if (world[randomRoom].Spawns[randomSpawn].IsUsed == false) break;
+                }
             }
-
-            int randomSpawn = rand.Next(0, world[randomRoom].Spawns.Count);
-
+            
             EnemyNPC enemy = new EnemyNPC();
-            enemy.Position = world[randomRoom].Spawns[randomSpawn];
+            enemy.Position = world[randomRoom].Spawns[randomSpawn].Position;
+            enemy.Spawn = world[randomRoom].Spawns[randomSpawn];
+            world[randomRoom].Spawns[randomSpawn].IsUsed = true;
 
             world[randomRoom].Enemies.Add(enemy);
         }
@@ -146,15 +152,21 @@ namespace SFML_Prog2_Gruppe1.WorldSystem
             Random rand = new Random(DateTime.Now.Millisecond);
 
             int randomRoom;
+            int randomSpawn;
+
             while (true)
             {
                 randomRoom = rand.Next(0, world.Count);
-                if (world[randomRoom] != GetActiveRoom()) break;
+                if (world[randomRoom] != GetActiveRoom())
+                {
+                    randomSpawn = rand.Next(0, world[randomRoom].Spawns.Count);
+                    if (world[randomRoom].Spawns[randomSpawn].IsUsed == false) break;
+                }
             }
 
-            int randomSpawn = rand.Next(0, world[randomRoom].Spawns.Count);
-
-            Item item = new Item(world[randomRoom].Spawns[randomSpawn]);
+            Item item = new Item(world[randomRoom].Spawns[randomSpawn].Position);
+            item.Spawn = world[randomRoom].Spawns[randomSpawn];
+            world[randomRoom].Spawns[randomSpawn].IsUsed = true;
 
             world[randomRoom].Items.Add(item);
         }

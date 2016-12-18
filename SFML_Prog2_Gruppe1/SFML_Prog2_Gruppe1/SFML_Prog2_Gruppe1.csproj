@@ -65,6 +65,7 @@
     <Compile Include="CommandSystem\CommandQueue.cs" />
     <Compile Include="CharacterSystem\EnemyNPC.cs" />
     <Compile Include="CharacterSystem\QuestNPC.cs" />
+    <Compile Include="WorldSystem\Spawn.cs" />
     <Compile Include="WorldSystem\Tile\CollisionTile.cs" />
     <Compile Include="StateMachineSystem\Menu\Button.cs" />
     <Compile Include="StateMachineSystem\UI\UIManager.cs" />

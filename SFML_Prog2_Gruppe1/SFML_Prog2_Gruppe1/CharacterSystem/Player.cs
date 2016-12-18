@@ -242,6 +242,7 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
                 {
                     if(projectile.Bounds.Intersects(enemies[i].Bounds))
                     {
+                        enemies[i].Spawn.IsUsed = false;
                         enemies.RemoveAt(i);
                         EnemyEvent();
                     }
@@ -262,6 +263,7 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
             {
                 if(Bounds.Intersects(items[i].Bounds))
                 {
+                    items[i].Spawn.IsUsed = false;
                     items.RemoveAt(i);
                     ItemEvent();
                 }

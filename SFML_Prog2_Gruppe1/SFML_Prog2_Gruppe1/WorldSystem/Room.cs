@@ -22,7 +22,7 @@ namespace SFML_Prog2_Gruppe1.WorldSystem
         private List<EnemyNPC> enemies;
         private List<QuestNPC> npcs;
         private List<Item> items;
-        private List<Vector2f> spawns;
+        private List<Spawn> spawns;
 
         /// <summary>
         /// Getter and Setter for the tilemap.
@@ -78,7 +78,7 @@ namespace SFML_Prog2_Gruppe1.WorldSystem
             set { items = value; }
         }
 
-        public List<Vector2f> Spawns
+        public List<Spawn> Spawns
         {
             get { return spawns; }
             set { spawns = value; }
@@ -93,10 +93,10 @@ namespace SFML_Prog2_Gruppe1.WorldSystem
             enemies = new List<EnemyNPC>();
             npcs = new List<QuestNPC>();
             items = new List<Item>();
-            spawns = new List<Vector2f>();
+            spawns = new List<Spawn>();
         }
 
-        public Room(Tile[,] tilemap, int ID, Dictionary<string, int> connectedRooms, List<EnemyNPC> enemies, List<QuestNPC> npcs, List<Item> items, List<Vector2f> spawns)
+        public Room(Tile[,] tilemap, int ID, Dictionary<string, int> connectedRooms, List<EnemyNPC> enemies, List<QuestNPC> npcs, List<Item> items, List<Spawn> spawns)
         {
             this.tilemap = tilemap;
             this.id = ID;

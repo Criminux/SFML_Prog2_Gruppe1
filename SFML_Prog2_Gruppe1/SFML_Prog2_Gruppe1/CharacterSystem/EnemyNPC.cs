@@ -21,6 +21,14 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
         const int RandomMovementChangeDelay = 1;
         private Clock movementDelay;
         private Direction movementState;
+        private Spawn spawn;
+
+        public Spawn Spawn
+        {
+            get { return spawn; }
+            set { spawn = value; }
+        }
+
 
         private Clock attackCooldown;
         private const float attackCooldownLenght = 600;

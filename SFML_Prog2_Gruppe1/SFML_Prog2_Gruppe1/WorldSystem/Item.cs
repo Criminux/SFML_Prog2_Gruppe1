@@ -19,6 +19,13 @@ namespace SFML_Prog2_Gruppe1.WorldSystem
         private Sprite sprite;
         private Vector2f position;
 
+        private Spawn spawn;
+        public Spawn Spawn
+        {
+            get { return spawn; }
+            set { spawn = value; }
+        }
+
         public FloatRect Bounds
         {
             get { return sprite.GetGlobalBounds(); }

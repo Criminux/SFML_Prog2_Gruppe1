@@ -58,6 +58,7 @@
     <Compile Include="CharacterSystem\AnimationStates.cs" />
     <Compile Include="CharacterSystem\Projectile.cs" />
     <Compile Include="CharacterSystem\Quest.cs" />
+    <Compile Include="CommandSystem\Attack.cs" />
     <Compile Include="CommandSystem\Interaction.cs" />
     <Compile Include="CommandSystem\PlayerMover.cs" />
     <Compile Include="CommandSystem\AbstractCommand.cs" />

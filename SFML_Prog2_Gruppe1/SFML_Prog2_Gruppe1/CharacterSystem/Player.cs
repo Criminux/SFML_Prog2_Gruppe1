@@ -35,7 +35,7 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
             get { return movementSpeed; }
             set
             {
-                if (value <= 15) movementSpeed = value;
+                if (value <= 14) movementSpeed = value;
                 else movementSpeed = 15;
             }
         }
@@ -97,6 +97,7 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
         }
 
         private Clock lifeCooldown;
+        private int attackAttempt;
 
         /// <summary>
         /// An command of this class will move the player in the desired direction.
@@ -316,12 +317,24 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
                 }
             }
 
+
+            if (Keyboard.IsKeyPressed(Keyboard.Key.Space))
+            {
+                if (attackAttempt == 0)
+                {
+                    attackAttempt = 1;
+                    commandQueue.Push(new Attack());
+                }
+            }
+
             if (!Keyboard.IsKeyPressed(Keyboard.Key.E))
             {
                 interactionAttempt = 0;
-            }
-
-            
+            }  
+            if (!Keyboard.IsKeyPressed(Keyboard.Key.Space))
+            {
+                attackAttempt = 0;
+            }          
 
             if (Keyboard.IsKeyPressed(Keyboard.Key.D) || Keyboard.IsKeyPressed(Keyboard.Key.Right))
             {
@@ -343,16 +356,9 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
                 commandQueue.Push(new PlayerMover(0, movementSpeed));
                 currentAnimationState = AnimationStates.WalkDown;
             }
-
-
-            if (Keyboard.IsKeyPressed(Keyboard.Key.Space))
-            {
-                //currentAnimationState = AnimationStates.AttackLeft;
-                Attack(commandQueue);
-            }
         }
 
-        private AnimationStates Attack(CommandQueue commandQueue)
+        public AnimationStates Attack()
         {
             if (currentAnimationState == AnimationStates.WalkLeft)
             {

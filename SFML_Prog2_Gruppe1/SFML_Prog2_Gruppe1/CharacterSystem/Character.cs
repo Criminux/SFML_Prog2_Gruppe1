@@ -134,7 +134,7 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
                 }
                 else
                 {
-                    stepSound.Stop();
+                    if(this is Player) stepSound.Stop();
                 }
                 AttackLeftAnimation.Update();
                 AttackUpAnimation.Update();

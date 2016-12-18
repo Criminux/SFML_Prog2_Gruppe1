@@ -16,9 +16,13 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
     public class SplashScreen : State
     {
         Clock clock;
+        Texture splashTexture;
+        Sprite splashSprite;
 
         public SplashScreen()
         {
+            splashTexture = new Texture("StateMachineSystem/Splash.png");
+            splashSprite = new Sprite(splashTexture);
             Initialize();
         }
 
@@ -30,7 +34,7 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
 
         public override void Draw()
         {
-            ProjectRenderWindow.GetRenderWindowInstance().Clear(Color.Blue);
+            ProjectRenderWindow.GetRenderWindowInstance().Draw(splashSprite);
         }
 
         public override void HandleInput(Keyboard.Key key, bool isPressed)
@@ -51,7 +55,7 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
         /// </returns>
         public override GameStates Update()
         {
-            if(clock.ElapsedTime.AsSeconds() >= 1f)
+            if(clock.ElapsedTime.AsSeconds() >= 3f)
             {
                 return GameStates.MainMenuState;
             }

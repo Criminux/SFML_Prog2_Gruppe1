@@ -234,6 +234,9 @@
     <Content Include="StateMachineSystem\Menu\MenuBackground.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="StateMachineSystem\Splash.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="WorldSystem\Tile\CollisionTile.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

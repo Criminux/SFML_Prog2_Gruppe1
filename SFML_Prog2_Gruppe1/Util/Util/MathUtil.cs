@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SFML_Prog2_Gruppe1.Util
 {
-    class MathUtil
+    public class MathUtil
     {
         /// <summary>
         /// Clamps the minimum and maximum of a comparable variable and returns equivalently.

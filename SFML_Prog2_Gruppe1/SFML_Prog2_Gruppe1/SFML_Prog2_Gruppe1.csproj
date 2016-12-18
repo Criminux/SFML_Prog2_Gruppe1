@@ -55,115 +55,115 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Character\AnimationStates.cs" />
-    <Compile Include="Character\Projectile.cs" />
-    <Compile Include="Character\Quest.cs" />
-    <Compile Include="Commands\Interaction.cs" />
-    <Compile Include="Commands\PlayerMover.cs" />
-    <Compile Include="Commands\AbstractCommand.cs" />
-    <Compile Include="Character\Animation.cs" />
-    <Compile Include="Commands\CommandQueue.cs" />
-    <Compile Include="Character\EnemyNPC.cs" />
-    <Compile Include="Character\QuestNPC.cs" />
-    <Compile Include="Tile\CollisionTile.cs" />
-    <Compile Include="States\Menu\Button.cs" />
-    <Compile Include="UI\UIManager.cs" />
+    <Compile Include="CharacterSystem\AnimationStates.cs" />
+    <Compile Include="CharacterSystem\Projectile.cs" />
+    <Compile Include="CharacterSystem\Quest.cs" />
+    <Compile Include="CommandSystem\Interaction.cs" />
+    <Compile Include="CommandSystem\PlayerMover.cs" />
+    <Compile Include="CommandSystem\AbstractCommand.cs" />
+    <Compile Include="CharacterSystem\Animation.cs" />
+    <Compile Include="CommandSystem\CommandQueue.cs" />
+    <Compile Include="CharacterSystem\EnemyNPC.cs" />
+    <Compile Include="CharacterSystem\QuestNPC.cs" />
+    <Compile Include="WorldSystem\Tile\CollisionTile.cs" />
+    <Compile Include="StateMachineSystem\Menu\Button.cs" />
+    <Compile Include="StateMachineSystem\UI\UIManager.cs" />
     <Compile Include="Util\CollisionUtil.cs" />
     <Compile Include="Util\Direction.cs" />
     <Compile Include="Util\MathUtil.cs" />
-    <Compile Include="Character\Player.cs" />
-    <Compile Include="World\Item.cs" />
-    <Compile Include="World\Room.cs" />
-    <Compile Include="States\CreditScreen.cs" />
-    <Compile Include="States\GamePlay.cs" />
-    <Compile Include="States\GameStates.cs" />
-    <Compile Include="Tile\NormalTile.cs" />
-    <Compile Include="Character\Character.cs" />
+    <Compile Include="CharacterSystem\Player.cs" />
+    <Compile Include="WorldSystem\Item.cs" />
+    <Compile Include="WorldSystem\Room.cs" />
+    <Compile Include="StateMachineSystem\CreditScreen.cs" />
+    <Compile Include="StateMachineSystem\GamePlay.cs" />
+    <Compile Include="StateMachineSystem\GameStates.cs" />
+    <Compile Include="WorldSystem\Tile\NormalTile.cs" />
+    <Compile Include="CharacterSystem\Character.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Util\ProjectRenderWindow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="States\Menu\MainMenu.cs" />
-    <Compile Include="States\Menu\PauseMenu.cs" />
-    <Compile Include="States\SplashScreen.cs" />
-    <Compile Include="States\State.cs" />
-    <Compile Include="States\StateMachine.cs" />
-    <Compile Include="Tile\Tile.cs" />
-    <Compile Include="World\World.cs" />
+    <Compile Include="StateMachineSystem\Menu\MainMenu.cs" />
+    <Compile Include="StateMachineSystem\Menu\PauseMenu.cs" />
+    <Compile Include="StateMachineSystem\SplashScreen.cs" />
+    <Compile Include="StateMachineSystem\State.cs" />
+    <Compile Include="StateMachineSystem\StateMachine.cs" />
+    <Compile Include="WorldSystem\Tile\Tile.cs" />
+    <Compile Include="WorldSystem\World.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="States\Menu\POORICH.TTF">
+    <None Include="StateMachineSystem\Menu\POORICH.TTF">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Character\CharMove.png">
+    <Content Include="CharacterSystem\CharMove.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Character\EnemyNPC.png">
+    <Content Include="CharacterSystem\EnemyNPC.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Character\EnemyNPCAttackDown.png">
+    <Content Include="CharacterSystem\EnemyNPCAttackDown.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Character\EnemyNPCAttackLeft.png">
+    <Content Include="CharacterSystem\EnemyNPCAttackLeft.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Character\EnemyNPCAttackRight.png">
+    <Content Include="CharacterSystem\EnemyNPCAttackRight.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Character\EnemyNPCAttackUp.png">
+    <Content Include="CharacterSystem\EnemyNPCAttackUp.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Character\EnemyNPCWalkDown.png">
+    <Content Include="CharacterSystem\EnemyNPCWalkDown.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Character\EnemyNPCWalkLeft.png">
+    <Content Include="CharacterSystem\EnemyNPCWalkLeft.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Character\EnemyNPCWalkRight.png">
+    <Content Include="CharacterSystem\EnemyNPCWalkRight.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Character\EnemyNPCWalkUp.png">
+    <Content Include="CharacterSystem\EnemyNPCWalkUp.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Character\PlayerDeath.png">
+    <Content Include="CharacterSystem\PlayerDeath.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Character\PlayerAttackDown.png">
+    <Content Include="CharacterSystem\PlayerAttackDown.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Character\PlayerAttackLeft.png">
+    <Content Include="CharacterSystem\PlayerAttackLeft.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Character\PlayerAttackRight.png">
+    <Content Include="CharacterSystem\PlayerAttackRight.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Character\PlayerAttackUp.png">
+    <Content Include="CharacterSystem\PlayerAttackUp.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Character\PlayerWalkDown.png">
+    <Content Include="CharacterSystem\PlayerWalkDown.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Character\PlayerWalkLeft.png">
+    <Content Include="CharacterSystem\PlayerWalkLeft.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Character\PlayerWalkRight.png">
+    <Content Include="CharacterSystem\PlayerWalkRight.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Character\PlayerWalkUp.png">
+    <Content Include="CharacterSystem\PlayerWalkUp.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Character\Player.png">
+    <Content Include="CharacterSystem\Player.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Character\Projectile.png">
+    <Content Include="CharacterSystem\Projectile.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Character\QuestNPC.png">
+    <Content Include="CharacterSystem\QuestNPC.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Character\QuestNPCIdle.png">
+    <Content Include="CharacterSystem\QuestNPCIdle.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="csfml-audio-2.dll">
@@ -181,64 +181,64 @@
     <Content Include="csfml-window-2.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="States\Menu\Button.png">
+    <Content Include="StateMachineSystem\Menu\Button.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="States\Menu\ButtonPressed.png">
+    <Content Include="StateMachineSystem\Menu\ButtonPressed.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="States\Menu\CreditsScreenBackground.png">
+    <Content Include="StateMachineSystem\Menu\CreditsScreenBackground.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="States\Menu\PauseMenuBackground.png">
+    <Content Include="StateMachineSystem\Menu\PauseMenuBackground.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="States\Menu\MenuBackground.png">
+    <Content Include="StateMachineSystem\Menu\MenuBackground.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Tile\CollisionTile.png">
+    <Content Include="WorldSystem\Tile\CollisionTile.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Tile\CollisionTile_ruin.png">
+    <Content Include="WorldSystem\Tile\CollisionTile_ruin.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Tile\CollisionTile_tree1.png">
+    <Content Include="WorldSystem\Tile\CollisionTile_tree1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Tile\CollisionTile_tree2.png">
+    <Content Include="WorldSystem\Tile\CollisionTile_tree2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Tile\NormalTile.png">
+    <Content Include="WorldSystem\Tile\NormalTile.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Tile\NormalTile_bottom.png">
+    <Content Include="WorldSystem\Tile\NormalTile_bottom.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Tile\NormalTile_left.png">
+    <Content Include="WorldSystem\Tile\NormalTile_left.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Tile\NormalTile_right.png">
+    <Content Include="WorldSystem\Tile\NormalTile_right.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Tile\NormalTile_top.png">
+    <Content Include="WorldSystem\Tile\NormalTile_top.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="UI\EmptyHeart.png">
+    <Content Include="StateMachineSystem\UI\EmptyHeart.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="UI\FullHeart.png">
+    <Content Include="StateMachineSystem\UI\FullHeart.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="UI\UIBar.png">
+    <Content Include="StateMachineSystem\UI\UIBar.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="World\Item.png">
+    <Content Include="WorldSystem\Item.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="World\World.txt">
+    <Content Include="WorldSystem\World.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="World\World.xml">
+    <Content Include="WorldSystem\World.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

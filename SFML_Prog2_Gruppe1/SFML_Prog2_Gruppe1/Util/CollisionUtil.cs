@@ -10,7 +10,7 @@ using SFML.Window;
 using SFML.Graphics;
 using SFML.Audio;
 
-namespace SFML_Prog2_Gruppe1
+namespace SFML_Prog2_Gruppe1.Util
 {
     public class CollisionUtil
     {

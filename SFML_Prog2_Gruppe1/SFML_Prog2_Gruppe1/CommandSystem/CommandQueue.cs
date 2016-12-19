@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace SFML_Prog2_Gruppe1.CommandSystem
 {
@@ -42,7 +38,7 @@ namespace SFML_Prog2_Gruppe1.CommandSystem
         {
             if (movementQueue.Count == 0)
             {
-                return true; 
+                return true;
             }
             else return false;
         }

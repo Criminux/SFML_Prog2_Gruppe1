@@ -34,7 +34,7 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
         private Font font;
         private string text;
         FloatRect bounds;
-        
+
         public event EventHandler<EventArgs> Click;
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
             bounds = buttonSprite.GetGlobalBounds();
             buttonText.Position = new Vector2f(position.X + buttonSprite.GetGlobalBounds().Width / 2f, position.Y + buttonSprite.GetGlobalBounds().Height / 2f) - new Vector2f(buttonText.GetGlobalBounds().Width / 2f, buttonText.GetGlobalBounds().Height / 2f);
         }
-    
+
         /// <summary>
         /// Updates the button.
         /// </summary>

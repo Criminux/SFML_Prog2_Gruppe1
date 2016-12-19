@@ -2,6 +2,9 @@
 
 namespace SFML_Prog2_Gruppe1.CommandSystem
 {
+    /// <summary>
+    /// Concrete command for destroying enemies.
+    /// </summary>
     class Attack : AbstractCommand
     {
         /// <summary>

@@ -17,7 +17,7 @@ namespace SFML_Prog2_Gruppe1.WorldSystem
             Initialize();
 
             //texture = new Texture("Tile/NormalTile.png");
-            switch(type)
+            switch (type)
             {
                 case NormalTileType.Grass:
                     texture = new Texture("WorldSystem/Tile/NormalTile.png");

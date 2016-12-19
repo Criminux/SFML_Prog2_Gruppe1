@@ -68,18 +68,18 @@ namespace SFML_Prog2_Gruppe1
             ProjectRenderWindow.GetRenderWindowInstance().Clear(Color.White);
             stateMachine.Draw();
             ProjectRenderWindow.GetRenderWindowInstance().Display();
-            
+
             //Frames & Sleep
             ApplicationInterval = MathUtil.Clamp((30 - clockPerFrame.ElapsedTime.AsMilliseconds()), 0, 30);
             refreshAmount += 1;
-            if(clockPerSecond.ElapsedTime.AsSeconds() >= 1)
+            if (clockPerSecond.ElapsedTime.AsSeconds() >= 1)
             {
                 clockPerSecond.Restart();
                 Console.WriteLine(refreshAmount);
                 refreshAmount = 0;
             }
-            
+
             clockPerFrame.Restart();
         }
-    }        
+    }
 }

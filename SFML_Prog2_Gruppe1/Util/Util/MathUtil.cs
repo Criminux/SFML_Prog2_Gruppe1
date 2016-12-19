@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SFML_Prog2_Gruppe1.Util
 {
+    /// <summary>
+    /// Class for mathematical operations.
+    /// </summary>
     public class MathUtil
     {
         /// <summary>

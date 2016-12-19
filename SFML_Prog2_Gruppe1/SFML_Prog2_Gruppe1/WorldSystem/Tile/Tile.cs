@@ -9,11 +9,11 @@ namespace SFML_Prog2_Gruppe1.WorldSystem
     /// </summary>
     public enum NormalTileType
     {
-        Grass       = 1,
-        GrassTop    = 2,
-        GrassBot    = 3,
-        GrassL      = 4,
-        GrassR      = 5
+        Grass = 1,
+        GrassTop = 2,
+        GrassBot = 3,
+        GrassL = 4,
+        GrassR = 5
     }
 
     /// <summary>
@@ -21,10 +21,10 @@ namespace SFML_Prog2_Gruppe1.WorldSystem
     /// </summary>
     public enum CollisionTileType
     {
-        Wall    = 1,
-        Ruin    = 2,
-        Tree1   = 3,
-        Tree2   = 4
+        Wall = 1,
+        Ruin = 2,
+        Tree1 = 3,
+        Tree2 = 4
     }
 
     /// <summary>

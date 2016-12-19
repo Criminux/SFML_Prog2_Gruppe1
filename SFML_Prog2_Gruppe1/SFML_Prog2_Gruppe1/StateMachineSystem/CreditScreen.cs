@@ -101,7 +101,7 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
         public override GameStates Update()
         {
             backButton.Update(true, clicked);
-              
+
             return targetState;
         }
     }

@@ -85,16 +85,16 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
         public void Draw(Quest quest)
         {
             ProjectRenderWindow.GetRenderWindowInstance().Draw(sprite);
-            
+
             foreach (Sprite tempSprite in heartSprites)
             {
-                ProjectRenderWindow.GetRenderWindowInstance().Draw(tempSprite); 
+                ProjectRenderWindow.GetRenderWindowInstance().Draw(tempSprite);
             }
 
             ProjectRenderWindow.GetRenderWindowInstance().Draw(PlayerSpeed);
 
             if (quest != null) quest.Draw();
-            
+
         }
     }
 }

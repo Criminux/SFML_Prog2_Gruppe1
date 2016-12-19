@@ -79,7 +79,7 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
                 }
             }
         }
-        
+
         /// <summary>
         /// Updates the animation timer and increases the frame if time is right. Restarts the animation clock at the end.
         /// </summary>

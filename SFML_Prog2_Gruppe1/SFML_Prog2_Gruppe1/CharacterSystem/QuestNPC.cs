@@ -21,7 +21,7 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
             WalkRightAnimation = new Animation(Idle, 10, 1, 32, 32, 100);
             WalkLeftAnimation = new Animation(Idle, 10, 1, 32, 32, 100);
 
-            
+
             currentAnimationState = AnimationStates.Idle;
 
             Initialize();

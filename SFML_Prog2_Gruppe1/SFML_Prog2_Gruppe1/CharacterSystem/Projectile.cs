@@ -66,7 +66,7 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
         /// </summary>
         public void Draw()
         {
-                ProjectRenderWindow.GetRenderWindowInstance().Draw(projectileSprite);
+            ProjectRenderWindow.GetRenderWindowInstance().Draw(projectileSprite);
         }
     }
 }

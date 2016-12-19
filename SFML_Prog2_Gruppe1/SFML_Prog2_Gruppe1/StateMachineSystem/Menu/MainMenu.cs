@@ -43,7 +43,7 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
             startButton = new Button(new Vector2f(500, 300), "Start");
             creditsButton = new Button(new Vector2f(500, 420), "Credits");
             exitButton = new Button(new Vector2f(500, 540), "Exit");
-            
+
             startButton.Click += startButton_Click;
             creditsButton.Click += creditsButton_Click;
             exitButton.Click += exitButton_Click;
@@ -56,7 +56,7 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
 
             currentSelectionIndex = 0;
         }
-        
+
         /// <summary>
         /// Clickevent method for start.
         /// </summary>
@@ -154,7 +154,7 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
         /// <returns>State for next frame.</returns>
         public override GameStates Update()
         {
-            switch(currentSelectionIndex)
+            switch (currentSelectionIndex)
             {
                 case 0:
                     startButton.Update(true, clicked);

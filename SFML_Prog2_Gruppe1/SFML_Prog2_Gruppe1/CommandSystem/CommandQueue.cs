@@ -2,6 +2,9 @@
 
 namespace SFML_Prog2_Gruppe1.CommandSystem
 {
+    /// <summary>
+    /// Queue to hold and execute commands chronologically.
+    /// </summary>
     public class CommandQueue
     {
         private Queue<AbstractCommand> movementQueue = new Queue<AbstractCommand>();

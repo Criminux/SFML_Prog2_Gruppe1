@@ -96,7 +96,7 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
         /// </summary>
         private void onPlayerQuest()
         {
-            if(isQuestAvailable())
+            if (isQuestAvailable())
             {
                 player.QuestCompleted = false;
                 player.Quest = new Quest();
@@ -111,7 +111,7 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
         /// </param>
         private void onPlayerRoomChange(Direction direction)
         {
-            switch(direction)
+            switch (direction)
             {
                 case Direction.DOWN:
                     if (world.GetActiveRoom().ConnectedRooms.ContainsKey("botRoom")) { world.CurrentID = world.GetActiveRoom().ConnectedRooms["botRoom"]; }
@@ -174,7 +174,7 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
             uimanager.Update(player.Health, player.MovementSpeed);
 
             if (player.Health <= 0) targetState = GameStates.CreditScreenState;
-            
+
             return targetState;
         }
 
@@ -203,7 +203,7 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
         /// </returns>
         public override void HandleInput(Keyboard.Key key, bool isPressed)
         {
-            if(isPressed && key == Keyboard.Key.Escape)
+            if (isPressed && key == Keyboard.Key.Escape)
             {
                 targetState = GameStates.PauseMenuState;
             }

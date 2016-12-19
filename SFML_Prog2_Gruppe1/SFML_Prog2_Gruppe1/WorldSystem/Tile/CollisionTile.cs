@@ -16,7 +16,7 @@ namespace SFML_Prog2_Gruppe1.WorldSystem
         {
             Initialize();
 
-            switch(type)
+            switch (type)
             {
                 case CollisionTileType.Wall:
                     texture = new Texture("WorldSystem/Tile/CollisionTile.png");

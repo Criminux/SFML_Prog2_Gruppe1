@@ -2,6 +2,9 @@
 
 namespace SFML_Prog2_Gruppe1.CommandSystem
 {
+    /// <summary>
+    /// Concrete command for receiving quests near NPCs.
+    /// </summary>
     class Interaction : AbstractCommand
     {
         /// <summary>

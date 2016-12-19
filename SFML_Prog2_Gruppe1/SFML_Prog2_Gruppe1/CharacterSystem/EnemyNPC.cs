@@ -17,7 +17,7 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
         private Clock movementDelay;
         private Direction movementState;
         private Spawn spawn;
-        
+
         private Clock attackCooldown;
         private const float attackCooldownLenght = 600;
 
@@ -82,14 +82,14 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
         {
             float distance = 300;
             float distancesquared = ((playerPosition.X - position.X) * (playerPosition.X - position.X) +
-            (playerPosition.Y - position.Y) * (playerPosition.Y - position.Y));;
+            (playerPosition.Y - position.Y) * (playerPosition.Y - position.Y)); ;
 
             if (distancesquared <= distance * distance)
             {
                 Vector2f ChasePath;
                 Vector2f direction = playerPosition - position;
-                ChasePath = new Vector2f(MathUtil.Clamp<float>(direction.X,-MovementSpeed,MovementSpeed), MathUtil.Clamp<float>(direction.Y, -MovementSpeed, MovementSpeed));
-                
+                ChasePath = new Vector2f(MathUtil.Clamp<float>(direction.X, -MovementSpeed, MovementSpeed), MathUtil.Clamp<float>(direction.Y, -MovementSpeed, MovementSpeed));
+
                 if ((ChasePath.X != 0) && (ChasePath.Y != 0))
                 {
                     Velocity = new Vector2f(ChasePath.X / (float)Math.Sqrt(2), ChasePath.Y / (float)Math.Sqrt(2));
@@ -111,7 +111,7 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
         /// </summary>
         private void MoveRandom()
         {
-            if(movementDelay.ElapsedTime.AsSeconds() > RandomMovementChangeDelay)
+            if (movementDelay.ElapsedTime.AsSeconds() > RandomMovementChangeDelay)
             {
                 Random rand = new Random(DateTime.Now.Millisecond);
                 int randNumber = rand.Next(0, 4);
@@ -125,9 +125,9 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
             }
 
             if (movementState == Direction.UP)
-            { 
+            {
                 Velocity = new Vector2f(0, -MovementSpeed);
-                if(attackCooldown.ElapsedTime.AsMilliseconds() >= 600) currentAnimationState = AnimationStates.WalkUp;
+                if (attackCooldown.ElapsedTime.AsMilliseconds() >= 600) currentAnimationState = AnimationStates.WalkUp;
             }
             if (movementState == Direction.DOWN)
             {

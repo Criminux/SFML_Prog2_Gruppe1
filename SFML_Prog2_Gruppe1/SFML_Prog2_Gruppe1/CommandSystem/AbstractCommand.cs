@@ -2,6 +2,9 @@
 
 namespace SFML_Prog2_Gruppe1.CommandSystem
 {
+    /// <summary>
+    /// Blueprint for player commands.
+    /// </summary>
     public abstract class AbstractCommand
     {
         /// <summary>

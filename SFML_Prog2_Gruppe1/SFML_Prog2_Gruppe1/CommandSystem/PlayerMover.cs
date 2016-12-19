@@ -3,6 +3,9 @@ using SFML_Prog2_Gruppe1.CharacterSystem;
 
 namespace SFML_Prog2_Gruppe1.CommandSystem
 {
+    /// <summary>
+    /// Concrete command to move inside a room.
+    /// </summary>
     class PlayerMover : AbstractCommand
     {
         private Vector2f velocity;

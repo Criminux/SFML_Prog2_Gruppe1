@@ -15,7 +15,7 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
     /// </summary>
     public class Player : Character
     {
-        
+
         public delegate void RoomChangeEventHandler(Direction direction);
         public delegate void QuestEventHandler();
         public delegate void EnemyEventHandler();
@@ -132,7 +132,7 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
             stamina = 100;
             damage = 1;
             armor = 0;
-            
+
             questCompleted = false;
 
             movementSpeed = 5;
@@ -200,7 +200,7 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
 
             if (quest != null) quest.Update();
 
-            for (int i = projectiles.Count -1; i >= 0; i--)
+            for (int i = projectiles.Count - 1; i >= 0; i--)
             {
                 projectiles[i].Update();
 
@@ -210,7 +210,7 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
                 }
 
             }
-                
+
 
             CheckForEnemyCollision(room.Enemies);
             CheckForItemCollision(room.Items);
@@ -226,7 +226,7 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
         {
             List<int> savedIndex = new List<int>();
 
-            for(int i = enemies.Count - 1; i >= 0; i--)
+            for (int i = enemies.Count - 1; i >= 0; i--)
             {
                 if (ToDrawAnimation.Sprite.GetGlobalBounds().Intersects(enemies[i].Bounds))
                 {
@@ -255,9 +255,9 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
                     }
                 }
 
-                foreach(Projectile projectile in projectiles)
+                foreach (Projectile projectile in projectiles)
                 {
-                    if(projectile.Bounds.Intersects(enemies[i].Bounds))
+                    if (projectile.Bounds.Intersects(enemies[i].Bounds))
                     {
                         enemies[i].Spawn.IsUsed = false;
                         enemies.RemoveAt(i);
@@ -265,7 +265,7 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
                     }
                 }
             }
-            
+
         }
 
         /// <summary>
@@ -276,9 +276,9 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
         {
             List<int> savedIndex = new List<int>();
 
-            for(int i = items.Count - 1; i >= 0; i--)
+            for (int i = items.Count - 1; i >= 0; i--)
             {
-                if(Bounds.Intersects(items[i].Bounds))
+                if (Bounds.Intersects(items[i].Bounds))
                 {
                     diamondSound.Play();
                     items[i].Spawn.IsUsed = false;
@@ -286,7 +286,7 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
                     ItemEvent();
                 }
             }
-            
+
         }
 
         /// <summary>
@@ -347,11 +347,11 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
             if (!Keyboard.IsKeyPressed(Keyboard.Key.E))
             {
                 interactionAttempt = 0;
-            }  
+            }
             if (!Keyboard.IsKeyPressed(Keyboard.Key.Space))
             {
                 attackAttempt = 0;
-            }          
+            }
 
             if (Keyboard.IsKeyPressed(Keyboard.Key.D) || Keyboard.IsKeyPressed(Keyboard.Key.Right))
             {

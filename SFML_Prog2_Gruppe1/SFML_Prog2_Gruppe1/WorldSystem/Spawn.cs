@@ -8,7 +8,7 @@ namespace SFML_Prog2_Gruppe1.WorldSystem
     public class Spawn
     {
         private Vector2f position;
-        private bool isUsed; 
+        private bool isUsed;
 
         /// <summary>
         /// Getter and setter for the isUsed field.

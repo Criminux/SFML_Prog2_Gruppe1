@@ -16,7 +16,7 @@ namespace SFML_Prog2_Gruppe1.WorldSystem
 
         private List<Room> world;
         private int currentID;
-        
+
         /// <summary>
         /// Property to get a room by a specific id.
         /// </summary>
@@ -24,7 +24,7 @@ namespace SFML_Prog2_Gruppe1.WorldSystem
         /// <returns>Room with matching ID</returns>
         public Room GetRoomByID(int id)
         {
-            foreach(Room room in world)
+            foreach (Room room in world)
             {
                 if (room.ID == id) return room;
             }
@@ -65,7 +65,7 @@ namespace SFML_Prog2_Gruppe1.WorldSystem
         {
             XmlDocument document = new XmlDocument();
             document.Load("WorldSystem/World.xml");
-            
+
             XmlNode worldNode = document.SelectSingleNode("/World");
 
             foreach (XmlNode roomNode in worldNode.ChildNodes)
@@ -73,7 +73,7 @@ namespace SFML_Prog2_Gruppe1.WorldSystem
 
                 Room room = new Room();
 
-                foreach(XmlNode roomChild in roomNode.ChildNodes)
+                foreach (XmlNode roomChild in roomNode.ChildNodes)
                 {
                     if (roomChild.Name == "Tilemap")
                         room.Tilemap = parseTilemapFrom(roomChild.InnerText);
@@ -90,7 +90,7 @@ namespace SFML_Prog2_Gruppe1.WorldSystem
                     if (roomChild.Name == "Spawn")
                     {
                         Vector2f spawn = new Vector2f();
-                        foreach(XmlNode enemyChild in roomChild.ChildNodes)
+                        foreach (XmlNode enemyChild in roomChild.ChildNodes)
                         {
                             if (enemyChild.Name == "PositionX") spawn.X = Convert.ToInt32(enemyChild.InnerText);
                             if (enemyChild.Name == "PositionY") spawn.Y = Convert.ToInt32(enemyChild.InnerText);
@@ -110,10 +110,10 @@ namespace SFML_Prog2_Gruppe1.WorldSystem
                 }
 
                 world.Add(room);
-                
+
             }
 
-            for(int i = 0; i <= NumberOfEnemies; i++)
+            for (int i = 0; i <= NumberOfEnemies; i++)
             {
                 SpawnEnemy();
             }
@@ -142,7 +142,7 @@ namespace SFML_Prog2_Gruppe1.WorldSystem
                     if (world[randomRoom].Spawns[randomSpawn].IsUsed == false) break;
                 }
             }
-            
+
             EnemyNPC enemy = new EnemyNPC();
             enemy.Position = world[randomRoom].Spawns[randomSpawn].Position;
             enemy.Spawn = world[randomRoom].Spawns[randomSpawn];
@@ -199,7 +199,7 @@ namespace SFML_Prog2_Gruppe1.WorldSystem
 
             for (int i = 0; i < tempLines.Length; i++)
             {
-                if (!(tempLines[i] == "" || tempLines[i] == " " || tempLines[i] == "  ")) 
+                if (!(tempLines[i] == "" || tempLines[i] == " " || tempLines[i] == "  "))
                 {
                     while (tempLines[i].StartsWith(" ")) tempLines[i] = tempLines[i].Remove(0, 1);
                     finalLines.Add(tempLines[i]);
@@ -277,7 +277,7 @@ namespace SFML_Prog2_Gruppe1.WorldSystem
 
             for (int i = GetActiveRoom().Enemies.Count - 1; i >= 0; i--)
             {
-                if(GetActiveRoom().Enemies[i].Position.X < 0 || GetActiveRoom().Enemies[i].Position.X > 1280 || GetActiveRoom().Enemies[i].Position.Y < 0 || GetActiveRoom().Enemies[i].Position.Y > 672)
+                if (GetActiveRoom().Enemies[i].Position.X < 0 || GetActiveRoom().Enemies[i].Position.X > 1280 || GetActiveRoom().Enemies[i].Position.Y < 0 || GetActiveRoom().Enemies[i].Position.Y > 672)
                 {
                     GetActiveRoom().Enemies.RemoveAt(i);
                     SpawnEnemy();

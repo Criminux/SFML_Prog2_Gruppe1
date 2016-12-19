@@ -65,7 +65,7 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
         /// </returns>
         public override GameStates Update()
         {
-            if(clock.ElapsedTime.AsSeconds() >= 3f)
+            if (clock.ElapsedTime.AsSeconds() >= 3f)
             {
                 return GameStates.MainMenuState;
             }

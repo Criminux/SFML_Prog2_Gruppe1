@@ -79,7 +79,7 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
                 enemiesToKill = 0;
             }
 
-            text.Position = new Vector2f(435,685);
+            text.Position = new Vector2f(435, 685);
         }
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
         /// </summary>
         public void Update()
         {
-            if(type == QuestType.Collect)
+            if (type == QuestType.Collect)
             {
                 message = "Collect Items: " + itemsToCollect.ToString();
             }

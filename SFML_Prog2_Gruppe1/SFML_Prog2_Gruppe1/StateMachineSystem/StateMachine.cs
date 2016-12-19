@@ -173,7 +173,7 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
         /// <param name="isPressed">Is the key pressed.</param>
         public void HandleInput(Keyboard.Key key, bool isPressed)
         {
-            switch(currentState)
+            switch (currentState)
             {
                 case GameStates.SplashScreenState:
                     splashScreen.HandleInput(key, isPressed);

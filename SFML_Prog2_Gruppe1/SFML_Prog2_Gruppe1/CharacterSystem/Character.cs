@@ -12,7 +12,7 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
     /// </summary>
     public abstract class Character
     {
-        
+
         protected int stamina;
         protected int health;
         protected int damage;
@@ -28,7 +28,7 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
         protected SoundBuffer diamondBuffer;
 
         protected Clock stepTimer;
-        
+
 
         protected Animation IdleAnimation;
 
@@ -57,7 +57,7 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
         protected Texture AttackDown;
 
         protected AnimationStates currentAnimationState;
-        
+
         /// <summary>
         /// Property to get and set the current animation state.
         /// </summary>
@@ -98,7 +98,7 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
         {
             ToDrawAnimation = WalkDownAnimation;
         }
-        
+
 
         /// <summary>
         /// Getter and setter for movement.
@@ -117,7 +117,7 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
             get { return position; }
             set { position = value; }
         }
-        
+
         /// <summary>
         /// Method to update character-velocity, position and possible collisions. Calls the active animation method at the end.
         /// </summary>
@@ -135,7 +135,7 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
                 }
                 else
                 {
-                    if(this is Player) stepSound.Stop();
+                    if (this is Player) stepSound.Stop();
                 }
                 AttackLeftAnimation.Update();
                 AttackUpAnimation.Update();
@@ -147,7 +147,7 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
             {
                 IdleAnimation.Update();
             }
-            
+
             ApplyVelocity();
             ApplyPosition();
 
@@ -205,7 +205,7 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
         {
             ToDrawAnimation.Draw(position);
         }
-        
+
         /// <summary>
         /// Handles collision of the character.
         /// </summary>
@@ -283,12 +283,12 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
         /// </summary>
         private void ApplyPosition()
         {
-           ToDrawAnimation.Sprite.Position = position;
+            ToDrawAnimation.Sprite.Position = position;
         }
 
-       /// <summary>
-       /// Applies the velocity onto the position.
-       /// </summary>
+        /// <summary>
+        /// Applies the velocity onto the position.
+        /// </summary>
         private void ApplyVelocity()
         {
             position += velocity;

@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using SFML;
 using SFML.System;
-using SFML.Window;
 using SFML.Graphics;
 using SFML.Audio;
 using SFML_Prog2_Gruppe1.WorldSystem;
@@ -14,16 +7,12 @@ using SFML_Prog2_Gruppe1.Util;
 
 namespace SFML_Prog2_Gruppe1.CharacterSystem
 {
+    /// <summary>
+    /// Blueprint for all the characters in the game.
+    /// </summary>
     public abstract class Character
     {
-        public enum CharacterID
-        {
-            Player = 1,
-            EnemyNPC = 2,
-            QuestNPC = 3
-        }
-
-        protected CharacterID characterType;
+        
         protected int stamina;
         protected int health;
         protected int damage;
@@ -69,29 +58,42 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
 
         protected AnimationStates currentAnimationState;
         
+        /// <summary>
+        /// Property to get and set the current animation state.
+        /// </summary>
         public AnimationStates CurrentAnimationState
         {
             get { return currentAnimationState; }
             set { currentAnimationState = value; }
         }
 
+        /// <summary>
+        /// Property to get the player health.
+        /// </summary>
         public int Health
         {
             get { return health; }
         }
+
+        /// <summary>
+        /// Property to get the boundaries for the rectangle.
+        /// </summary>
         public FloatRect Bounds
         {
             get { return ToDrawAnimation.Sprite.GetGlobalBounds(); }
         }
 
         /// <summary>
-        /// Character sprites and standard velocity of 0 are getting assigned.
+        ///Standard velocity of 0 is getting assigned for every character.
         /// </summary>
         public Character()
         {
             velocity = new Vector2f(0, 0);
         }
 
+        /// <summary>
+        /// Characters start with the walk down animation.
+        /// </summary>
         protected void Initialize()
         {
             ToDrawAnimation = WalkDownAnimation;
@@ -117,12 +119,11 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
         }
         
         /// <summary>
-        /// Method to update character-velocity and possible collisions.
+        /// Method to update character-velocity, position and possible collisions. Calls the active animation method at the end.
         /// </summary>
         /// <param name="room">Tilemap of active room.</param>
         public virtual void Update(Room room)
         {
-            //TODO: Clean Up
             if (this is Player || this is EnemyNPC)
             {
                 if (!(velocity.X == 0 && velocity.Y == 0))
@@ -157,6 +158,9 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
             SetActiveAnimation();
         }
 
+        /// <summary>
+        /// Determines which animation to draw.
+        /// </summary>
         private void SetActiveAnimation()
         {
             switch (currentAnimationState)
@@ -199,7 +203,7 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
         /// </summary>
         public virtual void Draw()
         {
-            ToDrawAnimation.Draw(position, false);
+            ToDrawAnimation.Draw(position);
         }
         
         /// <summary>

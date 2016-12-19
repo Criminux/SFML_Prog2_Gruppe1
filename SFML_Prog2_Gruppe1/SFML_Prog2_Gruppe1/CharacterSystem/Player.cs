@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using SFML;
+﻿using System.Collections.Generic;
 using SFML.System;
 using SFML.Window;
 using SFML.Graphics;
@@ -16,6 +10,9 @@ using SFML_Prog2_Gruppe1.WorldSystem;
 
 namespace SFML_Prog2_Gruppe1.CharacterSystem
 {
+    /// <summary>
+    /// Is a child of character and a blueprint for the player.
+    /// </summary>
     public class Player : Character
     {
         
@@ -28,7 +25,19 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
         public event QuestEventHandler QuestEvent;
         public event EnemyEventHandler EnemyEvent;
         public event ItemEventHandler ItemEvent;
+        float projectileSpeed = 8;
+        private Clock attackTimer;
+        private float shotCoolDown;
+        private bool questCompleted;
+        private Quest quest;
+        private List<Projectile> projectiles;
+        int interactionAttempt = 0;
+        private Clock lifeCooldown;
+        private int attackAttempt;
 
+        /// <summary>
+        /// Property to get and set the movement speed.
+        /// </summary>
         float movementSpeed;
         public float MovementSpeed
         {
@@ -40,8 +49,9 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
             }
         }
 
-        float projectileSpeed = 8;
-
+        /// <summary>
+        /// Property to get and set the projectile speed.
+        /// </summary>
         public float ProjectileSpeed
         {
             get { return projectileSpeed; }
@@ -58,8 +68,9 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
             }
         }
 
-        private Clock attackTimer;
-
+        /// <summary>
+        /// Property to get and set the shot cooldown.
+        /// </summary>
         public float ShotCoolDown
         {
             get { return shotCoolDown; }
@@ -76,28 +87,23 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
             }
         }
 
-        private float shotCoolDown;
-
-        private bool questCompleted;
+        /// <summary>
+        /// Property to get and set the quest completed value.
+        /// </summary>
         public bool QuestCompleted
         {
             get { return questCompleted; }
             set { questCompleted = value; }
         }
 
-        private Quest quest;
-        private List<Projectile> projectiles;
-        int interactionAttempt = 0;
-
-
+        /// <summary>
+        /// Property to get and set the current quest.
+        /// </summary>
         public Quest Quest
         {
             get { return quest; }
             set { quest = value; }
         }
-
-        private Clock lifeCooldown;
-        private int attackAttempt;
 
         /// <summary>
         /// An command of this class will move the player in the desired direction.
@@ -122,7 +128,6 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
         /// </summary>
         public Player() : base()
         {
-            characterType = CharacterID.Player;
             health = 5;
             stamina = 100;
             damage = 1;
@@ -178,7 +183,6 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
 
             SetAndApplyPosition(new Vector2f(200, 200));
 
-            //TODO: Testing purpose
             if (quest == null) quest = new Quest();
 
             projectiles = new List<Projectile>();
@@ -395,6 +399,10 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
             }
         }
 
+        /// <summary>
+        /// Let's the player attack and sets the current animation state.
+        /// </summary>
+        /// <returns>The correct animation state.</returns>
         public AnimationStates Attack()
         {
             if (currentAnimationState == AnimationStates.WalkLeft)
@@ -456,6 +464,9 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
 
         }
 
+        /// <summary>
+        /// Draws the projectiles and the player.
+        /// </summary>
         public override void Draw()
         {
             foreach (Projectile projectile in projectiles)

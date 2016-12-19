@@ -1,24 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using SFML;
 using SFML.System;
-using SFML.Window;
 using SFML.Graphics;
-using SFML.Audio;
 using SFML_Prog2_Gruppe1.Util;
 
 namespace SFML_Prog2_Gruppe1.CharacterSystem
 {
+    /// <summary>
+    /// Enumeration for the different quest types.
+    /// </summary>
     public enum QuestType
     {
         Kill = 1,
         Collect = 2
     }
 
+    /// <summary>
+    /// Blueprint for all possible quests.
+    /// </summary>
     public class Quest
     {
         private QuestType type;
@@ -28,16 +26,27 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
         private int enemiesToKill;
         private int itemsToCollect;
 
+        /// <summary>
+        /// Property to get and set the enemy to kill value.
+        /// </summary>
         public int EnemiesToKill
         {
             get { return enemiesToKill; }
             set { enemiesToKill = value; }
         }
+
+        /// <summary>
+        /// Property to get and set the items to collect value.
+        /// </summary>
         public int ItemsToCollect
         {
             get { return itemsToCollect; }
             set { itemsToCollect = value; }
         }
+
+        /// <summary>
+        /// Property to get the quest type.
+        /// </summary>
         public QuestType Type
         {
             get { return type; }
@@ -97,8 +106,5 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
         {
             ProjectRenderWindow.GetRenderWindowInstance().Draw(text);
         }
-
-
-        
     }
 }

@@ -1,20 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using SFML;
 using SFML.System;
-using SFML.Window;
 using SFML.Graphics;
-using SFML.Audio;
 
 using SFML_Prog2_Gruppe1.Util;
 using SFML_Prog2_Gruppe1.WorldSystem;
 
 namespace SFML_Prog2_Gruppe1.CharacterSystem
 {
+    /// <summary>
+    /// Is a child of character and a blueprint for all the enemies.
+    /// </summary>
     public class EnemyNPC : Character
     {
         const float MovementSpeed = 3;
@@ -22,7 +17,13 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
         private Clock movementDelay;
         private Direction movementState;
         private Spawn spawn;
+        
+        private Clock attackCooldown;
+        private const float attackCooldownLenght = 600;
 
+        /// <summary>
+        /// Property to get and set the different spawn points.
+        /// </summary>
         public Spawn Spawn
         {
             get { return spawn; }
@@ -30,16 +31,11 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
         }
 
 
-        private Clock attackCooldown;
-        private const float attackCooldownLenght = 600;
-
-
         /// <summary>
         /// Applies basic stats to the enemy NPC. Loads correct texture and applies starting position.
         /// </summary>
         public EnemyNPC() : base()
         {
-            characterType = CharacterID.EnemyNPC;
             health = 25;
             stamina = 25;
             damage = 10;
@@ -150,7 +146,9 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
             }
         }
 
-
+        /// <summary>
+        /// Restarts the attack cooldown timer.
+        /// </summary>
         public void ResetAttackCooldown()
         {
             attackCooldown.Restart();

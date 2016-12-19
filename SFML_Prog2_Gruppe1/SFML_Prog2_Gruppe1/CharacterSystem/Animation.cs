@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using SFML.Audio;
+﻿using System.Collections.Generic;
 using SFML.Graphics;
 using SFML.System;
-using SFML.Window;
 using SFML_Prog2_Gruppe1.Util;
 
 namespace SFML_Prog2_Gruppe1.CharacterSystem
 {
+    /// <summary>
+    /// Handles all the animations necessary.
+    /// </summary>
     public class Animation
     {
         private Texture spriteSheet;
@@ -24,14 +20,25 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
         private int animationSpriteHeight;
         private int animationSpriteWidth;
         private List<IntRect> animationSprites;
-        private Clock clock;
+        private Clock animationClock;
 
-
+        /// <summary>
+        /// Property to get the character sprites for the animations.
+        /// </summary>
         public Sprite Sprite
         {
             get { return sprite; }
         }
 
+        /// <summary>
+        /// Assigns the variables and has a animation clock to time the animations properly. Calls load method at the end.
+        /// </summary>
+        /// <param name="spriteSheet">Spritesheet for animations</param>
+        /// <param name="countX">The amount of sprites on the x-axis</param>
+        /// <param name="countY">The amount of sprites on the y-axis</param>
+        /// <param name="width">The width of the spritesheet in pixel</param>
+        /// <param name="height">The height of the spritesheet in pixel</param>
+        /// <param name="time">Time for the animation</param>
         public Animation(Texture spriteSheet, int countX, int countY, int width, int height, int time)
         {
             this.spriteSheet = spriteSheet;
@@ -44,14 +51,17 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
             this.currentFrame = 0;
             this.animationSprites = new List<IntRect>();
 
-            clock = new Clock();
-            clock.Restart();
+            animationClock = new Clock();
+            animationClock.Restart();
 
             sprite = new Sprite();
 
             Load();
         }
 
+        /// <summary>
+        /// Loads the sprites from the spritesheet and assignes correct rectangles.
+        /// </summary>
         protected void Load()
         {
             //Loads the sprites from the spritesheets
@@ -70,10 +80,13 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
             }
         }
         
+        /// <summary>
+        /// Updates the animation timer and increases the frame if time is right. Restarts the animation clock at the end.
+        /// </summary>
         public void Update()
         {
             //Updates the characters in relation to the game time and the frames
-            int deltaTime = clock.ElapsedTime.AsMilliseconds();
+            int deltaTime = animationClock.ElapsedTime.AsMilliseconds();
 
             currentAnimationTime -= deltaTime;
 
@@ -87,22 +100,18 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
                 }
                 currentAnimationTime = animationTime;
             }
-            clock.Restart();
+            animationClock.Restart();
         }
 
-        public void Draw(Vector2f position, bool InvertHorizontal)
+        /// <summary>
+        /// Draws the character with the correct sprites and on the correct position in the render window.
+        /// </summary>
+        /// <param name="position"></param>
+        /// <param name="InvertHorizontal"></param>
+        public void Draw(Vector2f position)
         {
-            //Draws the sprites and flips them if needed
-
             sprite = new Sprite(spriteSheet, animationSprites[currentFrame]);
             sprite.Position = position;
-            
-
-            if (InvertHorizontal)
-            {
-                sprite.Scale = new Vector2f(-1f, 1);
-                ProjectRenderWindow.GetRenderWindowInstance().Draw(sprite);
-            }
 
             ProjectRenderWindow.GetRenderWindowInstance().Draw(sprite);
         }

@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using SFML;
-using SFML.System;
-using SFML.Window;
+﻿using SFML.System;
 using SFML.Graphics;
-using SFML.Audio;
 using SFML_Prog2_Gruppe1.Util;
 
 namespace SFML_Prog2_Gruppe1.CharacterSystem
 {
+    /// <summary>
+    /// Blueprint for all projectiles.
+    /// </summary>
     public class Projectile
     {
         private Texture projectileTexture;
@@ -23,18 +17,28 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
 
         private Clock destructionTimer;
 
+        /// <summary>
+        /// Property to get the timer which destroys the projectiles.
+        /// </summary>
         public Clock DestructionTimer
         {
             get { return destructionTimer; }
         }
 
+        /// <summary>
+        /// Property to get the bounds of the projectile.
+        /// </summary>
         public FloatRect Bounds
         {
             get { return projectileSprite.GetGlobalBounds(); }
         }
 
 
-
+        /// <summary>
+        /// Assigns correct texture, position and velocity.
+        /// </summary>
+        /// <param name="position">Position of the projectile.</param>
+        /// <param name="velocity">Velocity of the projectile.</param>
         public Projectile(Vector2f position, Vector2f velocity)
         {
             projectileTexture = new Texture("CharacterSystem/Projectile.png");
@@ -48,17 +52,21 @@ namespace SFML_Prog2_Gruppe1.CharacterSystem
             projectileSprite.Position = position;
         }
 
+        /// <summary>
+        /// Updates the velocity and position.
+        /// </summary>
         public void Update()
         {
             position += velocity;
             projectileSprite.Position = position;
         }
 
+        /// <summary>
+        /// Draws the projectile.
+        /// </summary>
         public void Draw()
         {
                 ProjectRenderWindow.GetRenderWindowInstance().Draw(projectileSprite);
         }
-
-
     }
 }

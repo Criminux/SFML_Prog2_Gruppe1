@@ -21,12 +21,7 @@ namespace SFML_Prog2_Gruppe1.WorldSystem
 
         private List<Room> world;
         private int currentID;
-
-        //public Tile[,] CurrentRoom
-        //{
-        //    get { return world[current].Tilemap; }
-        //}
-
+        
         public Room GetRoomByID(int id)
         {
             foreach(Room room in world)
@@ -258,6 +253,15 @@ namespace SFML_Prog2_Gruppe1.WorldSystem
         public void Update(Vector2f playerPosition)
         {
             GetActiveRoom().Update(playerPosition);
+
+            for (int i = GetActiveRoom().Enemies.Count - 1; i >= 0; i--)
+            {
+                if(GetActiveRoom().Enemies[i].Position.X < 0 || GetActiveRoom().Enemies[i].Position.X > 1280 || GetActiveRoom().Enemies[i].Position.Y < 0 || GetActiveRoom().Enemies[i].Position.Y > 672)
+                {
+                    GetActiveRoom().Enemies.RemoveAt(i);
+                    SpawnEnemy();
+                }
+            }
         }
 
         public void Draw()

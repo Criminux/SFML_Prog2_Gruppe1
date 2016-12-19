@@ -1,14 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using SFML;
-using SFML.System;
+﻿using SFML.System;
 using SFML.Window;
-using SFML.Graphics;
-using SFML.Audio;
 using SFML_Prog2_Gruppe1.Util;
 using SFML_Prog2_Gruppe1.WorldSystem;
 using SFML_Prog2_Gruppe1.CharacterSystem;
@@ -16,6 +7,9 @@ using SFML_Prog2_Gruppe1.CommandSystem;
 
 namespace SFML_Prog2_Gruppe1.StateMachineSystem
 {
+    /// <summary>
+    /// Gameplay state for managing the world, player, ui and how they work together.
+    /// </summary>
     public class GamePlay : State
     {
         World world;
@@ -24,6 +18,9 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
         CommandQueue commandQueue;
         GameStates targetState;
 
+        /// <summary>
+        /// Getter for the target state.
+        /// </summary>
         public GameStates TargetState
         {
             get { return targetState; }
@@ -131,9 +128,11 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
             }
         }
 
+        /// <summary>
+        /// Disposes the state.
+        /// </summary>
         public override void Dispose()
         {
-           // throw new NotImplementedException();
         }
 
         /// <summary>
@@ -146,6 +145,9 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
             uimanager.Draw(player.Quest);
         }
 
+        /// <summary>
+        /// Initializes the state.
+        /// </summary>
         public override void Initialize()
         {
             targetState = GameStates.GamePlayState;

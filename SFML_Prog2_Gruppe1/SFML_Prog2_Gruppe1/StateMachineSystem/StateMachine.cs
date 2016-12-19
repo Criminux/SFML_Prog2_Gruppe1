@@ -5,6 +5,9 @@ using SFML_Prog2_Gruppe1.Util;
 
 namespace SFML_Prog2_Gruppe1.StateMachineSystem
 {
+    /// <summary>
+    /// StateMachine for holding all states and playing the background music.
+    /// </summary>
     public class StateMachine
     {
         private GameStates currentState, previousState, targetState;
@@ -15,11 +18,17 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
         private CreditScreen creditScreen;
         private Music soundTrack;
 
+        /// <summary>
+        /// Getter for the current state.
+        /// </summary>
         public GameStates CurrentState
         {
             get { return currentState; }
         }
 
+        /// <summary>
+        /// Constructor of the statemachine.
+        /// </summary>
         public StateMachine()
         {
 
@@ -60,6 +69,10 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
             }
         }
 
+        /// <summary>
+        /// Disposes one specific state.
+        /// </summary>
+        /// <param name="state">State to dispose.</param>
         private void DisposeState(State state)
         {
             if (targetState != currentState)

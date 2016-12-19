@@ -6,6 +6,9 @@ using SFML_Prog2_Gruppe1.Util;
 
 namespace SFML_Prog2_Gruppe1.StateMachineSystem
 {
+    /// <summary>
+    /// MainMenu as State.
+    /// </summary>
     public class MainMenu : State
     {
         private Button startButton;
@@ -26,7 +29,9 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
         private int currentSelectionIndex;
         private bool clicked;
 
-
+        /// <summary>
+        /// Constructor for main menu state.
+        /// </summary>
         public MainMenu()
         {
             switchButtonBuffer = new SoundBuffer("StateMachineSystem/Menu/Klick.wav");
@@ -52,33 +57,60 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
             currentSelectionIndex = 0;
         }
         
+        /// <summary>
+        /// Clickevent method for start.
+        /// </summary>
+        /// <param name="sender">Object param.</param>
+        /// <param name="e">Event arguments param.</param>
         private void startButton_Click(object sender, System.EventArgs e)
         {
             targetState = GameStates.GamePlayState;
         }
+
+        /// <summary>
+        /// Clickevent method for credits.
+        /// </summary>
+        /// <param name="sender">Object param.</param>
+        /// <param name="e">Event arguments param.</param>
         private void creditsButton_Click(object sender, System.EventArgs e)
         {
             targetState = GameStates.CreditScreenState;
         }
+
+        /// <summary>
+        /// Clickevent method for exit.
+        /// </summary>
+        /// <param name="sender">Object param.</param>
+        /// <param name="e">Event arguments param.</param>
         private void exitButton_Click(object sender, System.EventArgs e)
         {
             targetState = GameStates.QuitState;
         }
 
+        /// <summary>
+        /// Disposing the state.
+        /// </summary>
         public override void Dispose()
         {
         }
 
+        /// <summary>
+        /// Draws the main menu.
+        /// </summary>
         public override void Draw()
         {
             ProjectRenderWindow.GetRenderWindowInstance().Draw(menuSprite);
 
-            //Draw Buttons
             startButton.Draw();
             creditsButton.Draw();
             exitButton.Draw();
         }
 
+        /// <summary>
+        /// Handle input in main menu.
+        /// </summary>
+        /// <param name="key">Pressed key.</param>
+        /// <param name="isPressed">is the key pressed.</param>
         public override void HandleInput(Keyboard.Key key, bool isPressed)
         {
             if ((isPressed && key == Keyboard.Key.W) || (isPressed && key == Keyboard.Key.Up))
@@ -107,12 +139,19 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
             }
         }
 
+        /// <summary>
+        /// Initializes the state.
+        /// </summary>
         public override void Initialize()
         {
             targetState = GameStates.MainMenuState;
             clicked = false;
         }
 
+        /// <summary>
+        /// Update the state.
+        /// </summary>
+        /// <returns>State for next frame.</returns>
         public override GameStates Update()
         {
             switch(currentSelectionIndex)

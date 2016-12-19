@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using SFML;
+﻿using System.Collections.Generic;
 using SFML.System;
-using SFML.Window;
 using SFML.Graphics;
-using SFML.Audio;
 using SFML_Prog2_Gruppe1.CharacterSystem;
 using SFML_Prog2_Gruppe1.Util;
 
 namespace SFML_Prog2_Gruppe1.StateMachineSystem
 {
+    /// <summary>
+    /// Manages UI for health, quest and stats.
+    /// </summary>
     public class UIManager
     {
         private Texture uiBar;

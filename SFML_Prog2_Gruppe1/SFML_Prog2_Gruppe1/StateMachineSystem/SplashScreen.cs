@@ -1,24 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using SFML;
-using SFML.System;
+﻿using SFML.System;
 using SFML.Window;
 using SFML.Graphics;
-using SFML.Audio;
 using SFML_Prog2_Gruppe1.Util;
 
 namespace SFML_Prog2_Gruppe1.StateMachineSystem
 {
+    /// <summary>
+    /// Spash screen state.
+    /// </summary>
     public class SplashScreen : State
     {
         Clock clock;
         Texture splashTexture;
         Sprite splashSprite;
 
+        /// <summary>
+        /// Constructor for the splash screen.
+        /// </summary>
         public SplashScreen()
         {
             splashTexture = new Texture("StateMachineSystem/Splash.png");
@@ -26,21 +24,33 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
             Initialize();
         }
 
-
+        /// <summary>
+        /// Disposes the state.
+        /// </summary>
         public override void Dispose()
         {
-            //throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Draws the state.
+        /// </summary>
         public override void Draw()
         {
             ProjectRenderWindow.GetRenderWindowInstance().Draw(splashSprite);
         }
 
+        /// <summary>
+        /// Handle input for specific state.
+        /// </summary>
+        /// <param name="key">Key to check</param>
+        /// <param name="isPressed">Is the key pressed.</param>
         public override void HandleInput(Keyboard.Key key, bool isPressed)
         {
         }
 
+        /// <summary>
+        /// Initializes the state.
+        /// </summary>
         public override void Initialize()
         {
             clock = new Clock();

@@ -6,6 +6,9 @@ using SFML_Prog2_Gruppe1.Util;
 
 namespace SFML_Prog2_Gruppe1.StateMachineSystem
 {
+    /// <summary>
+    /// State for puse menu.
+    /// </summary>
     public class PauseMenu : State
     {
         private Button resumeButton;
@@ -25,11 +28,17 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
         private int currentSelectionIndex;
         private bool clicked;
 
+        /// <summary>
+        /// Getter for target state.
+        /// </summary>
         public GameStates TargetState
         {
             get { return targetState; }
         }
 
+        /// <summary>
+        /// Constructor for pause menu.
+        /// </summary>
         public PauseMenu()
         {
             switchButtonBuffer = new SoundBuffer("StateMachineSystem/Menu/Klick.wav");
@@ -53,28 +62,49 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
             currentSelectionIndex = 0;
         }
 
+        /// <summary>
+        /// Clickevent for resume.
+        /// </summary>
+        /// <param name="sender">sender param.</param>
+        /// <param name="e">eventarguments param.</param>
         private void resumeButton_Click(object sender, System.EventArgs e)
         {
             targetState = GameStates.GamePlayState;
         }
+
+        /// <summary>
+        /// Clickevent for exit.
+        /// </summary>
+        /// <param name="sender">sender param.</param>
+        /// <param name="e">eventarguments param.</param>
         private void exitButton_Click(object sender, System.EventArgs e)
         {
             targetState = GameStates.MainMenuState;
         }
 
+        /// <summary>
+        /// Dispose the state.
+        /// </summary>
         public override void Dispose()
         {
         }
 
+        /// <summary>
+        /// Draws the state.
+        /// </summary>
         public override void Draw()
         {
             ProjectRenderWindow.GetRenderWindowInstance().Draw(menuSprite);
 
-            //Draw Buttons
             resumeButton.Draw();
             menuButton.Draw();
         }
 
+        /// <summary>
+        /// Handle input for the specific state.
+        /// </summary>
+        /// <param name="key">Key to check.</param>
+        /// <param name="isPressed">Is the key pressed.</param>
         public override void HandleInput(Keyboard.Key key, bool isPressed)
         {
             if ((isPressed && key == Keyboard.Key.W) || (isPressed && key == Keyboard.Key.Up))
@@ -103,12 +133,19 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
             }
         }
 
+        /// <summary>
+        /// Initializes the state.
+        /// </summary>
         public override void Initialize()
         {
             targetState = GameStates.PauseMenuState;
             clicked = false;
         }
 
+        /// <summary>
+        /// Updates the state.
+        /// </summary>
+        /// <returns>State for the next frame.</returns>
         public override GameStates Update()
         {
             switch (currentSelectionIndex)

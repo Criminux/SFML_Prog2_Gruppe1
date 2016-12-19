@@ -20,6 +20,9 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
 
         bool clicked;
 
+        /// <summary>
+        /// Constructor for credits screen.
+        /// </summary>
         public CreditScreen()
         {
             klickButtonBuffer = new SoundBuffer("StateMachineSystem/Menu/Klack.wav");
@@ -35,15 +38,26 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
             creditSprite = new Sprite(creditsScreen);
         }
 
+        /// <summary>
+        /// Clickevent for back button.
+        /// </summary>
+        /// <param name="sender">sender param.</param>
+        /// <param name="e">eventarguments param.</param>
         private void backButton_Click(object sender, System.EventArgs e)
         {
             targetState = GameStates.MainMenuState;
         }
 
+        /// <summary>
+        /// Dispose the state.
+        /// </summary>
         public override void Dispose()
         {
         }
 
+        /// <summary>
+        /// Draws the state.
+        /// </summary>
         public override void Draw()
         {
             ProjectRenderWindow.GetRenderWindowInstance().Draw(creditSprite);
@@ -51,6 +65,11 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
             backButton.Draw();
         }
 
+        /// <summary>
+        /// Handles the input for specific state.
+        /// </summary>
+        /// <param name="key">Key to check.</param>
+        /// <param name="isPressed">Is the key pressed.</param>
         public override void HandleInput(Keyboard.Key key, bool isPressed)
         {
             if (isPressed && key == Keyboard.Key.Return)
@@ -66,12 +85,19 @@ namespace SFML_Prog2_Gruppe1.StateMachineSystem
             }
         }
 
+        /// <summary>
+        /// Initializes the state.
+        /// </summary>
         public override void Initialize()
         {
             targetState = GameStates.CreditScreenState;
             clicked = false;
         }
 
+        /// <summary>
+        /// Updates the state.
+        /// </summary>
+        /// <returns>State for the next frame.</returns>
         public override GameStates Update()
         {
             backButton.Update(true, clicked);

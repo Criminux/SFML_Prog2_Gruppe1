@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using SFML;
-using SFML.System;
-using SFML.Window;
+﻿using SFML.System;
 using SFML.Graphics;
-using SFML.Audio;
 using SFML_Prog2_Gruppe1.Util;
 
 namespace SFML_Prog2_Gruppe1.WorldSystem
 {
+    /// <summary>
+    /// Different types of normal tiles.
+    /// </summary>
     public enum NormalTileType
     {
         Grass       = 1,
@@ -22,6 +16,9 @@ namespace SFML_Prog2_Gruppe1.WorldSystem
         GrassR      = 5
     }
 
+    /// <summary>
+    /// Different types of collidable tiles.
+    /// </summary>
     public enum CollisionTileType
     {
         Wall    = 1,
@@ -30,7 +27,9 @@ namespace SFML_Prog2_Gruppe1.WorldSystem
         Tree2   = 4
     }
 
-
+    /// <summary>
+    /// Abstract tile-class as parent for normal and collidable tiles.
+    /// </summary>
     public abstract class Tile
     {
         public const int Width = 32;
@@ -56,6 +55,9 @@ namespace SFML_Prog2_Gruppe1.WorldSystem
             get { return sprite.GetGlobalBounds(); }
         }
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public Tile()
         {
         }

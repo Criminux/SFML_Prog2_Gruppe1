@@ -292,9 +292,6 @@
     <Content Include="WorldSystem\Item.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="WorldSystem\World.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="WorldSystem\World.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

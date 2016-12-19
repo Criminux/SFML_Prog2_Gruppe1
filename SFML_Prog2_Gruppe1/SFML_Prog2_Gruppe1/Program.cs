@@ -7,6 +7,9 @@ using System;
 
 namespace SFML_Prog2_Gruppe1
 {
+    /// <summary>
+    /// Entry point of the game.
+    /// </summary>
     class Program
     {
         static int ApplicationInterval = 17;
@@ -17,6 +20,9 @@ namespace SFML_Prog2_Gruppe1
         static Clock clockPerFrame = new Clock();
         static Clock clockPerSecond = new Clock();
 
+        /// <summary>
+        /// Main method of the program for initializing and starting the loop.
+        /// </summary>
         static void Main()
         {
             ProjectRenderWindow.GetRenderWindowInstance().SetActive();
@@ -50,7 +56,7 @@ namespace SFML_Prog2_Gruppe1
         }
 
         /// <summary>
-        /// Lets the game loop itself.
+        /// Lets the game loop itself in a constant frame rate.
         /// </summary>
         private static void ApplicationLoop()
         {
@@ -62,10 +68,8 @@ namespace SFML_Prog2_Gruppe1
             ProjectRenderWindow.GetRenderWindowInstance().Clear(Color.White);
             stateMachine.Draw();
             ProjectRenderWindow.GetRenderWindowInstance().Display();
-
-            //Sleep
-
-            //Frames
+            
+            //Frames & Sleep
             ApplicationInterval = MathUtil.Clamp((30 - clockPerFrame.ElapsedTime.AsMilliseconds()), 0, 30);
             refreshAmount += 1;
             if(clockPerSecond.ElapsedTime.AsSeconds() >= 1)

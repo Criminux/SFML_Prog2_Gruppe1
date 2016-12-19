@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using SFML;
+﻿using System.Collections.Generic;
 using SFML.System;
-using SFML.Window;
-using SFML.Graphics;
-using SFML.Audio;
 using SFML_Prog2_Gruppe1.CharacterSystem;
 
 namespace SFML_Prog2_Gruppe1.WorldSystem
 {
+    /// <summary>
+    /// Room class for holding one room with its tilemap and containing enemies, npcs and items.
+    /// </summary>
     public class Room
     {
         private Tile[,] tilemap;
@@ -78,6 +72,9 @@ namespace SFML_Prog2_Gruppe1.WorldSystem
             set { items = value; }
         }
 
+        /// <summary>
+        /// GEtter and setter for the spawns in a room.
+        /// </summary>
         public List<Spawn> Spawns
         {
             get { return spawns; }
@@ -96,6 +93,16 @@ namespace SFML_Prog2_Gruppe1.WorldSystem
             spawns = new List<Spawn>();
         }
 
+        /// <summary>
+        /// Constructor with all fields.
+        /// </summary>
+        /// <param name="tilemap">2-dimensional tilearray</param>
+        /// <param name="ID">Room id</param>
+        /// <param name="connectedRooms">Dictionary of all connected rooms</param>
+        /// <param name="enemies">List of enemies</param>
+        /// <param name="npcs">List of npcs</param>
+        /// <param name="items">List of items</param>
+        /// <param name="spawns">List of spawns</param>
         public Room(Tile[,] tilemap, int ID, Dictionary<string, int> connectedRooms, List<EnemyNPC> enemies, List<QuestNPC> npcs, List<Item> items, List<Spawn> spawns)
         {
             this.tilemap = tilemap;
@@ -107,6 +114,10 @@ namespace SFML_Prog2_Gruppe1.WorldSystem
             this.spawns = spawns;
         }
 
+        /// <summary>
+        /// Updates the room and its enemies and npcs.
+        /// </summary>
+        /// <param name="playerPosition">Position of the player.</param>
         public void Update(Vector2f playerPosition)
         {
             foreach (EnemyNPC tempEnemy in enemies)

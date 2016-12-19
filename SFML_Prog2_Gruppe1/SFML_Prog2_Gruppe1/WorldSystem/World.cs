@@ -1,19 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using SFML;
 using SFML.System;
-using SFML.Window;
-using SFML.Graphics;
-using SFML.Audio;
 using System.Xml;
 using SFML_Prog2_Gruppe1.CharacterSystem;
 
 namespace SFML_Prog2_Gruppe1.WorldSystem
 {
+    /// <summary>
+    /// Manages the world and its rooms. Also initializes the word from XML.
+    /// </summary>
     public class World
     {
         private const int NumberOfEnemies = 5;
@@ -22,6 +17,11 @@ namespace SFML_Prog2_Gruppe1.WorldSystem
         private List<Room> world;
         private int currentID;
         
+        /// <summary>
+        /// Property to get a room by a specific id.
+        /// </summary>
+        /// <param name="id">ID of the room</param>
+        /// <returns>Room with matching ID</returns>
         public Room GetRoomByID(int id)
         {
             foreach(Room room in world)
@@ -30,17 +30,27 @@ namespace SFML_Prog2_Gruppe1.WorldSystem
             }
             return new Room();
         }
+        /// <summary>
+        /// Property to return active room.
+        /// </summary>
+        /// <returns>Room which is active</returns>
         public Room GetActiveRoom()
         {
             return GetRoomByID(currentID);
         }
 
+        /// <summary>
+        /// Getter and setter for active ID.
+        /// </summary>
         public int CurrentID
         {
             get { return currentID; }
             set { currentID = value; }
         }
 
+        /// <summary>
+        /// Constructor of world to call initialize and reset variables.
+        /// </summary>
         public World()
         {
             world = new List<Room>();
@@ -141,7 +151,9 @@ namespace SFML_Prog2_Gruppe1.WorldSystem
             world[randomRoom].Enemies.Add(enemy);
         }
 
-        //TODO: Check if an item is already spawned at position.
+        /// <summary>
+        /// Spawns a random item.
+        /// </summary>
         public void SpawnItem()
         {
             Random rand = new Random(DateTime.Now.Millisecond);
@@ -238,6 +250,11 @@ namespace SFML_Prog2_Gruppe1.WorldSystem
             return tileMap;
         }
 
+        /// <summary>
+        /// Check if current room is start room.
+        /// </summary>
+        /// <param name="currentID">current ID</param>
+        /// <returns>true if current room is start room.</returns>
         public static bool isAtStart(int currentID)
         {
             if (currentID == 22)
@@ -250,6 +267,10 @@ namespace SFML_Prog2_Gruppe1.WorldSystem
             }
         }
 
+        /// <summary>
+        /// Updates the world.
+        /// </summary>
+        /// <param name="playerPosition">Position of player.</param>
         public void Update(Vector2f playerPosition)
         {
             GetActiveRoom().Update(playerPosition);
@@ -264,6 +285,9 @@ namespace SFML_Prog2_Gruppe1.WorldSystem
             }
         }
 
+        /// <summary>
+        /// Draws the world.
+        /// </summary>
         public void Draw()
         {
             GetActiveRoom().Draw();

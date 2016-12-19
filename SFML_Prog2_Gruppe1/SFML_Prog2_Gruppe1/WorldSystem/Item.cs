@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using SFML;
-using SFML.System;
-using SFML.Window;
+﻿using SFML.System;
 using SFML.Graphics;
-using SFML.Audio;
 using SFML_Prog2_Gruppe1.Util;
 
 namespace SFML_Prog2_Gruppe1.WorldSystem
 {
+    /// <summary>
+    /// Item class.
+    /// </summary>
     public class Item
     {
         private Texture texture;
@@ -20,12 +14,19 @@ namespace SFML_Prog2_Gruppe1.WorldSystem
         private Vector2f position;
 
         private Spawn spawn;
+
+        /// <summary>
+        /// Spawn of the item.
+        /// </summary>
         public Spawn Spawn
         {
             get { return spawn; }
             set { spawn = value; }
         }
 
+        /// <summary>
+        /// Bounds of the item.
+        /// </summary>
         public FloatRect Bounds
         {
             get { return sprite.GetGlobalBounds(); }
@@ -44,6 +45,9 @@ namespace SFML_Prog2_Gruppe1.WorldSystem
             sprite.Position = position;
         }
 
+        /// <summary>
+        /// Draws the item.
+        /// </summary>
         public void Draw()
         {
             ProjectRenderWindow.GetRenderWindowInstance().Draw(sprite);
